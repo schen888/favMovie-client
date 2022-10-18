@@ -20,9 +20,10 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
-  "devDependencies": {
-    "@parcel/transformer-sass": "^2.7.0",
-    "process": "^0.11.10"
+  "alias": {
+    "process": false
   },
-  "alias": { "process": false }
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.7.0"
+  }
 }
