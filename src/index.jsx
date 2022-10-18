@@ -5,10 +5,11 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 
 // Main component (will eventually use all the others)
+//? why className?
 class favMovieApplication extends React.Component {
   render() {
     return (
-      <div className="fav-movie">
+      <div className="fav-movie">    
         <div>Good morning</div>
       </div>
     );
