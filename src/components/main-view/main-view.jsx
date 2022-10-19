@@ -2,7 +2,7 @@ import React from 'react';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 
-class MainView extends React.Component {
+export class MainView extends React.Component {
   constructor(){
     super();
     this.state = {
@@ -54,5 +54,3 @@ class MainView extends React.Component {
     ); */
   }
 }
-
-export {MainView};
