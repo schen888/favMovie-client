@@ -1,4 +1,5 @@
 import React from 'react';
+import { MovieCard } from '../movie-card/movie-card';
 
 class MainView extends React.Component {
   constructor(){
@@ -19,9 +20,10 @@ class MainView extends React.Component {
     } else {
       return (
         <div className="main-view">
-          {movies.map((movie) => { 
-          return <div key={movie._id}>{movie.Title}</div>
-          })}
+          {movies.map(movie => <MovieCard key={movie._id} movie={movie}/>)}
+          {/* {movies.map((movie)=>{
+            return <div key={movie._id}>{movie.Title}</div>
+          })} */}
         </div>
       );
     }
