@@ -4,6 +4,7 @@ import axios from 'axios';
 import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
+import { RegistrationView } from '../registration-view/registration-view';
 
 export class MainView extends React.Component {
   constructor(){
@@ -11,7 +12,8 @@ export class MainView extends React.Component {
     this.state = {
       movies: [],
       selectedMovie: null,
-      user: null
+      user: null,
+      isRegistered: true //my code for swtich to registration-view
     }
   }
 
@@ -42,11 +44,23 @@ export class MainView extends React.Component {
     });
   }
 
-  render() {
-    const { movies, selectedMovie, user } = this.state;
+  //my code for swtich to registration-view
+  onRegister(){
+    this.setState({
+      isRegistered: false
+    })
+  }
 
-    if (!user) return <LoginView onLoggedIn ={user => this.onLoggedIn(user)} />;
-    
+  render() {
+    //my code for swtich to registration-view: isRegistered
+    const { movies, selectedMovie, user, isRegistered } = this.state;
+
+    //my code for swtich to registration-view: onRegister={()=>this.onRegister()}
+    if ((!user) && isRegistered) return <LoginView onLoggedIn ={user => this.onLoggedIn(user)} onRegister={()=>this.onRegister()}/>;
+
+    //my code for swtich to registration-view
+    if ((!user) && (!isRegistered)) return <RegistrationView />
+
     if (movies.length === 0) return <div className="main-view" />;
 
     return (

@@ -24,7 +24,8 @@ export function LoginView(props) {
         <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
       </label>
       <button type="submit" onClick={handleSubmit}>Submit</button>
-      <button type="button">Register</button>
+      {/* my code for swtich to registration-view */}
+      <button type="button" onClick={e => props.onRegister()}>Register</button>
     </form>
   );
 }
