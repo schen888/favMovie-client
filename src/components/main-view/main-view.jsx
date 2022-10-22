@@ -15,6 +15,11 @@ export class MainView extends React.Component {
       user: null,
       isRegistered: true //my code for swtich to registration-view
     }
+
+    this.setSelectedMovie=this.setSelectedMovie.bind(this);
+    this.onLoggedIn=this.onLoggedIn.bind(this);
+    this.onRegisterFalse=this.onRegisterFalse.bind(this);
+    this.onRegisterTrue=this.onRegisterTrue.bind(this);
   }
 
   componentDidMount(){
@@ -45,9 +50,15 @@ export class MainView extends React.Component {
   }
 
   //my code for swtich to registration-view
-  onRegister(){
+  onRegisterFalse(){
     this.setState({
       isRegistered: false
+    })
+  }
+
+  onRegisterTrue(){
+    this.setState({
+      isRegistered: true
     })
   }
 
@@ -56,19 +67,19 @@ export class MainView extends React.Component {
     const { movies, selectedMovie, user, isRegistered } = this.state;
 
     //my code for swtich to registration-view: onRegister={()=>this.onRegister()}
-    if ((!user) && isRegistered) return <LoginView onLoggedIn ={user => this.onLoggedIn(user)} onRegister={()=>this.onRegister()}/>;
+    if ((!user) && isRegistered) return <LoginView onLoggedIn ={this.onLoggedIn} onRegisterFalse={this.onRegisterFalse}/>;
 
     //my code for swtich to registration-view
-    if ((!user) && (!isRegistered)) return <RegistrationView />
+    if ((!user) && (!isRegistered)) return <RegistrationView onRegisterTrue={this.onRegisterTrue}/>
 
     if (movies.length === 0) return <div className="main-view" />;
 
     return (
       <div className="main-view">
         {selectedMovie
-          ? <MovieView movie={selectedMovie} onBackClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }}/>
+          ? <MovieView movie={selectedMovie} onBackClick={this.setSelectedMovie}/>
           : movies.map(movie => (
-            <MovieCard key={movie._id} movie={movie} onMovieClick={(movie) => { this.setSelectedMovie(movie) }}/>
+            <MovieCard key={movie._id} movie={movie} onMovieClick={this.setSelectedMovie}/>
           ))
         }
       </div>

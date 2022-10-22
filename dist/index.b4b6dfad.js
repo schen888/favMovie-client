@@ -27238,6 +27238,10 @@ class MainView extends (0, _reactDefault.default).Component {
             user: null,
             isRegistered: true //my code for swtich to registration-view
         };
+        this.setSelectedMovie = this.setSelectedMovie.bind(this);
+        this.onLoggedIn = this.onLoggedIn.bind(this);
+        this.onRegisterFalse = this.onRegisterFalse.bind(this);
+        this.onRegisterTrue = this.onRegisterTrue.bind(this);
     }
     componentDidMount() {
         (0, _axiosDefault.default).get("https://favmovie123.herokuapp.com/movies").then((response)=>{
@@ -27260,9 +27264,14 @@ class MainView extends (0, _reactDefault.default).Component {
         });
     }
     //my code for swtich to registration-view
-    onRegister() {
+    onRegisterFalse() {
         this.setState({
             isRegistered: false
+        });
+    }
+    onRegisterTrue() {
+        this.setState({
+            isRegistered: true
         });
     }
     render() {
@@ -27270,50 +27279,48 @@ class MainView extends (0, _reactDefault.default).Component {
         const { movies , selectedMovie , user , isRegistered  } = this.state;
         //my code for swtich to registration-view: onRegister={()=>this.onRegister()}
         if (!user && isRegistered) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loginView.LoginView), {
-            onLoggedIn: (user)=>this.onLoggedIn(user),
-            onRegister: ()=>this.onRegister()
+            onLoggedIn: this.onLoggedIn,
+            onRegisterFalse: this.onRegisterFalse
         }, void 0, false, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 59,
+            lineNumber: 70,
             columnNumber: 41
         }, this);
         //my code for swtich to registration-view
-        if (!user && !isRegistered) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _registrationView.RegistrationView), {}, void 0, false, {
+        if (!user && !isRegistered) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _registrationView.RegistrationView), {
+            onRegisterTrue: this.onRegisterTrue
+        }, void 0, false, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 62,
+            lineNumber: 73,
             columnNumber: 44
         }, this);
         if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
             className: "main-view"
         }, void 0, false, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 64,
+            lineNumber: 75,
             columnNumber: 37
         }, this);
         return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
             className: "main-view",
             children: selectedMovie ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
                 movie: selectedMovie,
-                onBackClick: (newSelectedMovie)=>{
-                    this.setSelectedMovie(newSelectedMovie);
-                }
+                onBackClick: this.setSelectedMovie
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 69,
+                lineNumber: 80,
                 columnNumber: 13
             }, this) : movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
                     movie: movie,
-                    onMovieClick: (movie)=>{
-                        this.setSelectedMovie(movie);
-                    }
+                    onMovieClick: this.setSelectedMovie
                 }, movie._id, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 71,
+                    lineNumber: 82,
                     columnNumber: 13
                 }, this))
         }, void 0, false, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 67,
+            lineNumber: 78,
             columnNumber: 7
         }, this);
     /* if (selectedMovie) return <MovieView movie={selectedMovie} />
@@ -32470,7 +32477,7 @@ function LoginView(props) {
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                 type: "button",
-                onClick: (e)=>props.onRegister(),
+                onClick: (e)=>props.onRegisterFalse(),
                 children: "Register"
             }, void 0, false, {
                 fileName: "src/components/login-view/login-view.jsx",
@@ -32574,6 +32581,7 @@ function RegistrationView(props) {
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                 type: "button",
+                onClick: (e)=>props.onRegisterTrue(),
                 children: "Register"
             }, void 0, false, {
                 fileName: "src/components/registration-view/registration-view.jsx",

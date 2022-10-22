@@ -19,7 +19,7 @@ export function RegistrationView(props) {
         Email:
         <input type="email" value={email} onChange={e => setEmail(e.target.value)} />
       </label>
-      <button type="button">Register</button>
+      <button type="button" onClick={e=>props.onRegisterTrue()}>Register</button>
     </form>
   );
 }

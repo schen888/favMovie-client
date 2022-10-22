@@ -25,7 +25,7 @@ export function LoginView(props) {
       </label>
       <button type="submit" onClick={handleSubmit}>Submit</button>
       {/* my code for swtich to registration-view */}
-      <button type="button" onClick={e => props.onRegister()}>Register</button>
+      <button type="button" onClick={e => props.onRegisterFalse()}>Register</button>
     </form>
   );
 }
