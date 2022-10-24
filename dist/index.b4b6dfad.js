@@ -27313,36 +27313,36 @@ class MainView extends (0, _reactDefault.default).Component {
             lineNumber: 78,
             columnNumber: 37
         }, this);
-        return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-            className: "main-view",
-            children: selectedMovie ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
-                className: "justify-content-md-center",
-                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
-                    md: 8,
-                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
-                        movie: selectedMovie,
-                        onBackClick: this.setSelectedMovie
-                    }, void 0, false, {
-                        fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 86,
-                        columnNumber: 19
-                    }, this)
+        return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
+            className: "main-view justify-content-md-center",
+            children: selectedMovie ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                md: 8,
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
+                    movie: selectedMovie,
+                    onBackClick: this.setSelectedMovie
                 }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
                     lineNumber: 85,
-                    columnNumber: 17
+                    columnNumber: 15
                 }, this)
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
                 lineNumber: 84,
-                columnNumber: 15
-            }, this) : movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
-                    movie: movie,
-                    onMovieClick: this.setSelectedMovie
-                }, movie._id, false, {
+                columnNumber: 13
+            }, this) : movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                    md: 3,
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
+                        movie: movie,
+                        onMovieClick: this.setSelectedMovie
+                    }, movie._id, false, {
+                        fileName: "src/components/main-view/main-view.jsx",
+                        lineNumber: 91,
+                        columnNumber: 17
+                    }, this)
+                }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 91,
-                    columnNumber: 13
+                    lineNumber: 90,
+                    columnNumber: 15
                 }, this))
         }, void 0, false, {
             fileName: "src/components/main-view/main-view.jsx",
