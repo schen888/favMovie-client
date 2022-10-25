@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import {Container, Row, Col, Card, Form, Button, Stack, Link} from 'react-bootstrap';
+import {Container, Row, Col, Card, Form, Button, Stack} from 'react-bootstrap';
 
 export function LoginView(props) {
   const [ username, setUsername ] = useState('');
@@ -16,11 +16,11 @@ export function LoginView(props) {
 
   return (
     <Container>
-      <Row className="justify-content-md-center">
+      <Row className="justify-content-center">
         <Col md={10} lg={8}>
           <Card>
             <Card.Title style={{ textAlign: "center", fontSize: "2rem" }} className="mt-3">
-              Log in
+              Login
             </Card.Title>
             <Card.Body>
               <Form>
