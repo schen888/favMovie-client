@@ -6,6 +6,8 @@ import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { RegistrationView } from '../registration-view/registration-view';
 
+import FavMovieNavbar from '../navbar/navbar';
+
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
@@ -78,17 +80,19 @@ export class MainView extends React.Component {
     if (movies.length === 0) return <div className="main-view" />;
 
     return (
+      
       <div className='main-view'>
+        <FavMovieNavbar />
         {selectedMovie
           ? (
-            <Row className="justify-content-center">
+            <Row className="justify-content-center mt-5">
             <Col lg={8}>
               <MovieView movie={selectedMovie} onBackClick={this.setSelectedMovie}/>
             </Col> 
             </Row>
           )
           : (
-            <Row className="justify-content-start">
+            <Row className="justify-content-left mt-3">
               {movies.map(movie => (
 
               <Col md={6} lg={4} xl={3} className='d-flex'>
