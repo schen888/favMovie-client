@@ -34840,7 +34840,7 @@ function LoginView(props) {
                                                 variant: "link",
                                                 type: "button",
                                                 onClick: (e)=>props.onRegisterFalse(),
-                                                className: "ms-auto",
+                                                className: "ml-2",
                                                 children: "Register"
                                             }, void 0, false, {
                                                 fileName: "src/components/login-view/login-view.jsx",
@@ -35104,7 +35104,7 @@ function RegistrationView(props) {
                                                 variant: "link",
                                                 type: "button",
                                                 onClick: (e)=>props.onRegisterTrue(),
-                                                className: "ms-auto",
+                                                className: "ml-2",
                                                 children: "Already registerd"
                                             }, void 0, false, {
                                                 fileName: "src/components/registration-view/registration-view.jsx",

@@ -78,7 +78,7 @@ export function RegistrationView(props) {
                       Register
                     </Button>
 
-                    <Button variant="link" type="button" onClick={e=>props.onRegisterTrue()} className="ms-auto">
+                    <Button variant="link" type="button" onClick={e=>props.onRegisterTrue()} className="ml-2">
                       Already registerd
                     </Button>
                   </Stack>
