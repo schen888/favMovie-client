@@ -34804,7 +34804,7 @@ function LoginView(props) {
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                                                variant: "light",
+                                                variant: "link",
                                                 type: "button",
                                                 onClick: (e)=>props.onRegisterFalse(),
                                                 className: "ms-auto",

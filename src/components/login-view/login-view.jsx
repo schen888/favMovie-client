@@ -53,7 +53,7 @@ export function LoginView(props) {
                     Submit
                   </Button>
 
-                  <Button variant="light" type="button" onClick={e => props.onRegisterFalse()} className="ms-auto">
+                  <Button variant="link" type="button" onClick={e => props.onRegisterFalse()} className="ms-auto">
                     Register
                   </Button>
                 </Stack>
