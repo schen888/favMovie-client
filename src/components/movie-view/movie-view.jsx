@@ -28,7 +28,7 @@ export class MovieView extends React.Component {
           <span className="label">Director: </span>
           <span className="value">{movie.Director.Name}</span>
         </div>
-        <Button className='ps-0' onClick={()=>{ onBackClick(null); }} variant='link'>Back</Button>
+        <Button className='pl-0' onClick={()=>{ onBackClick(null); }} variant='link'>Back</Button>
 
        </div>
     );

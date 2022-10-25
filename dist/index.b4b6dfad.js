@@ -27411,7 +27411,7 @@ class MovieCard extends (0, _reactDefault.default).Component {
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
-                    className: "d-flex flex-column justify-content-between align-items-start",
+                    className: "d-flex flex-column justify-content-between align-items-left",
                     children: [
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                             children: [
@@ -34676,7 +34676,7 @@ class MovieView extends (0, _reactDefault.default).Component {
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
-                    className: "ps-0",
+                    className: "pl-0",
                     onClick: ()=>{
                         onBackClick(null);
                     },

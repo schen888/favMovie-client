@@ -9,7 +9,7 @@ export class MovieCard extends React.Component {
      
       <Card border="dark" className='mb-3'>
         <Card.Img variant="top" src={movie.imageURL} />
-        <Card.Body className="d-flex flex-column justify-content-between align-items-start">
+        <Card.Body className="d-flex flex-column justify-content-between align-items-left">
           <div>
             <Card.Title>{movie.Title}</Card.Title>
             <Card.Text>{movie.Description}</Card.Text>
