@@ -74,11 +74,11 @@ export function RegistrationView(props) {
                   </Form.Group>
 
                   <Stack direction="horizontal" className="mt-5 mb-3">
-                    <Button variant="primary" type="button" onClick={e=>props.onRegisterTrue()}>
+                    <Button variant="primary" type="button">
                       Register
                     </Button>
 
-                    <Button variant="link" type="button" onClick={e=>props.onRegisterTrue()} className="ml-2">
+                    <Button variant="link" type="button" className="ml-2">
                       Already registerd
                     </Button>
                   </Stack>

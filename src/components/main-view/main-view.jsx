@@ -69,13 +69,13 @@ export class MainView extends React.Component {
 
   render() {
     //my code for swtich to registration-view: isRegistered
-    const { movies, selectedMovie, user, isRegistered } = this.state;
+    const { movies, selectedMovie, user} = this.state;
 
     //my code for swtich to registration-view: onRegister={()=>this.onRegister()}
-    if ((!user) && isRegistered) return <LoginView onLoggedIn ={this.onLoggedIn} onRegisterFalse={this.onRegisterFalse}/>;
+    if (!user) return <LoginView onLoggedIn ={this.onLoggedIn} />;
 
     //my code for swtich to registration-view
-    if ((!user) && (!isRegistered)) return <RegistrationView onRegisterTrue={this.onRegisterTrue}/>
+    //if ((!user) && (!isRegistered)) return <RegistrationView onRegisterTrue={this.onRegisterTrue}/>
 
     if (movies.length === 0) return <div className="main-view" />;
 

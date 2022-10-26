@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import {Container, Row, Col, Card, Form, Button, Stack} from 'react-bootstrap';
 
@@ -9,9 +10,19 @@ export function LoginView(props) {
   const handleSubmit = (e) => {
     e.preventDefault(); //prevent browser reload after click the submit.
     console.log(username, password);
-    /* Send a request to the server for authentication */
-    /* then call props.onLoggedIn(username) */
-    props.onLoggedIn(username);
+    axios.post('https://favmovie123.herokuapp.com/login', {
+      Username: username,
+      Password: password
+    })
+    .then((response) => {
+      const data = response.data;
+      console.log(response.data);
+      props.onLoggedIn(data);
+      
+    })
+    .catch((e) => {
+      console.log(e, 'no such user')
+    });
   };
 
   return (
@@ -53,7 +64,7 @@ export function LoginView(props) {
                     Submit
                   </Button>
 
-                  <Button variant="link" type="button" onClick={e => props.onRegisterFalse()} className="ml-2">
+                  <Button variant="link" type="button" className="ml-2">
                     Register
                   </Button>
                 </Stack>
