@@ -7,22 +7,51 @@ export function LoginView(props) {
   const [ username, setUsername ] = useState('');
   const [ password, setPassword ] = useState('');
 
+  const [ usernameErr, setUsernameErr ] = useState('');
+  const [ passwordErr, setPasswordErr ] = useState('');
+
+  //??why does not this function take parameters?
+  const validate = () => {
+    let isReq = true;
+    console.log(`isRequ in validate1: ${isReq}`);
+    if(!username){
+     setUsernameErr('Username Required');
+     isReq = false;
+    }else if(username.length < 5){
+     setUsernameErr('Username must be 5 characters long');
+     isReq = false;
+    }
+    if(!password){
+     setPasswordErr('Password Required');
+     isReq = false;
+    }else if(password.length < 6){
+     setPasswordErr('Password must be 6 characters long');
+     isReq = false;
+    }
+    console.log(username, password);
+    console.log(`isRequ in validate2: ${isReq}`);
+    return isReq;
+}
+
   const handleSubmit = (e) => {
     e.preventDefault(); //prevent browser reload after click the submit.
     console.log(username, password);
-    axios.post('https://favmovie123.herokuapp.com/login', {
-      Username: username,
-      Password: password
-    })
-    .then((response) => {
-      const data = response.data;
-      console.log(response.data);
-      props.onLoggedIn(data);
-      
-    })
+    const isReq = validate();
+    console.log(`isReq: ${isReq}`);
+    if(isReq) {
+      axios.post('https://favmovie123.herokuapp.com/login', {
+        Username: username,
+        Password: password
+      })
+      .then((response) => {
+        const data = response.data;
+        console.log(response.data);
+        props.onLoggedIn(data);
+      })
     .catch((e) => {
       console.log(e, 'no such user')
     });
+    }
   };
 
   return (
