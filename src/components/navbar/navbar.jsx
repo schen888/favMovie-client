@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
-function FavMovieNavbar() {
+function FavMovieNavbar(props) {
   return (
     <Navbar bg="primary" variant="dark" expand="sm">
       <Container>
@@ -13,7 +13,7 @@ function FavMovieNavbar() {
         <Navbar.Collapse id="navbar-nav">
           <Nav className="mr-auto">
             <Nav.Link href="#">Profile</Nav.Link>
-            <Nav.Link href="#">Logout</Nav.Link>
+            <Nav.Link href="#" onClick={()=>{props.onLoggedOut()}}>Logout</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

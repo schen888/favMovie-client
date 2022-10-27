@@ -23,8 +23,7 @@ export class MainView extends React.Component {
 
     this.setSelectedMovie=this.setSelectedMovie.bind(this);
     this.onLoggedIn=this.onLoggedIn.bind(this);
-    this.onRegisterFalse=this.onRegisterFalse.bind(this);
-    this.onRegisterTrue=this.onRegisterTrue.bind(this);
+    this.onLoggedOut=this.onLoggedOut.bind(this);
   }
 
   componentDidMount(){
@@ -45,7 +44,8 @@ export class MainView extends React.Component {
     });
   }
 
-  /* When a user successfully logs in, this function updates the `user` property in state to that particular user*/
+  /* called by handleSubmit in loginView. Response containing user data is passed as argument. Set the user state in mainView
+   and store the credential data in localStorage.*/
   onLoggedIn(authData) {
     console.log(authData);
     this.setState({
@@ -62,7 +62,6 @@ export class MainView extends React.Component {
       headers: { Authorization: `Bearer ${token}`}
     })
     .then(response => {
-      // Assign the result to the state
       this.setState({
         movies: response.data
       });
@@ -71,6 +70,15 @@ export class MainView extends React.Component {
       console.log(error);
     });
   }
+
+  onLoggedOut() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.setState({
+      user: null
+    });
+  }
+
 
   //my code for swtich to registration-view
   onRegisterFalse(){
@@ -100,7 +108,7 @@ export class MainView extends React.Component {
     return (
       
       <div className='main-view'>
-        <FavMovieNavbar />
+        <FavMovieNavbar onLoggedOut={this.onLoggedOut}/>
         {selectedMovie
           ? (
             <Row className="justify-content-center mt-5">

@@ -27254,8 +27254,7 @@ class MainView extends (0, _reactDefault.default).Component {
         };
         this.setSelectedMovie = this.setSelectedMovie.bind(this);
         this.onLoggedIn = this.onLoggedIn.bind(this);
-        this.onRegisterFalse = this.onRegisterFalse.bind(this);
-        this.onRegisterTrue = this.onRegisterTrue.bind(this);
+        this.onLoggedOut = this.onLoggedOut.bind(this);
     }
     componentDidMount() {
         let accessToken = localStorage.getItem("token");
@@ -27272,7 +27271,8 @@ class MainView extends (0, _reactDefault.default).Component {
             selectedMovie: newSelectedMovie
         });
     }
-    /* When a user successfully logs in, this function updates the `user` property in state to that particular user*/ onLoggedIn(authData) {
+    /* called by handleSubmit in loginView. Response containing user data is passed as argument. Set the user state in mainView
+   and store the credential data in localStorage.*/ onLoggedIn(authData) {
         console.log(authData);
         this.setState({
             user: authData.user.Username
@@ -27287,12 +27287,18 @@ class MainView extends (0, _reactDefault.default).Component {
                 Authorization: `Bearer ${token}`
             }
         }).then((response)=>{
-            // Assign the result to the state
             this.setState({
                 movies: response.data
             });
         }).catch(function(error) {
             console.log(error);
+        });
+    }
+    onLoggedOut() {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        this.setState({
+            user: null
         });
     }
     //my code for swtich to registration-view
@@ -27314,7 +27320,7 @@ class MainView extends (0, _reactDefault.default).Component {
             onLoggedIn: this.onLoggedIn
         }, void 0, false, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 93,
+            lineNumber: 101,
             columnNumber: 23
         }, this);
         //my code for swtich to registration-view
@@ -27323,15 +27329,17 @@ class MainView extends (0, _reactDefault.default).Component {
             className: "main-view"
         }, void 0, false, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 98,
+            lineNumber: 106,
             columnNumber: 37
         }, this);
         return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
             className: "main-view",
             children: [
-                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navbarDefault.default), {}, void 0, false, {
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navbarDefault.default), {
+                    onLoggedOut: this.onLoggedOut
+                }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 103,
+                    lineNumber: 111,
                     columnNumber: 9
                 }, this),
                 selectedMovie ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
@@ -27343,17 +27351,17 @@ class MainView extends (0, _reactDefault.default).Component {
                             onBackClick: this.setSelectedMovie
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 108,
+                            lineNumber: 116,
                             columnNumber: 15
                         }, this)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 107,
+                        lineNumber: 115,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 106,
+                    lineNumber: 114,
                     columnNumber: 13
                 }, this) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
                     className: "justify-content-left mt-3",
@@ -27367,23 +27375,23 @@ class MainView extends (0, _reactDefault.default).Component {
                                 onMovieClick: this.setSelectedMovie
                             }, movie._id, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 117,
+                                lineNumber: 125,
                                 columnNumber: 17
                             }, this)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 116,
+                            lineNumber: 124,
                             columnNumber: 15
                         }, this))
                 }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 113,
+                    lineNumber: 121,
                     columnNumber: 13
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 102,
+            lineNumber: 110,
             columnNumber: 7
         }, this);
     /* if (selectedMovie) return <MovieView movie={selectedMovie} />
@@ -38899,7 +38907,7 @@ var _nav = require("react-bootstrap/Nav");
 var _navDefault = parcelHelpers.interopDefault(_nav);
 var _navbar = require("react-bootstrap/Navbar");
 var _navbarDefault = parcelHelpers.interopDefault(_navbar);
-function FavMovieNavbar() {
+function FavMovieNavbar(props) {
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navbarDefault.default), {
         bg: "primary",
         variant: "dark",
@@ -38936,6 +38944,9 @@ function FavMovieNavbar() {
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navDefault.default).Link, {
                                 href: "#",
+                                onClick: ()=>{
+                                    props.onLoggedOut();
+                                },
                                 children: "Logout"
                             }, void 0, false, {
                                 fileName: "src/components/navbar/navbar.jsx",
