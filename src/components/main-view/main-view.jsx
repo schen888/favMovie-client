@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
 import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
@@ -16,45 +18,13 @@ export class MainView extends React.Component {
     super();
     this.state = {
       movies: [],
-      selectedMovie: null,
-      user: null,
-      isRegistered: true //my code for swtich to registration-view
+      //selectedMovie: null,
+      user: null
     }
 
-    this.setSelectedMovie=this.setSelectedMovie.bind(this);
+    //this.setSelectedMovie=this.setSelectedMovie.bind(this);
     this.onLoggedIn=this.onLoggedIn.bind(this);
     this.onLoggedOut=this.onLoggedOut.bind(this);
-  }
-
-  componentDidMount(){
-    let accessToken = localStorage.getItem('token');
-    if (accessToken !== null) {
-      this.setState({
-        user: localStorage.getItem('user')
-      });
-      this.getMovies(accessToken);
-    }
-  }
-
-  /*When a movie is clicked, this function is invoked and updates the state of the selectedMovie property to 
-  that movie*/
-  setSelectedMovie(newSelectedMovie) {
-    this.setState({
-      selectedMovie: newSelectedMovie
-    });
-  }
-
-  /* called by handleSubmit in loginView. Response containing user data is passed as argument. Set the user state in mainView
-   and store the credential data in localStorage.*/
-  onLoggedIn(authData) {
-    console.log(authData);
-    this.setState({
-      user: authData.user.Username
-    });
-
-    localStorage.setItem('token', authData.token);
-    localStorage.setItem('user', authData.user.Username);
-    this.getMovies(authData.token);
   }
 
   getMovies(token) {
@@ -71,17 +41,48 @@ export class MainView extends React.Component {
     });
   }
 
-  onLoggedOut() {
+  componentDidMount(){
+    let accessToken = localStorage.getItem('token');
+    if (accessToken !== null) {
+      this.setState({
+        user: localStorage.getItem('user')
+      });
+      this.getMovies(accessToken);
+    }
+  }
+
+  /*When a movie is clicked, this function is invoked and updates the state of the selectedMovie property to 
+  that movie*/
+  /* setSelectedMovie(newSelectedMovie) {
+    this.setState({
+      selectedMovie: newSelectedMovie
+    });
+  } */
+
+  /* called by handleSubmit in loginView. Response containing user data is passed as argument. Set the user state in mainView
+   and store the credential data in localStorage.*/
+  onLoggedIn(authData) {
+    console.log(authData);
+    this.setState({
+      user: authData.user.Username
+    });
+
+    localStorage.setItem('token', authData.token);
+    localStorage.setItem('user', authData.user.Username);
+    this.getMovies(authData.token);
+  }
+
+  /* onLoggedOut() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     this.setState({
       user: null
     });
-  }
+  } */
 
 
   //my code for swtich to registration-view
-  onRegisterFalse(){
+  /* onRegisterFalse(){
     this.setState({
       isRegistered: false
     })
@@ -91,44 +92,47 @@ export class MainView extends React.Component {
     this.setState({
       isRegistered: true
     })
-  }
+  } */
 
   render() {
-    //my code for swtich to registration-view: isRegistered
-    const { movies, selectedMovie, user} = this.state;
+    //my code for swtich to registration-view: isRegistered, selectedMovie,
+    const { movies, user} = this.state;
 
     //my code for swtich to registration-view: onRegister={()=>this.onRegister()}
-    if (!user) return <LoginView onLoggedIn ={this.onLoggedIn} />;
-
+    if (!user) return <Row>
+      <Col>
+        <LoginView onLoggedIn ={this.onLoggedIn} />;
+      </Col>
+    </Row>
     //my code for swtich to registration-view
     //if ((!user) && (!isRegistered)) return <RegistrationView onRegisterTrue={this.onRegisterTrue}/>
+    //key={movie._id} movie={movie} onMovieClick={this.setSelectedMovie}
 
     if (movies.length === 0) return <div className="main-view" />;
 
     return (
-      
-      <div className='main-view'>
-        <FavMovieNavbar onLoggedOut={this.onLoggedOut}/>
-        {selectedMovie
-          ? (
-            <Row className="justify-content-center mt-5">
-            <Col lg={8}>
-              <MovieView movie={selectedMovie} onBackClick={this.setSelectedMovie}/>
-            </Col> 
-            </Row>
-          )
-          : (
-            <Row className="justify-content-left mt-3">
-              {movies.map(movie => (
+      <Router>
+        <div className='main-view'>
+          <FavMovieNavbar onLoggedOut={this.onLoggedOut}/>
+          <Row className="justify-content-left mt-3">
+            <Route exact path="/" render={()=>{
+              return movies.map(m => (
+                <Col md={6} lg={4} xl={3} className='d-flex'>
+                  <MovieCard movie={m}/>
+                </Col>
+              ))
+            }} />
+          </Row>
 
-              <Col md={6} lg={4} xl={3} className='d-flex'>
-                <MovieCard key={movie._id} movie={movie} onMovieClick={this.setSelectedMovie}/>
-              </Col>
-            ))}
-            </Row>
-          )
-        }
-      </div>
+          <Row className="justify-content-center mt-5">
+            <Route path="/movies/:movieId" render={({match})=>{
+              return <Col lg={8}>
+                <MovieView movie={movies.find(m => m._id === match.params.movieId)} />
+              </Col> 
+            }} /> 
+          </Row>
+        </div>
+      </Router>
     );
 
     /* if (selectedMovie) return <MovieView movie={selectedMovie} />
