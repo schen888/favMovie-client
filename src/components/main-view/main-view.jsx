@@ -84,9 +84,9 @@ export class MainView extends React.Component {
         <FavMovieNavbar user={user} onLoggedOut={this.onLoggedOut}/>
         <Container className='main-view'>
           <Row className="justify-content-center">
-            <Route extrac path="/" render={()=>{
+            <Route exact path="/" render={()=>{
               if (!user) return <Col md={10} lg={8}>
-                <LoginView onLoggedIn ={this.onLoggedIn} />;
+                <LoginView onLoggedIn ={this.onLoggedIn} />
               </Col>
               // Before movies have been loaded
               if (movies.length === 0) return <div className="main-view" />;

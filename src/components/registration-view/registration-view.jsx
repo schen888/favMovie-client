@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Card, Form, Button, Stack } from 'react-bootstrap';
+import { Link } from "react-router-dom";
 
 export function RegistrationView(props) {
   const [ username, setUsername ] = useState('');
@@ -137,9 +138,11 @@ export function RegistrationView(props) {
                 Register
               </Button>
 
-              <Button variant="link" type="button" className="ml-2">
-                Already registerd
-              </Button>
+              <Link to="/">
+                <Button variant="link" type="button" className="ml-2">
+                  Already registerd
+                </Button>
+              </Link>
             </Stack>
         </Form>
       </Card.Body>

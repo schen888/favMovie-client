@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import {Container, Row, Col, Card, Form, Button, Stack} from 'react-bootstrap';
+import { Link } from "react-router-dom";
 
 export function LoginView(props) {
   const [ username, setUsername ] = useState('');
@@ -89,15 +90,16 @@ export function LoginView(props) {
             <Button variant="primary" type="submit" onClick={handleSubmit}>
               Submit
             </Button>
-
-            <Button variant="link" type="button" className="ml-2">
-              Register
-            </Button>
+            <Link to="/register">
+              <Button variant="link" type="button" className="ml-2">
+                Register
+              </Button>
+            </Link>
           </Stack>
         </Form>
       </Card.Body>
     </Card>
-  );
+  )
 }
 
 LoginView.propTypes = {
