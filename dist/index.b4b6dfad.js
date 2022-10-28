@@ -41404,7 +41404,7 @@ class DirectorView extends (0, _reactDefault.default).Component {
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                    className: "discription",
+                    className: "description",
                     children: [
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                             children: [
