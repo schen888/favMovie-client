@@ -4,10 +4,9 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
-function FavMovieNavbar({onLoggedOut}) {
+function FavMovieNavbar({user, onLoggedOut}) {
   let navBarList;
   const token=localStorage.getItem("token");
-  const user=localStorage.getItem("user");
 
   const isAuth=()=>{
     if(typeof window == "undefined") {

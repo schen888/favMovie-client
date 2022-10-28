@@ -103,7 +103,7 @@ export class MainView extends React.Component {
 
     return (
       <Router>
-        <FavMovieNavbar onLoggedOut={this.onLoggedOut}/>
+        <FavMovieNavbar user={user} onLoggedOut={this.onLoggedOut}/>
         <Container className='main-view'>
           <Row className="justify-content-center">
             <Route extrac path="/" render={()=>{
@@ -137,6 +137,14 @@ export class MainView extends React.Component {
               return <Col lg={8}>
                 <MovieView movie={movies.find(m => m._id === match.params.movieId)} onBackClick={()=>history.goBack()} />
               </Col> 
+            }} />
+
+            
+            <Route path={`/users/${user}`} render={({match, history})=>{// probaboly the match parameter can be deleted
+              if (!user) return <Redirect to="/" />
+              return <Col lg={8}>
+                <ProfileView movies={movies} user={user} onBackClick={()=>{history.goBack()}}/>
+              </Col>
             }} /> 
           </Row>
 
