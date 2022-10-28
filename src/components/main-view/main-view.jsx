@@ -9,6 +9,8 @@ import { MovieView } from '../movie-view/movie-view';
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
 import { RegistrationView } from '../registration-view/registration-view';
+//import {ProfileView}
+//import {UserUpdate}
 
 import FavMovieNavbar from '../navbar/navbar';
 
@@ -21,11 +23,9 @@ export class MainView extends React.Component {
     super();
     this.state = {
       movies: [],
-      //selectedMovie: null,
       user: null
     }
 
-    //this.setSelectedMovie=this.setSelectedMovie.bind(this);
     this.onLoggedIn=this.onLoggedIn.bind(this);
     this.onLoggedOut=this.onLoggedOut.bind(this);
   }
@@ -54,14 +54,6 @@ export class MainView extends React.Component {
     }
   }
 
-  /*When a movie is clicked, this function is invoked and updates the state of the selectedMovie property to 
-  that movie*/
-  /* setSelectedMovie(newSelectedMovie) {
-    this.setState({
-      selectedMovie: newSelectedMovie
-    });
-  } */
-
   /* called by handleSubmit in loginView. Response containing user data is passed as argument. Set the user state in mainView
    and store the credential data in localStorage.*/
   onLoggedIn(authData) {
@@ -81,22 +73,8 @@ export class MainView extends React.Component {
     this.setState({
       user: null
     });
-    window.open("/", "_self");
+    window.open("/", "_self"); // is method necessary? set user state to null will render LoginView already
   }
-
-
-  //my code for swtich to registration-view
-  /* onRegisterFalse(){
-    this.setState({
-      isRegistered: false
-    })
-  }
-
-  onRegisterTrue(){
-    this.setState({
-      isRegistered: true
-    })
-  } */
 
   render() {
     const { movies, user} = this.state;
@@ -146,6 +124,14 @@ export class MainView extends React.Component {
                 <ProfileView movies={movies} user={user} onBackClick={()=>{history.goBack()}}/>
               </Col>
             }} /> 
+
+            <Route path={`/user-update/${user}`} render={({match, history})=>{// probaboly the match parameter can be deleted
+              // in <UserUpdate /> maybe movies as props needed?
+              if (!user) return <Redirect to="/" />
+              return <Col lg={8}> 
+                <UserUpdate user={user} onBackClick={()=>history.goBack()} />
+              </Col> 
+            }} />
           </Row>
 
           <Row className="justify-content-center mt-5">
@@ -166,12 +152,5 @@ export class MainView extends React.Component {
         </Container>
       </Router>
     );
-
-    /* if (selectedMovie) return <MovieView movie={selectedMovie} />
-    return (
-      <div className="main-view">
-        {movies.map(movie => <MovieCard key={movie._id} movie={movie} onMovieClick={(movie)=>{ this.setSelectedMovie(movie) }} />)}
-      </div>
-    ); */
   }
 }
