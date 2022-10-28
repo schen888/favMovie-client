@@ -14,6 +14,7 @@ import FavMovieNavbar from '../navbar/navbar';
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { Container } from 'react-bootstrap';
 
 export class MainView extends React.Component {
   constructor(){
@@ -98,26 +99,22 @@ export class MainView extends React.Component {
   } */
 
   render() {
-    //my code for swtich to registration-view: isRegistered, selectedMovie,
     const { movies, user} = this.state;
-
-    //my code for swtich to registration-view: onRegister={()=>this.onRegister()}
-    if (!user) return <Row>
-      <Col>
-      <FavMovieNavbar onLoggedOut={this.onLoggedOut}/>
-        <LoginView onLoggedIn ={this.onLoggedIn} />;
-      </Col>
-    </Row>
-    //my code for swtich to registration-view
-    //if ((!user) && (!isRegistered)) return <RegistrationView onRegisterTrue={this.onRegisterTrue}/>
-    //key={movie._id} movie={movie} onMovieClick={this.setSelectedMovie}
-
-    if (movies.length === 0) return <div className="main-view" />;
 
     return (
       <Router>
-        <div className='main-view'>
-          <FavMovieNavbar onLoggedOut={this.onLoggedOut}/>
+        <FavMovieNavbar onLoggedOut={this.onLoggedOut}/>
+        <Container className='main-view'>
+          <Row className="justify-content-center">
+            <Route extrac path="/" render={()=>{
+              if (!user) return <Col>
+                <LoginView onLoggedIn ={this.onLoggedIn} />;
+              </Col>
+              // Before movies have been loaded
+              if (movies.length === 0) return <div className="main-view" />;
+            }} />
+          </Row>
+          
           <Row className="justify-content-left mt-3">
             <Route exact path="/" render={()=>{
               return movies.map(m => (
@@ -151,7 +148,7 @@ export class MainView extends React.Component {
               </Col> 
             }} />
           </Row>
-        </div>
+        </Container>
       </Router>
     );
 
