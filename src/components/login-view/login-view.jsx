@@ -55,55 +55,48 @@ export function LoginView(props) {
   };
 
   return (
-    <Container>
-      <Row className="justify-content-center">
-        <Col md={10} lg={8}>
-          <Card>
-            <Card.Title style={{ textAlign: "center", fontSize: "2rem" }} className="mt-3">
-              Login
-            </Card.Title>
-            <Card.Body>
-              <Form>
-                <Form.Group className="mb-3" controlId="formUsername">
-                  <Form.Label>Username:</Form.Label>
-                  <Form.Control
-                    type="text"
-                    value={username}
-                    onChange={e => setUsername(e.target.value)}
-                    required
-                    minLength="5"
-                    placeholder="Enter username"
-                  />
-                </Form.Group>
+    <Card>
+      <Card.Title style={{ textAlign: "center", fontSize: "2rem" }} className="mt-3">
+        Login
+      </Card.Title>
+      <Card.Body>
+        <Form>
+          <Form.Group className="mb-3" controlId="formUsername">
+            <Form.Label>Username:</Form.Label>
+            <Form.Control
+              type="text"
+              value={username}
+              onChange={e => setUsername(e.target.value)}
+              required
+              minLength="5"
+              placeholder="Enter username"
+            />
+          </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formPassword">
-                  <Form.Label>Password:</Form.Label>
-                  <Form.Control
-                    type="password"
-                    value={password}
-                    onChange={e => setPassword(e.target.value)}
-                    required
-                    minLength="6"
-                    placeholder="Enter password"
-                  />
-                </Form.Group>
+          <Form.Group className="mb-3" controlId="formPassword">
+            <Form.Label>Password:</Form.Label>
+            <Form.Control
+              type="password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              required
+              minLength="6"
+              placeholder="Enter password"
+            />
+          </Form.Group>
 
-                <Stack direction="horizontal" className="mt-5 mb-3">
-                  <Button variant="primary" type="submit" onClick={handleSubmit}>
-                    Submit
-                  </Button>
+          <Stack direction="horizontal" className="mt-5 mb-3">
+            <Button variant="primary" type="submit" onClick={handleSubmit}>
+              Submit
+            </Button>
 
-                  <Button variant="link" type="button" className="ml-2">
-                    Register
-                  </Button>
-                </Stack>
-              </Form>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-    </Container>
-    
+            <Button variant="link" type="button" className="ml-2">
+              Register
+            </Button>
+          </Stack>
+        </Form>
+      </Card.Body>
+    </Card>
   );
 }
 

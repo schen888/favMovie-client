@@ -107,14 +107,21 @@ export class MainView extends React.Component {
         <Container className='main-view'>
           <Row className="justify-content-center">
             <Route extrac path="/" render={()=>{
-              if (!user) return <Col>
+              if (!user) return <Col md={10} lg={8}>
                 <LoginView onLoggedIn ={this.onLoggedIn} />;
               </Col>
               // Before movies have been loaded
               if (movies.length === 0) return <div className="main-view" />;
             }} />
+
+            <Route path="/register" render={()=>{
+              if(user) return <Redirect to="/" />
+              return <Col md={10} lg={8}>
+                <RegistrationView />
+              </Col>
+            }}/>
           </Row>
-          
+
           <Row className="justify-content-left mt-3">
             <Route exact path="/" render={()=>{
               return movies.map(m => (
