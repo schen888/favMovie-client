@@ -11,7 +11,6 @@ export function LoginView(props) {
   const [ usernameErr, setUsernameErr ] = useState('');
   const [ passwordErr, setPasswordErr ] = useState('');
 
-  //??why does not this function take parameters?
   const validate = () => {
     let isReq = true;
     console.log(`isRequ in validate1: ${isReq}`);
@@ -19,14 +18,14 @@ export function LoginView(props) {
      setUsernameErr('Username Required');
      isReq = false;
     }else if(username.length < 5){
-     setUsernameErr('Username must be 5 characters long');
+     setUsernameErr('Username must be at least 5 characters long');
      isReq = false;
     }
     if(!password){
      setPasswordErr('Password Required');
      isReq = false;
     }else if(password.length < 6){
-     setPasswordErr('Password must be 6 characters long');
+     setPasswordErr('Password must be at least 6 characters long');
      isReq = false;
     }
     console.log(username, password);
@@ -72,6 +71,7 @@ export function LoginView(props) {
               minLength="5"
               placeholder="Enter username"
             />
+            {usernameErr && <p>{usernameErr}</p>}
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formPassword">
@@ -84,6 +84,7 @@ export function LoginView(props) {
               minLength="6"
               placeholder="Enter password"
             />
+            {passwordErr && <p>{passwordErr}</p>}
           </Form.Group>
 
           <Stack direction="horizontal" className="mt-5 mb-3">
