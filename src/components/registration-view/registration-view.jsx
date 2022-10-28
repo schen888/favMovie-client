@@ -27,7 +27,7 @@ export function RegistrationView(props) {
       setPasswordErr('Password is required.');
       isReq=false;
     } else if (password.length < 6) {
-      setPasswordErr('Password must be at lease 5 characters long.');
+      setPasswordErr('Password must be at lease 6 characters long.');
       isReq=false;
     }
 
@@ -68,7 +68,7 @@ export function RegistrationView(props) {
   
 
   return (
-    <Card>
+    <>
       <Card.Title style={{ textAlign: "center", fontSize: "2rem" }}>
         Register
       </Card.Title>
@@ -82,12 +82,9 @@ export function RegistrationView(props) {
                 onChange={e => setUsername(e.target.value)}
                 required
                 minLength="5"
-                placeholder="Required"
+                placeholder="Username is required with at least 5 alphanumeric characters."
               />
               {usernameErr && <p>{usernameErr}</p>}
-                <Form.Text className='text-muted'>
-                Username is required with at least 5 alphanumeric characters.
-                </Form.Text>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formPassword">
@@ -98,12 +95,9 @@ export function RegistrationView(props) {
                 onChange={e => setPassword(e.target.value)}
                 required
                 minLength="6"
-                placeholder="Required"
+                placeholder="Password is required with at least 6 characters."
               />
               {passwordErr && <p>{passwordErr}</p>}
-              <Form.Text className='text-muted'>
-              Password is required with at least 6 characters.
-                </Form.Text>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formEmail">
@@ -116,9 +110,6 @@ export function RegistrationView(props) {
                 placeholder="Required"
               />
               {emailErr && <p>{emailErr}</p>}
-              <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-              </Form.Text>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBirthday">
@@ -146,6 +137,6 @@ export function RegistrationView(props) {
             </Stack>
         </Form>
       </Card.Body>
-    </Card>
+    </>
   );
 }
