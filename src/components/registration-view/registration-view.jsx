@@ -7,6 +7,65 @@ export function RegistrationView(props) {
   const [ email, setEmail ] = useState('');
   const [ birthday, setBirthday ] = useState('');
 
+  const [usernameErr, setUsernameErr]=useState('');
+  const [passwordErr, setPasswordErr]=useState('');
+  const [emailErr, setEmailErr]=useState('');
+
+  function validate(){
+    let isReq=true;
+
+    if(!username) {
+      setUsernameErr('Username is required.');
+      isReq=false;
+    } else if (username.length < 5) {
+      setUsernameErr('Username must be at lease 5 characters long.');
+      isReq=false;
+    }
+
+    if(!password) {
+      setPasswordErr('Password is required.');
+      isReq=false;
+    } else if (password.length < 6) {
+      setPasswordErr('Password must be at lease 5 characters long.');
+      isReq=false;
+    }
+
+    if(!email) {
+      setEmailErr('Email address is required.');
+      isReq=false;
+    } else if (email.indexOf('@') === -1) {
+      setEmailErr('Email address is not valid.');
+      isReq=false;
+    }
+
+    return isReq;
+  }
+
+  function handleRegister (e) {
+    e.preventDefault();
+    const isReq = validate();
+    if (isReq) {
+      axios.post('https://favmovie123.herokuapp.com/users', {
+        Username: username,
+        Password: password,
+        Email: email,
+        Birthday: birthday
+      })
+      .then((response) => {
+        const data = response.data;
+        console.log(data);
+        alter('Registration successful, please login!');
+        window.open('/', '_self')
+      })
+      .catch((response) => {
+        console.error(response);
+        alter('unable to register');
+      });
+
+    }
+  }
+  
+
   return (
     <Container>
       <Row className="justify-content-md-center">
@@ -27,6 +86,7 @@ export function RegistrationView(props) {
                       minLength="5"
                       placeholder="Required"
                     />
+                    {usernameErr && <p>{usernameErr}</p>}
                      <Form.Text className='text-muted'>
                       Username is required with at least 5 alphanumeric characters.
                      </Form.Text>
@@ -42,6 +102,7 @@ export function RegistrationView(props) {
                       minLength="6"
                       placeholder="Required"
                     />
+                    {passwordErr && <p>{passwordErr}</p>}
                     <Form.Text className='text-muted'>
                     Password is required with at least 6 characters.
                      </Form.Text>
@@ -56,6 +117,7 @@ export function RegistrationView(props) {
                       required
                       placeholder="Required"
                     />
+                    {emailErr && <p>{emailErr}</p>}
                     <Form.Text className="text-muted">
                       We'll never share your email with anyone else.
                     </Form.Text>
@@ -74,7 +136,7 @@ export function RegistrationView(props) {
                   </Form.Group>
 
                   <Stack direction="horizontal" className="mt-5 mb-3">
-                    <Button variant="primary" type="button">
+                    <Button variant="primary" type="submit" onClick={handleRegister}>
                       Register
                     </Button>
 
