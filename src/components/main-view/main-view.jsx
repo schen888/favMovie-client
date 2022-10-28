@@ -80,6 +80,7 @@ export class MainView extends React.Component {
     this.setState({
       user: null
     });
+    window.open("/", "_self");
   }
 
 
@@ -103,6 +104,7 @@ export class MainView extends React.Component {
     //my code for swtich to registration-view: onRegister={()=>this.onRegister()}
     if (!user) return <Row>
       <Col>
+      <FavMovieNavbar onLoggedOut={this.onLoggedOut}/>
         <LoginView onLoggedIn ={this.onLoggedIn} />;
       </Col>
     </Row>
