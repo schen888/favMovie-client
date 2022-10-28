@@ -125,9 +125,9 @@ export class MainView extends React.Component {
           </Row>
 
           <Row className="justify-content-center mt-5">
-            <Route path="/movies/:movieId" render={({match})=>{
+            <Route path="/movies/:movieId" render={({match, history})=>{
               return <Col lg={8}>
-                <MovieView movie={movies.find(m => m._id === match.params.movieId)} />
+                <MovieView movie={movies.find(m => m._id === match.params.movieId)} onBackClick={()=>history.goBack()} />
               </Col> 
             }} /> 
           </Row>
