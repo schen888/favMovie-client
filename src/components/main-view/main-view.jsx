@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
 import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
@@ -89,7 +89,7 @@ export class MainView extends React.Component {
                 <LoginView onLoggedIn ={this.onLoggedIn} />
               </Col>
               // Before movies have been loaded
-              if (movies.length === 0) return <div className="main-view" />;
+              if (movies.length === 0) return <div className="main-view">Loading...</div>
             }} />
 
             <Route path="/register" render={()=>{
@@ -112,38 +112,45 @@ export class MainView extends React.Component {
 
           <Row className="justify-content-center mt-5">
             <Route path="/movies/:movieId" render={({match, history})=>{
+              if (!user) return <Redirect to="/" />
+              if (movies.length === 0) return <div className="main-view">Loading...</div>
               return <Col lg={8}>
                 <MovieView movie={movies.find(m => m._id === match.params.movieId)} onBackClick={()=>history.goBack()} />
               </Col> 
             }} />
 
             
-            <Route path={`/users/${user}`} render={({match, history})=>{// probaboly the match parameter can be deleted
+            <Route path="/users/:username" render={({match, history})=>{// probaboly the match parameter can be deleted
               if (!user) return <Redirect to="/" />
+              if (movies.length === 0) return <div className="main-view">Loading...</div>
               return <Col lg={8}>
-                <ProfileView movies={movies} user={user} onBackClick={()=>{history.goBack()}}/>
+                <ProfileView movies={movies} user={user===match.params.username} onBackClick={()=>{history.goBack()}}/>
               </Col>
             }} /> 
 
-            <Route path={`/user-update/${user}`} render={({match, history})=>{// probaboly the match parameter can be deleted
+
+            <Route path="/user-update/:username" render={({match, history})=>{// probaboly the match parameter can be deleted
               // in <UserUpdate /> maybe movies as props needed?
               if (!user) return <Redirect to="/" />
+              if (movies.length === 0) return <div className="main-view">Loading...</div>
               return <Col lg={8}> 
-                <UserUpdate user={user} onBackClick={()=>history.goBack()} />
+                <UserUpdate user={user===match.params.username} onBackClick={()=>history.goBack()} />
               </Col> 
             }} />
           </Row>
 
           <Row className="justify-content-center mt-5">
             <Route path="/directors/:name" render={({match, history})=>{
-              if (movies.length === 0) return <div className="main-view" />;
+              if (!user) return <Redirect to="/" />
+              if (movies.length === 0) return <div className="main-view">Loading...</div>
               return <Col lg={8}>
                 <DirectorView director={movies.find(m => m.Director.Name === match.params.name).Director} onBackClick={() => history.goBack()} />
               </Col> 
             }} />
 
             <Route path="/genres/:name" render={({match, history})=>{
-              if (movies.length === 0) return <div className="main-view" />;
+              if (!user) return <Redirect to="/" />
+              if (movies.length === 0) return <div className="main-view">Loading...</div>
               return <Col lg={8}>
                 <GenreView genre={movies.find(m => m.Genre.Name === match.params.name).Genre} onBackClick={() => history.goBack()} />
               </Col> 
