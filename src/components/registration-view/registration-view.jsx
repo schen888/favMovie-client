@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Card, Form, Button, Stack } from 'react-bootstrap';
+import axios from 'axios';
+import { Card, Form, Button, Stack } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 
-export function RegistrationView(props) {
+export function RegistrationView() {
   const [ username, setUsername ] = useState('');
   const [ password, setPassword ] = useState('');
   const [ email, setEmail ] = useState('');
@@ -42,7 +43,7 @@ export function RegistrationView(props) {
     return isReq;
   }
 
-  function handleRegister (e) {
+  function handleSubmit (e) {
     e.preventDefault();
     const isReq = validate();
     if (isReq) {
@@ -53,14 +54,14 @@ export function RegistrationView(props) {
         Birthday: birthday
       })
       .then((response) => {
-        const data = response.data;
-        console.log(data);
-        alter('Registration successful, please login!');
+        //const data = response.data;
+        console.log(response);
+        alert('Registration successful, please login!');
         window.open('/', '_self')
       })
       .catch((response) => {
         console.error(response);
-        alter('unable to register');
+        alert(response.response.data);
       });
 
     }
@@ -125,7 +126,7 @@ export function RegistrationView(props) {
             </Form.Group>
 
             <Stack direction="horizontal" className="mt-5 mb-3">
-              <Button variant="primary" type="submit" onClick={handleRegister}>
+              <Button variant="primary" type="submit" onClick={handleSubmit}>
                 Register
               </Button>
 
