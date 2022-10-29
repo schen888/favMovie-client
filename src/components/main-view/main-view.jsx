@@ -68,11 +68,11 @@ export class MainView extends React.Component {
   }
 
   onLoggedOut() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
     this.setState({
       user: null
     });
+    localStorage.clear();
+    //localStorage.removeItem('user');
     window.open("/", "_self"); // is method necessary? set user state to null will render LoginView already
   }
 
