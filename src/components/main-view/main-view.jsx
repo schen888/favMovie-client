@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
 import { LoginView } from '../login-view/login-view';
@@ -9,7 +8,7 @@ import { MovieView } from '../movie-view/movie-view';
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
 import { RegistrationView } from '../registration-view/registration-view';
-//import {ProfileView}
+import {ProfileView} from '../profile-view/profile-view';
 //import {UserUpdate}
 
 import FavMovieNavbar from '../navbar/navbar';
@@ -23,7 +22,10 @@ export class MainView extends React.Component {
     super();
     this.state = {
       movies: [],
-      user: null
+      user: null,
+      userEmail: null,
+      userBirthday: null,
+      favMovieList: []
     }
 
     this.onLoggedIn=this.onLoggedIn.bind(this);
@@ -47,9 +49,9 @@ export class MainView extends React.Component {
   componentDidMount(){
     let accessToken = localStorage.getItem('token');
     if (accessToken !== null) {
-      this.setState({
-        user: localStorage.getItem('user')
-      });
+      /* this.setState({
+        user: localStorage.getItem('user'),
+      }); */
       this.getMovies(accessToken);
     }
   }
@@ -59,7 +61,10 @@ export class MainView extends React.Component {
   onLoggedIn(authData) {
     console.log(authData);
     this.setState({
-      user: authData.user.Username
+      user: authData.user.Username,
+      userEmail: authData.user.Email,
+      userBirthday: authData.user.Birthday,
+      favoriteMovies: authData.user.FavoriteMovies
     });
 
     localStorage.setItem('token', authData.token);
@@ -77,7 +82,8 @@ export class MainView extends React.Component {
   }
 
   render() {
-    const { movies, user} = this.state;
+    const { movies, user, userEmail, userBirthday, favoriteMovies} = this.state;
+    console.log(this.state);
 
     return (
       <Router>
@@ -90,7 +96,14 @@ export class MainView extends React.Component {
               </Col>
               // Before movies have been loaded
               if (movies.length === 0) return <div className="main-view">Loading...</div>
-            }} />
+
+              return movies.map(m => (
+                <Col md={6} lg={4} xl={3} className='d-flex'>
+                  <MovieCard key={m._id} movie={m}/>
+                </Col>
+              ))
+            }} 
+            />
 
             <Route path="/register" render={()=>{
               if(user) return <Redirect to="/" />
@@ -100,7 +113,7 @@ export class MainView extends React.Component {
             }}/>
           </Row>
 
-          <Row className="justify-content-left mt-3">
+          {/* <Row className="justify-content-left mt-3">
             <Route exact path="/" render={()=>{
               return movies.map(m => (
                 <Col md={6} lg={4} xl={3} className='d-flex'>
@@ -108,7 +121,7 @@ export class MainView extends React.Component {
                 </Col>
               ))
             }} />
-          </Row>
+          </Row> */}
 
           <Row className="justify-content-center mt-5">
             <Route path="/movies/:movieId" render={({match, history})=>{
@@ -124,7 +137,13 @@ export class MainView extends React.Component {
               if (!user) return <Redirect to="/" />
               if (movies.length === 0) return <div className="main-view">Loading...</div>
               return <Col lg={8}>
-                <ProfileView movies={movies} user={user===match.params.username} onBackClick={()=>{history.goBack()}}/>
+                <ProfileView 
+                  movies={movies} 
+                  user={user===match.params.username}
+                  email={userEmail}
+                  birthday={userBirthday} 
+                  onBackClick={()=>{history.goBack()}}
+                />
               </Col>
             }} /> 
 
