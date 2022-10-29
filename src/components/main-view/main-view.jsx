@@ -48,10 +48,11 @@ export class MainView extends React.Component {
 
   componentDidMount(){
     let accessToken = localStorage.getItem('token');
+    console.log('componentDidMount', accessToken);
     if (accessToken !== null) {
-      /* this.setState({
+      this.setState({
         user: localStorage.getItem('user'),
-      }); */
+      });
       this.getMovies(accessToken);
     }
   }
@@ -59,7 +60,7 @@ export class MainView extends React.Component {
   /* called by handleSubmit in loginView. Response containing user data is passed as argument. Set the user state in mainView
    and store the credential data in localStorage.*/
   onLoggedIn(authData) {
-    console.log(authData);
+    console.log('onLoggedIn', authData);
     this.setState({
       user: authData.user.Username,
       userEmail: authData.user.Email,
