@@ -2,7 +2,9 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import { Form, Button } from 'react-bootstrap';
 
-export function UserUpdate () {
+export function UserUpdate (props) {
+  const {onUserUpdate} = props;
+
   const [ username, setUsername ] = useState('');
   const [ password, setPassword ] = useState('');
   const [ email, setEmail ] = useState('');
@@ -59,14 +61,13 @@ export function UserUpdate () {
         Birthday: birthday
       },config)
       .then((response) => {
-        //const data = response.data;
+        const data = response.data;
         console.log(response);
         alert('Update successful!');
-        window.open('/', '_self')
+        onUserUpdate(data);
       })
       .catch((response) => {
         console.error(response);
-        alert(response.response.data);
       });
 
     }
@@ -74,7 +75,7 @@ export function UserUpdate () {
 
   return (
     <>
-      <h4>Update your infos here:</h4>
+      <h4>Update your info here:</h4>
       <Form>
             <Form.Group className="mb-3" controlId="formUsername">
                 <Form.Label>Username:</Form.Label>

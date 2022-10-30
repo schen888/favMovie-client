@@ -25,11 +25,12 @@ export class MainView extends React.Component {
       user: null,
       userEmail: null,
       userBirthday: null,
-      favMovieList: []
+      favoriteMovies: []
     }
 
     this.onLoggedIn=this.onLoggedIn.bind(this);
     this.onLoggedOut=this.onLoggedOut.bind(this);
+    this.onUserUpdate=this.onUserUpdate.bind(this);
   }
 
   getMovies(token) {
@@ -46,13 +47,46 @@ export class MainView extends React.Component {
     });
   }
 
+  getUser(token) {
+    let accessUser=localStorage.getItem('user');
+    axios.get(`https://favmovie123.herokuapp.com/users/${accessUser}`, {
+      headers: { Authorization: `Bearer ${token}`}
+    })
+    .then(response => {
+      console.log('getUser', response);
+      let userData=response.data;
+      this.setState({
+        user: userData.Username,
+        userEmail: userData.Email,
+        userBirthday: userData.Birthday,
+        favoriteMovies: userData.FavoriteMovies
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
+  onUserUpdate(data) {
+    console.log('onUserUpdate', data);
+    this.setState({
+      user: data.Username,
+      userEmail: data.Email,
+      userBirthday: data.Birthday,
+      favoriteMovies: data.FavoriteMovies
+    });
+
+    localStorage.setItem('user', data.Username);
+    window.open(`/users/${this.state.user}`,'_self')
+  }
+
   componentDidMount(){
     let accessToken = localStorage.getItem('token');
-    console.log('componentDidMount', accessToken);
     if (accessToken !== null) {
       this.setState({
         user: localStorage.getItem('user'),
       });
+      this.getUser(accessToken);
       this.getMovies(accessToken);
     }
   }
@@ -70,6 +104,7 @@ export class MainView extends React.Component {
 
     localStorage.setItem('token', authData.token);
     localStorage.setItem('user', authData.user.Username);
+  
     this.getMovies(authData.token);
   }
 
@@ -134,15 +169,17 @@ export class MainView extends React.Component {
             }} />
 
             
-            <Route path="/users/:username" render={({match, history})=>{// probaboly the match parameter can be deleted
+            <Route path={`/users/${user}`} render={({history})=>{// probaboly the match parameter can be deleted
               if (!user) return <Redirect to="/" />
               if (movies.length === 0) return <div className="main-view">Loading...</div>
               return <Col lg={8}>
                 <ProfileView 
                   movies={movies} 
-                  user={user===match.params.username}
+                  user={user}
                   email={userEmail}
-                  birthday={userBirthday} 
+                  birthday={userBirthday}
+                  favoriteMovies={favoriteMovies}
+                  onUserUpdate={this.onUserUpdate}
                   onBackClick={()=>{history.goBack()}}
                 />
               </Col>
