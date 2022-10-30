@@ -42386,7 +42386,8 @@ function FavoriteMovies({ favoriteMovies , onRemoveFavMovie , movies  }) {
                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                         xs: 12,
                         sm: 6,
-                        md: 3,
+                        md: 4,
+                        className: "mt-5",
                         children: [
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Figure), {
                                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
