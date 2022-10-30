@@ -6,7 +6,7 @@ import {UserUpdate} from './user-update';
 import {FavoriteMovies} from './favorite-movies';
 
 export function ProfileView (props) {
-const {email, birthday, user, favoriteMovies, movies, onBackClick, onUserUpdate}=props;
+const {email, birthday, user, favoriteMovies, movies, onBackClick, onUserUpdate, onRemoveFavMovie}=props;
   return (
     <Container className="profile-view">
       <Button className="mb-2 px-0" onClick={() => {onBackClick()}} variant="link">
@@ -16,7 +16,7 @@ const {email, birthday, user, favoriteMovies, movies, onBackClick, onUserUpdate}
         <Col xl={12} sm={6}>
           <Card>
             <Card.Body>
-              <UserInfo user={user} email={email} birthday={birthday} favoriteMovies={favoriteMovies}/>
+              <UserInfo user={user} email={email} birthday={birthday} />
             </Card.Body>
           </Card>
         </Col>
@@ -29,7 +29,7 @@ const {email, birthday, user, favoriteMovies, movies, onBackClick, onUserUpdate}
         </Col>
       </Row>
 
-      {/* <FavoriteMovies favoriteMovieList={favoriteMovieList} removeFav={removeFav} /> */}
+      <FavoriteMovies favoriteMovies={favoriteMovies} onRemoveFavMovie={onRemoveFavMovie} movies={movies}  />
       
     </Container>
   )

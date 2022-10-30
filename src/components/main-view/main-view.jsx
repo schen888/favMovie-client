@@ -90,17 +90,16 @@ export class MainView extends React.Component {
     if (favMovieList.includes(movieID)) {
       alert('This movie is already in your favorite movie list!');
     } else {
-      favMovieList.push(movieID);
-      this.setState({
-        favoriteMovies: favMovieList
-      });
-
       axios.post(`https://favmovie123.herokuapp.com/users/${user}/movies/${movieID}`,
         {FavoriteMovies: movieID},
         {headers: { Authorization: `Bearer ${token}`}})
       .then((response) => {
         console.log(response);
-        alert('Add to your favorite movie list successfully!');
+        favMovieList.push(movieID);
+        this.setState({
+          favoriteMovies: favMovieList
+        });
+        document.getElementById('remove-btn').blur();
       })
       .catch((err) => {
         console.error(err);
@@ -109,21 +108,19 @@ export class MainView extends React.Component {
   }
 
   onRemoveFavMovie (movieID) {
-    let favMovieList=this.state.favoriteMovies;
     const user= localStorage.getItem('user');
     const token= localStorage.getItem('token');
-
-    favMovieList = favMovieList.filter((id) => id!==movieID);
-
-    this.setState({favoriteMovies: favMovieList});
 
     axios.delete(`https://favmovie123.herokuapp.com/users/${user}/movies/${movieID}`, {
       headers: { Authorization: `Bearer ${token}`},
       data: {FavoriteMovies: movieID} 
     })
     .then((response) => {
+      let favMovieList=this.state.favoriteMovies;
       console.log(response);
-      alert('This movie has been removed from your favorite movie list!');
+      favMovieList = favMovieList.filter((id) => id!==movieID);
+      this.setState({favoriteMovies: favMovieList});
+      document.getElementById('add-btn').blur();
     })
     .catch((err) => {
       console.error(err);
@@ -236,6 +233,7 @@ export class MainView extends React.Component {
                   birthday={userBirthday}
                   favoriteMovies={favoriteMovies}
                   onUserUpdate={this.onUserUpdate}
+                  onRemoveFavMovie={this.onRemoveFavMovie}
                   onBackClick={()=>{history.goBack()}}
                 />
               </Col>

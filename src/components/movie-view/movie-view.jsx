@@ -35,8 +35,8 @@ export class MovieView extends React.Component {
         </div>
         <Button onClick={()=>onBackClick()} variant='primary'>Back</Button>
         {favoriteMovies.includes(movie._id)
-        ? (<Button onClick={()=>{onRemoveFavMovie(movie._id)}}  variant='warning'>Remove from favorite movie list</Button>)
-        : (<Button onClick={()=>{onAddFavMovie(movie._id)}}  variant='secondary'>Add to favorite movie list</Button>)
+        ? (<Button id="remove-btn" onClick={()=>{onRemoveFavMovie(movie._id)}}  variant='warning'>Remove from favorite movie list</Button>)
+        : (<Button id="add-btn" onClick={()=>{onAddFavMovie(movie._id)}}  variant='secondary'>Add to favorite movie list</Button>)
         }
 
        </div>
