@@ -31,6 +31,8 @@ export class MainView extends React.Component {
     this.onLoggedIn=this.onLoggedIn.bind(this);
     this.onLoggedOut=this.onLoggedOut.bind(this);
     this.onUserUpdate=this.onUserUpdate.bind(this);
+    this.onAddFavMovie=this.onAddFavMovie.bind(this);
+    this.onRemoveFavMovie=this.onRemoveFavMovie.bind(this);
   }
 
   getMovies(token) {
@@ -77,6 +79,55 @@ export class MainView extends React.Component {
 
     localStorage.setItem('user', data.Username);
     window.open(`/users/${this.state.user}`,'_self')
+  }
+
+  onAddFavMovie(movieID){
+    let favMovieList=this.state.favoriteMovies;
+    const user= localStorage.getItem('user');
+    const token= localStorage.getItem('token');
+
+    console.log('favMovielistB',favMovieList, favMovieList.length);
+    if (favMovieList.includes(movieID)) {
+      alert('This movie is already in your favorite movie list!');
+    } else {
+      favMovieList.push(movieID);
+      this.setState({
+        favoriteMovies: favMovieList
+      });
+
+      axios.post(`https://favmovie123.herokuapp.com/users/${user}/movies/${movieID}`,
+        {FavoriteMovies: movieID},
+        {headers: { Authorization: `Bearer ${token}`}})
+      .then((response) => {
+        console.log(response);
+        alert('Add to your favorite movie list successfully!');
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+    }
+  }
+
+  onRemoveFavMovie (movieID) {
+    let favMovieList=this.state.favoriteMovies;
+    const user= localStorage.getItem('user');
+    const token= localStorage.getItem('token');
+
+    favMovieList = favMovieList.filter((id) => id!==movieID);
+
+    this.setState({favoriteMovies: favMovieList});
+
+    axios.delete(`https://favmovie123.herokuapp.com/users/${user}/movies/${movieID}`, {
+      headers: { Authorization: `Bearer ${token}`},
+      data: {FavoriteMovies: movieID} 
+    })
+    .then((response) => {
+      console.log(response);
+      alert('This movie has been removed from your favorite movie list!');
+    })
+    .catch((err) => {
+      console.error(err);
+    });
   }
 
   componentDidMount(){
@@ -163,7 +214,13 @@ export class MainView extends React.Component {
               if (!user) return <Redirect to="/" />
               if (movies.length === 0) return <div className="main-view">Loading...</div>
               return <Col lg={8}>
-                <MovieView movie={movies.find(m => m._id === match.params.movieId)} onBackClick={()=>history.goBack()} />
+                <MovieView 
+                  movie={movies.find(m => m._id === match.params.movieId)}
+                  favoriteMovies={favoriteMovies}
+                  onAddFavMovie={this.onAddFavMovie}
+                  onRemoveFavMovie={this.onRemoveFavMovie}
+                  onBackClick={()=>history.goBack()} 
+                />
               </Col> 
             }} />
 

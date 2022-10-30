@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export class MovieView extends React.Component {
   render () {
-    const {movie, onBackClick} = this.props;
+    const {movie,favoriteMovies, onBackClick, onAddFavMovie, onRemoveFavMovie} = this.props;
 
     return (
       <div className="movie-view">
@@ -34,6 +34,10 @@ export class MovieView extends React.Component {
           </Link>
         </div>
         <Button onClick={()=>onBackClick()} variant='primary'>Back</Button>
+        {favoriteMovies.includes(movie._id)
+        ? (<Button onClick={()=>{onRemoveFavMovie(movie._id)}}  variant='warning'>Remove from favorite movie list</Button>)
+        : (<Button onClick={()=>{onAddFavMovie(movie._id)}}  variant='secondary'>Add to favorite movie list</Button>)
+        }
 
        </div>
     );

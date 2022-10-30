@@ -27262,6 +27262,8 @@ class MainView extends (0, _reactDefault.default).Component {
         this.onLoggedIn = this.onLoggedIn.bind(this);
         this.onLoggedOut = this.onLoggedOut.bind(this);
         this.onUserUpdate = this.onUserUpdate.bind(this);
+        this.onAddFavMovie = this.onAddFavMovie.bind(this);
+        this.onRemoveFavMovie = this.onRemoveFavMovie.bind(this);
     }
     getMovies(token) {
         (0, _axiosDefault.default).get("https://favmovie123.herokuapp.com/movies", {
@@ -27305,6 +27307,53 @@ class MainView extends (0, _reactDefault.default).Component {
         localStorage.setItem("user", data.Username);
         window.open(`/users/${this.state.user}`, "_self");
     }
+    onAddFavMovie(movieID) {
+        let favMovieList = this.state.favoriteMovies;
+        const user = localStorage.getItem("user");
+        const token = localStorage.getItem("token");
+        console.log("favMovielistB", favMovieList, favMovieList.length);
+        if (favMovieList.includes(movieID)) alert("This movie is already in your favorite movie list!");
+        else {
+            favMovieList.push(movieID);
+            this.setState({
+                favoriteMovies: favMovieList
+            });
+            (0, _axiosDefault.default).post(`https://favmovie123.herokuapp.com/users/${user}/movies/${movieID}`, {
+                FavoriteMovies: movieID
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).then((response)=>{
+                console.log(response);
+                alert("Add to your favorite movie list successfully!");
+            }).catch((err)=>{
+                console.error(err);
+            });
+        }
+    }
+    onRemoveFavMovie(movieID) {
+        let favMovieList = this.state.favoriteMovies;
+        const user = localStorage.getItem("user");
+        const token = localStorage.getItem("token");
+        favMovieList = favMovieList.filter((id)=>id !== movieID);
+        this.setState({
+            favoriteMovies: favMovieList
+        });
+        (0, _axiosDefault.default).delete(`https://favmovie123.herokuapp.com/users/${user}/movies/${movieID}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            },
+            data: {
+                FavoriteMovies: movieID
+            }
+        }).then((response)=>{
+            console.log(response);
+            alert("This movie has been removed from your favorite movie list!");
+        }).catch((err)=>{
+            console.error(err);
+        });
+    }
     componentDidMount() {
         let accessToken = localStorage.getItem("token");
         if (accessToken !== null) {
@@ -27346,7 +27395,7 @@ class MainView extends (0, _reactDefault.default).Component {
                     onLoggedOut: this.onLoggedOut
                 }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 125,
+                    lineNumber: 176,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Container), {
@@ -27383,7 +27432,7 @@ class MainView extends (0, _reactDefault.default).Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 128,
+                                    lineNumber: 179,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27400,13 +27449,13 @@ class MainView extends (0, _reactDefault.default).Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 143,
+                                    lineNumber: 194,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 127,
+                            lineNumber: 178,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
@@ -27426,13 +27475,16 @@ class MainView extends (0, _reactDefault.default).Component {
                                             lg: 8,
                                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
                                                 movie: movies.find((m)=>m._id === match.params.movieId),
+                                                favoriteMovies: favoriteMovies,
+                                                onAddFavMovie: this.onAddFavMovie,
+                                                onRemoveFavMovie: this.onRemoveFavMovie,
                                                 onBackClick: ()=>history.goBack()
                                             }, void 0, false, void 0, void 0)
                                         }, void 0, false, void 0, void 0);
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 162,
+                                    lineNumber: 213,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27462,7 +27514,7 @@ class MainView extends (0, _reactDefault.default).Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 171,
+                                    lineNumber: 228,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27486,13 +27538,13 @@ class MainView extends (0, _reactDefault.default).Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 188,
+                                    lineNumber: 245,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 161,
+                            lineNumber: 212,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
@@ -27518,7 +27570,7 @@ class MainView extends (0, _reactDefault.default).Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 199,
+                                    lineNumber: 256,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27541,25 +27593,25 @@ class MainView extends (0, _reactDefault.default).Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 207,
+                                    lineNumber: 264,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 198,
+                            lineNumber: 255,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 126,
+                    lineNumber: 177,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 124,
+            lineNumber: 175,
             columnNumber: 7
         }, this);
     }
@@ -40658,7 +40710,7 @@ var _buttonDefault = parcelHelpers.interopDefault(_button);
 var _reactRouterDom = require("react-router-dom");
 class MovieView extends (0, _reactDefault.default).Component {
     render() {
-        const { movie , onBackClick  } = this.props;
+        const { movie , favoriteMovies , onBackClick , onAddFavMovie , onRemoveFavMovie  } = this.props;
         return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
             className: "movie-view",
             children: [
@@ -40801,6 +40853,27 @@ class MovieView extends (0, _reactDefault.default).Component {
                     fileName: "src/components/movie-view/movie-view.jsx",
                     lineNumber: 36,
                     columnNumber: 9
+                }, this),
+                favoriteMovies.includes(movie._id) ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
+                    onClick: ()=>{
+                        onRemoveFavMovie(movie._id);
+                    },
+                    variant: "warning",
+                    children: "Remove from favorite movie list"
+                }, void 0, false, {
+                    fileName: "src/components/movie-view/movie-view.jsx",
+                    lineNumber: 38,
+                    columnNumber: 12
+                }, this) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _buttonDefault.default), {
+                    onClick: ()=>{
+                        onAddFavMovie(movie._id);
+                    },
+                    variant: "secondary",
+                    children: "Add to favorite movie list"
+                }, void 0, false, {
+                    fileName: "src/components/movie-view/movie-view.jsx",
+                    lineNumber: 39,
+                    columnNumber: 12
                 }, this)
             ]
         }, void 0, true, {
