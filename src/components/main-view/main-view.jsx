@@ -68,7 +68,6 @@ export class MainView extends React.Component {
   }
 
   onUserUpdate(data) {
-    console.log('onUserUpdate', data);
     this.setState({
       user: data.Username,
       userEmail: data.Email,

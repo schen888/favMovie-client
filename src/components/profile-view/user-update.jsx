@@ -62,7 +62,6 @@ export function UserUpdate (props) {
       },config)
       .then((response) => {
         const data = response.data;
-        console.log(response);
         alert('Update successful!');
         onUserUpdate(data);
       })
