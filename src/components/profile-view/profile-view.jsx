@@ -8,7 +8,7 @@ import {FavoriteMovies} from './favorite-movies';
 export function ProfileView (props) {
 const {email, birthday, user, favoriteMovies, movies, onBackClick, onUserUpdate, onRemoveFavMovie}=props;
   return (
-    <Container className="profile-view">
+    <Container fluid className="profile-view">
       <Button className="mb-2 px-0" onClick={() => {onBackClick()}} variant="link">
         Back
       </Button>

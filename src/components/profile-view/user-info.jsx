@@ -21,7 +21,7 @@ const token=localStorage.getItem('token');
     <>
       <h4>Your Info</h4>
       <p>Name: {user}</p>
-      <p>E-mail: {email}</p>
+      <p>e-mail: {email}</p>
       <p>Birthday: {birthday}</p>
       <Button variant="warning" onClick={onDeleteAccount}>Delete Account</Button>
     </>  
