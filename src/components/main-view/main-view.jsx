@@ -104,6 +104,7 @@ export class MainView extends React.Component {
       .catch((err) => {
         console.error(err);
       });
+      
     }
   }
 
@@ -172,7 +173,7 @@ export class MainView extends React.Component {
       <Router>
         <FavMovieNavbar user={user} onLoggedOut={this.onLoggedOut}/>
         <Container className='main-view'>
-          <Row className="justify-content-center">
+          <Row className="justify-content-center mt-3">
             <Route exact path="/" render={()=>{
               if (!user) return <Col md={10} lg={8}>
                 <LoginView onLoggedIn ={this.onLoggedIn} />

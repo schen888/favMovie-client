@@ -19,7 +19,7 @@ export function FavoriteMovies ({favoriteMovies, onRemoveFavMovie, movies}) {
             <Col key={favMovie._id} xs={12} md={6} lg={4} className='my-2 d-flex fav-movie'>  
               <Card className="border-dark d-flex flex-column justify-content-between ">
                 <Figure>
-                  <Link to={`/movie/${favMovie._id}`}>
+                  <Link to={`/movies/${favMovie._id}`}>
                     <Figure.Image 
                       src={favMovie.imageURL}
                       alt={favMovie.Title}
