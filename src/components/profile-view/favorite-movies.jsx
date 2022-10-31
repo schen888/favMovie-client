@@ -16,12 +16,11 @@ export function FavoriteMovies ({favoriteMovies, onRemoveFavMovie, movies}) {
         {favoriteMovies.map((favMovieID)=>{
           let favMovie=movies.find((movie)=>movie._id===favMovieID)
           return (
-            <Col key={favMovie._id} xs={12} md={6} lg={3} className='mt-3 d-flex'>
-              <Card className="d-flex flex-column justify-content-between border-dark">
+            <Col key={favMovie._id} xs={12} md={6} lg={4} className='my-2 d-flex fav-movie'>  
+              <Card className="border-dark d-flex flex-column justify-content-between ">
                 <Figure>
                   <Link to={`/movie/${favMovie._id}`}>
                     <Figure.Image 
-                      height={300}
                       src={favMovie.imageURL}
                       alt={favMovie.Title}
                     />

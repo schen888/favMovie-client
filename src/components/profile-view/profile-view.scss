@@ -1,0 +1,14 @@
+.fav-movie {
+  figure {
+    position: relative;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    width:100%;
+    //margin: auto;
+    //white-space:nowrap;
+  }
+  img {
+    //display: block;
+    max-height: 500px;
+  }
+}

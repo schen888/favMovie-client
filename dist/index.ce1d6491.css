@@ -2,4 +2,15 @@
   color: #4682b4;
 }
 
+.fav-movie figure {
+  text-overflow: ellipsis;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.fav-movie img {
+  max-height: 500px;
+}
+
 /*# sourceMappingURL=index.ce1d6491.css.map */

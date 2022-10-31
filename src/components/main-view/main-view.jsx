@@ -225,7 +225,7 @@ export class MainView extends React.Component {
             <Route path={`/users/${user}`} render={({history})=>{// probaboly the match parameter can be deleted
               if (!user) return <Redirect to="/" />
               if (movies.length === 0) return <div className="main-view">Loading...</div>
-              return <Col lg={8}>
+              return <Col>
                 <ProfileView 
                   movies={movies} 
                   user={user}

@@ -5,6 +5,8 @@ import {UserInfo} from './user-info';
 import {UserUpdate} from './user-update';
 import {FavoriteMovies} from './favorite-movies';
 
+import './profile-view.scss';
+
 export function ProfileView (props) {
 const {email, birthday, user, favoriteMovies, movies, onBackClick, onUserUpdate, onRemoveFavMovie}=props;
   return (
@@ -13,14 +15,14 @@ const {email, birthday, user, favoriteMovies, movies, onBackClick, onUserUpdate,
         Back
       </Button>
       <Row>
-        <Col className="my-2" xs={12} sm={6}>
+        <Col className="my-2" xs={12} sm={5}>
           <Card>
             <Card.Body>
               <UserInfo user={user} email={email} birthday={birthday} />
             </Card.Body>
           </Card>
         </Col>
-        <Col className="my-2" xs={12} sm={6}>
+        <Col className="my-2" xs={12} sm={7}>
           <Card>
             <Card.Body>
               <UserUpdate onUserUpdate={onUserUpdate} />
