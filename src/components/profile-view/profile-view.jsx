@@ -13,14 +13,14 @@ const {email, birthday, user, favoriteMovies, movies, onBackClick, onUserUpdate,
         Back
       </Button>
       <Row>
-        <Col xl={12} sm={6}>
+        <Col className="my-2" xs={12} sm={6}>
           <Card>
             <Card.Body>
               <UserInfo user={user} email={email} birthday={birthday} />
             </Card.Body>
           </Card>
         </Col>
-        <Col xl={12} sm={6}>
+        <Col className="my-2" xs={12} sm={6}>
           <Card>
             <Card.Body>
               <UserUpdate onUserUpdate={onUserUpdate} />
