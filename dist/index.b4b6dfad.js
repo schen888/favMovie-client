@@ -27308,11 +27308,12 @@ class MainView extends (0, _reactDefault.default).Component {
         window.open(`/users/${this.state.user}`, "_self");
     }
     onAddFavMovie(movieID) {
-        let favMovieList = this.state.favoriteMovies;
+        let tempFavoriteMovies = [
+            ...this.state.favoriteMovies
+        ];
         const user = localStorage.getItem("user");
         const token = localStorage.getItem("token");
-        console.log("favMovielistB", favMovieList, favMovieList.length);
-        if (favMovieList.includes(movieID)) alert("This movie is already in your favorite movie list!");
+        if (tempFavoriteMovies.includes(movieID)) alert("This movie is already in your favorite movie list!");
         else (0, _axiosDefault.default).post(`https://favmovie123.herokuapp.com/users/${user}/movies/${movieID}`, {
             FavoriteMovies: movieID
         }, {
@@ -27321,9 +27322,9 @@ class MainView extends (0, _reactDefault.default).Component {
             }
         }).then((response)=>{
             console.log(response);
-            favMovieList.push(movieID);
+            tempFavoriteMovies.push(movieID);
             this.setState({
-                favoriteMovies: favMovieList
+                favoriteMovies: tempFavoriteMovies
             });
             document.getElementById("remove-btn").blur();
         }).catch((err)=>{
@@ -27341,13 +27342,16 @@ class MainView extends (0, _reactDefault.default).Component {
                 FavoriteMovies: movieID
             }
         }).then((response)=>{
-            let favMovieList = this.state.favoriteMovies;
+            let tempFavoriteMovies = [
+                ...this.state.favoriteMovies
+            ];
             console.log(response);
-            favMovieList = favMovieList.filter((id)=>id !== movieID);
+            tempFavoriteMovies = tempFavoriteMovies.filter((id)=>id !== movieID);
             this.setState({
-                favoriteMovies: favMovieList
+                favoriteMovies: tempFavoriteMovies
             });
-            document.getElementById("add-btn").blur();
+            let movieViewBtn = document.getElementById("add-btn");
+            if (movieViewBtn !== null) movieViewBtn.blur();
         }).catch((err)=>{
             console.error(err);
         });
@@ -27393,7 +27397,7 @@ class MainView extends (0, _reactDefault.default).Component {
                     onLoggedOut: this.onLoggedOut
                 }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 174,
+                    lineNumber: 177,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Container), {
@@ -27430,7 +27434,7 @@ class MainView extends (0, _reactDefault.default).Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 177,
+                                    lineNumber: 180,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27447,13 +27451,13 @@ class MainView extends (0, _reactDefault.default).Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 192,
+                                    lineNumber: 195,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 176,
+                            lineNumber: 179,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
@@ -27482,7 +27486,7 @@ class MainView extends (0, _reactDefault.default).Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 211,
+                                    lineNumber: 214,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27512,7 +27516,7 @@ class MainView extends (0, _reactDefault.default).Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 226,
+                                    lineNumber: 229,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27536,13 +27540,13 @@ class MainView extends (0, _reactDefault.default).Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 244,
+                                    lineNumber: 247,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 210,
+                            lineNumber: 213,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
@@ -27568,7 +27572,7 @@ class MainView extends (0, _reactDefault.default).Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 255,
+                                    lineNumber: 258,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27591,25 +27595,25 @@ class MainView extends (0, _reactDefault.default).Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 263,
+                                    lineNumber: 266,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 254,
+                            lineNumber: 257,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 175,
+                    lineNumber: 178,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 173,
+            lineNumber: 176,
             columnNumber: 7
         }, this);
     }
@@ -41022,7 +41026,7 @@ MovieView.propTypes = {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","prop-types":"7wKI2","react-router-dom":"cHIiW","react-bootstrap/Button":"aPzUt","react-bootstrap/Stack":"eZkZ1"}],"9YtA0":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","prop-types":"7wKI2","react-bootstrap/Button":"aPzUt","react-router-dom":"cHIiW","react-bootstrap/Stack":"eZkZ1"}],"9YtA0":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$9fee = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;

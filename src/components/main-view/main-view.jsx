@@ -82,12 +82,11 @@ export class MainView extends React.Component {
   }
 
   onAddFavMovie(movieID){
-    let favMovieList=this.state.favoriteMovies;
+    let tempFavoriteMovies=[...this.state.favoriteMovies];
     const user= localStorage.getItem('user');
     const token= localStorage.getItem('token');
 
-    console.log('favMovielistB',favMovieList, favMovieList.length);
-    if (favMovieList.includes(movieID)) {
+    if (tempFavoriteMovies.includes(movieID)) {
       alert('This movie is already in your favorite movie list!');
     } else {
       axios.post(`https://favmovie123.herokuapp.com/users/${user}/movies/${movieID}`,
@@ -95,9 +94,9 @@ export class MainView extends React.Component {
         {headers: { Authorization: `Bearer ${token}`}})
       .then((response) => {
         console.log(response);
-        favMovieList.push(movieID);
+        tempFavoriteMovies.push(movieID);
         this.setState({
-          favoriteMovies: favMovieList
+          favoriteMovies: tempFavoriteMovies
         });
         document.getElementById('remove-btn').blur();
       })
@@ -117,11 +116,15 @@ export class MainView extends React.Component {
       data: {FavoriteMovies: movieID} 
     })
     .then((response) => {
-      let favMovieList=this.state.favoriteMovies;
+      let tempFavoriteMovies=[...this.state.favoriteMovies];
       console.log(response);
-      favMovieList = favMovieList.filter((id) => id!==movieID);
-      this.setState({favoriteMovies: favMovieList});
-      document.getElementById('add-btn').blur();
+      tempFavoriteMovies = tempFavoriteMovies.filter((id) => id!==movieID);
+      this.setState({favoriteMovies: tempFavoriteMovies});
+      
+      let movieViewBtn= document.getElementById('add-btn');
+      if (movieViewBtn!==null) {
+        movieViewBtn.blur();
+      }
     })
     .catch((err) => {
       console.error(err);
