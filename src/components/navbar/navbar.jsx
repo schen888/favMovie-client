@@ -1,20 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from "react-router-dom";
 
-function FavMovieNavbar({user, onLoggedOut}) {
+function FavMovieNavbar({username, onLoggedOut}) {
   let navBarList;
-  const username=user.Username;
 
   const isAuth=()=>{
     if(typeof window == "undefined") {
       return false;
     }
-    if (user) {
-      return user;
+    if (username) {
+      return username;
     } else {
       return false;
     }
@@ -43,3 +43,8 @@ function FavMovieNavbar({user, onLoggedOut}) {
 }
 
 export default FavMovieNavbar;
+
+FavMovieNavbar.propTypes = {
+  onLoggedOut: PropTypes.func.isRequired,
+  username: PropTypes.string.isRequired
+};

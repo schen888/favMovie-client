@@ -27384,7 +27384,7 @@ class MainView extends (0, _reactDefault.default).Component {
         return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.BrowserRouter), {
             children: [
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navbarDefault.default), {
-                    user: user,
+                    username: user.Username,
                     onLoggedOut: this.onLoggedOut
                 }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
@@ -41439,6 +41439,8 @@ parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _container = require("react-bootstrap/Container");
 var _containerDefault = parcelHelpers.interopDefault(_container);
 var _nav = require("react-bootstrap/Nav");
@@ -41446,12 +41448,11 @@ var _navDefault = parcelHelpers.interopDefault(_nav);
 var _navbar = require("react-bootstrap/Navbar");
 var _navbarDefault = parcelHelpers.interopDefault(_navbar);
 var _reactRouterDom = require("react-router-dom");
-function FavMovieNavbar({ user , onLoggedOut  }) {
+function FavMovieNavbar({ username , onLoggedOut  }) {
     let navBarList;
-    const username = user.Username;
     const isAuth = ()=>{
         if (typeof window == "undefined") return false;
-        if (user) return user;
+        if (username) return username;
         else return false;
     };
     //href="/"
@@ -41529,6 +41530,10 @@ function FavMovieNavbar({ user , onLoggedOut  }) {
 }
 _c = FavMovieNavbar;
 exports.default = FavMovieNavbar;
+FavMovieNavbar.propTypes = {
+    onLoggedOut: (0, _propTypesDefault.default).func.isRequired,
+    username: (0, _propTypesDefault.default).string.isRequired
+};
 var _c;
 $RefreshReg$(_c, "FavMovieNavbar");
 
@@ -41537,7 +41542,7 @@ $RefreshReg$(_c, "FavMovieNavbar");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap/Container":"hEdsw","react-bootstrap/Nav":"cXyL2","react-bootstrap/Navbar":"1mHjo","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-router-dom":"cHIiW"}],"9tpci":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap/Container":"hEdsw","react-bootstrap/Nav":"cXyL2","react-bootstrap/Navbar":"1mHjo","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-router-dom":"cHIiW","prop-types":"7wKI2"}],"9tpci":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$ad4a = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;

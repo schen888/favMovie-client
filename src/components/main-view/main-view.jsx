@@ -158,7 +158,7 @@ class MainView extends React.Component {
 
     return (
       <Router>
-        <FavMovieNavbar user={user} onLoggedOut={this.onLoggedOut}/>
+        <FavMovieNavbar username={user.Username} onLoggedOut={this.onLoggedOut}/>
         <Container className='main-view'>
           <Row className="justify-content-center mt-3">
             <Route exact path="/" render={()=>{
