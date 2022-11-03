@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
-import {setMovies} from '../../actions/actions';
+import {setMovies, setUser} from '../../actions/actions';
 
 import MoviesList from '../movies-list/movies-list';
 
@@ -26,10 +26,7 @@ import { Container } from 'react-bootstrap';
 class MainView extends React.Component {
   constructor(){
     super();
-    this.state = {
-      user: null
-    }
-
+    
     this.onLoggedIn=this.onLoggedIn.bind(this);
     this.onLoggedOut=this.onLoggedOut.bind(this);
     this.onUserUpdate=this.onUserUpdate.bind(this);
@@ -148,12 +145,7 @@ class MainView extends React.Component {
    and store the credential data in localStorage.*/
   onLoggedIn(authData) {
     console.log('onLoggedIn', authData);
-    this.setState({
-      user: authData.user.Username,
-      userEmail: authData.user.Email,
-      userBirthday: authData.user.Birthday,
-      favoriteMovies: authData.user.FavoriteMovies
-    });
+    this.props.setUser(authData);
 
     localStorage.setItem('token', authData.token);
     localStorage.setItem('user', authData.user.Username);
@@ -162,17 +154,15 @@ class MainView extends React.Component {
   }
 
   onLoggedOut() {
-    this.setState({
-      user: null
-    });
+    this.props.setUser(null);
     localStorage.clear();
     //localStorage.removeItem('user');
     window.open("/", "_self"); // is method necessary? set user state to null will render LoginView already
   }
 
   render() {
-    let {movies} = this.props;
-    let {user}=this.state;
+    let {movies, user} = this.props;
+  
     //const { user, userEmail, userBirthday, favoriteMovies} = this.state;
     console.log(this.state);
 
@@ -283,7 +273,10 @@ class MainView extends React.Component {
 }
 
 let mapStateToProps = state => {
-  return { movies: state.movies }
+  return { 
+    movies: state.movies,
+    user: state.user
+  }
 }
 
-export default connect(mapStateToProps, { setMovies } )(MainView);
+export default connect(mapStateToProps, { setMovies, setUser } )(MainView);
