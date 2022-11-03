@@ -37,9 +37,6 @@ class MainView extends React.Component {
   componentDidMount(){
     let accessToken = localStorage.getItem('token');
     if (accessToken !== null) {
-      this.setState({
-        user: localStorage.getItem('user'),
-      });
       this.getUser(accessToken);
       this.getMovies(accessToken);
     }
@@ -58,6 +55,7 @@ class MainView extends React.Component {
     });
   }
 
+  // do I really need this function? User info are fetched by the onLoggedIn function already.
   getUser(token) {
     let accessUser=localStorage.getItem('user');
     axios.get(`https://favmovie123.herokuapp.com/users/${accessUser}`, {
@@ -152,6 +150,7 @@ class MainView extends React.Component {
 
   render() {
     let {movies, user} = this.props;
+    const userLocal = localStorage.getItem('user');
   
     //const { user, userEmail, userBirthday, favoriteMovies} = this.state;
     console.log('User in MainView',user);
@@ -162,7 +161,7 @@ class MainView extends React.Component {
         <Container className='main-view'>
           <Row className="justify-content-center mt-3">
             <Route exact path="/" render={()=>{
-              if (!user) return <Col md={10} lg={8}>
+              if (!userLocal) return <Col md={10} lg={8}>
                 <LoginView onLoggedIn ={this.onLoggedIn} />
               </Col>
               // Before movies have been loaded
