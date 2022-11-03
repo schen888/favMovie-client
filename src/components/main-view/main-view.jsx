@@ -66,12 +66,7 @@ class MainView extends React.Component {
     .then(response => {
       console.log('getUser', response);
       let userData=response.data;
-      this.setState({
-        user: userData.Username,
-        userEmail: userData.Email,
-        userBirthday: userData.Birthday,
-        favoriteMovies: userData.FavoriteMovies
-      });
+      this.props.setUser(userData);
     })
     .catch(function (error) {
       console.log(error);
@@ -79,12 +74,7 @@ class MainView extends React.Component {
   }
 
   onUserUpdate(data) {
-    this.setState({
-      user: data.Username,
-      userEmail: data.Email,
-      userBirthday: data.Birthday,
-      favoriteMovies: data.FavoriteMovies
-    });
+    this.props.setUser(data);
 
     localStorage.setItem('user', data.Username);
     window.open(`/users/${this.state.user}`,'_self')
@@ -145,7 +135,7 @@ class MainView extends React.Component {
    and store the credential data in localStorage.*/
   onLoggedIn(authData) {
     console.log('onLoggedIn', authData);
-    this.props.setUser(authData);
+    this.props.setUser(authData.user);
 
     localStorage.setItem('token', authData.token);
     localStorage.setItem('user', authData.user.Username);
@@ -164,7 +154,7 @@ class MainView extends React.Component {
     let {movies, user} = this.props;
   
     //const { user, userEmail, userBirthday, favoriteMovies} = this.state;
-    console.log(this.state);
+    console.log('User in MainView',user);
 
     return (
       <Router>

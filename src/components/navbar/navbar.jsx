@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 
 function FavMovieNavbar({user, onLoggedOut}) {
   let navBarList;
+  const username=user.Username;
 
   const isAuth=()=>{
     if(typeof window == "undefined") {
@@ -21,7 +22,7 @@ function FavMovieNavbar({user, onLoggedOut}) {
 //href="/"
   if(isAuth()) {
     navBarList =<>
-      <Nav.Link as={Link} to={`/users/${user}`}>{`${user}'s Profile`}</Nav.Link>
+      <Nav.Link as={Link} to={`/users/${username}`}>{`${username}'s Profile`}</Nav.Link>
       <Nav.Link as={Link} to='/' onClick={onLoggedOut}>Logout</Nav.Link>
     </>
   } 

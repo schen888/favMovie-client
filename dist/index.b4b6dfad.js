@@ -27304,23 +27304,13 @@ class MainView extends (0, _reactDefault.default).Component {
         }).then((response)=>{
             console.log("getUser", response);
             let userData = response.data;
-            this.setState({
-                user: userData.Username,
-                userEmail: userData.Email,
-                userBirthday: userData.Birthday,
-                favoriteMovies: userData.FavoriteMovies
-            });
+            this.props.setUser(userData);
         }).catch(function(error) {
             console.log(error);
         });
     }
     onUserUpdate(data) {
-        this.setState({
-            user: data.Username,
-            userEmail: data.Email,
-            userBirthday: data.Birthday,
-            favoriteMovies: data.FavoriteMovies
-        });
+        this.props.setUser(data);
         localStorage.setItem("user", data.Username);
         window.open(`/users/${this.state.user}`, "_self");
     }
@@ -27376,7 +27366,7 @@ class MainView extends (0, _reactDefault.default).Component {
     /* called by handleSubmit in loginView. Response containing user data is passed as argument. Set the user state in mainView
    and store the credential data in localStorage.*/ onLoggedIn(authData) {
         console.log("onLoggedIn", authData);
-        this.props.setUser(authData);
+        this.props.setUser(authData.user);
         localStorage.setItem("token", authData.token);
         localStorage.setItem("user", authData.user.Username);
         this.getMovies(authData.token);
@@ -27390,7 +27380,7 @@ class MainView extends (0, _reactDefault.default).Component {
     render() {
         let { movies , user  } = this.props;
         //const { user, userEmail, userBirthday, favoriteMovies} = this.state;
-        console.log(this.state);
+        console.log("User in MainView", user);
         return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.BrowserRouter), {
             children: [
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navbarDefault.default), {
@@ -27398,7 +27388,7 @@ class MainView extends (0, _reactDefault.default).Component {
                     onLoggedOut: this.onLoggedOut
                 }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 171,
+                    lineNumber: 161,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Container), {
@@ -27433,7 +27423,7 @@ class MainView extends (0, _reactDefault.default).Component {
               )) */ }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 174,
+                                    lineNumber: 164,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27450,13 +27440,13 @@ class MainView extends (0, _reactDefault.default).Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 190,
+                                    lineNumber: 180,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 173,
+                            lineNumber: 163,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
@@ -27485,7 +27475,7 @@ class MainView extends (0, _reactDefault.default).Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 209,
+                                    lineNumber: 199,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27515,7 +27505,7 @@ class MainView extends (0, _reactDefault.default).Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 224,
+                                    lineNumber: 214,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27539,13 +27529,13 @@ class MainView extends (0, _reactDefault.default).Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 242,
+                                    lineNumber: 232,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 208,
+                            lineNumber: 198,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
@@ -27571,7 +27561,7 @@ class MainView extends (0, _reactDefault.default).Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 253,
+                                    lineNumber: 243,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27594,25 +27584,25 @@ class MainView extends (0, _reactDefault.default).Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 261,
+                                    lineNumber: 251,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 252,
+                            lineNumber: 242,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 172,
+                    lineNumber: 162,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 170,
+            lineNumber: 160,
             columnNumber: 7
         }, this);
     }
@@ -41458,6 +41448,7 @@ var _navbarDefault = parcelHelpers.interopDefault(_navbar);
 var _reactRouterDom = require("react-router-dom");
 function FavMovieNavbar({ user , onLoggedOut  }) {
     let navBarList;
+    const username = user.Username;
     const isAuth = ()=>{
         if (typeof window == "undefined") return false;
         if (user) return user;
@@ -41468,11 +41459,11 @@ function FavMovieNavbar({ user , onLoggedOut  }) {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navDefault.default).Link, {
                 as: (0, _reactRouterDom.Link),
-                to: `/users/${user}`,
-                children: `${user}'s Profile`
+                to: `/users/${username}`,
+                children: `${username}'s Profile`
             }, void 0, false, {
                 fileName: "src/components/navbar/navbar.jsx",
-                lineNumber: 24,
+                lineNumber: 25,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navDefault.default).Link, {
@@ -41482,7 +41473,7 @@ function FavMovieNavbar({ user , onLoggedOut  }) {
                 children: "Logout"
             }, void 0, false, {
                 fileName: "src/components/navbar/navbar.jsx",
-                lineNumber: 25,
+                lineNumber: 26,
                 columnNumber: 7
             }, this)
         ]
@@ -41499,14 +41490,14 @@ function FavMovieNavbar({ user , onLoggedOut  }) {
                     children: "FavMovie"
                 }, void 0, false, {
                     fileName: "src/components/navbar/navbar.jsx",
-                    lineNumber: 32,
+                    lineNumber: 33,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navbarDefault.default).Toggle, {
                     "aria-controls": "navbar-nav"
                 }, void 0, false, {
                     fileName: "src/components/navbar/navbar.jsx",
-                    lineNumber: 33,
+                    lineNumber: 34,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navbarDefault.default).Collapse, {
@@ -41516,23 +41507,23 @@ function FavMovieNavbar({ user , onLoggedOut  }) {
                         children: navBarList
                     }, void 0, false, {
                         fileName: "src/components/navbar/navbar.jsx",
-                        lineNumber: 35,
+                        lineNumber: 36,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "src/components/navbar/navbar.jsx",
-                    lineNumber: 34,
+                    lineNumber: 35,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/components/navbar/navbar.jsx",
-            lineNumber: 31,
+            lineNumber: 32,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "src/components/navbar/navbar.jsx",
-        lineNumber: 30,
+        lineNumber: 31,
         columnNumber: 5
     }, this);
 }
@@ -44739,7 +44730,7 @@ function movies(state = [], action) {
             return state;
     }
 }
-function user(state = {}, action) {
+function user(state = "", action) {
     switch(action.type){
         case 0, _actions.SET_USER:
             return action.value;
