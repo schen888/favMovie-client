@@ -27454,7 +27454,7 @@ class MainView extends (0, _reactDefault.default).Component {
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
                                     path: "/movies/:movieId",
                                     render: ({ match , history  })=>{
-                                        if (!user) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Redirect), {
+                                        if (!userLocal) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Redirect), {
                                             to: "/"
                                         }, void 0, false, void 0, void 0);
                                         if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27480,7 +27480,7 @@ class MainView extends (0, _reactDefault.default).Component {
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
                                     path: `/users/${user}`,
                                     render: ({ history  })=>{
-                                        if (!user) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Redirect), {
+                                        if (!userLocal) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Redirect), {
                                             to: "/"
                                         }, void 0, false, void 0, void 0);
                                         if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27506,30 +27506,6 @@ class MainView extends (0, _reactDefault.default).Component {
                                     fileName: "src/components/main-view/main-view.jsx",
                                     lineNumber: 213,
                                     columnNumber: 13
-                                }, this),
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
-                                    path: "/user-update/:username",
-                                    render: ({ match , history  })=>{
-                                        // in <UserUpdate /> maybe movies as props needed?
-                                        if (!user) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Redirect), {
-                                            to: "/"
-                                        }, void 0, false, void 0, void 0);
-                                        if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                            className: "main-view",
-                                            children: "Loading..."
-                                        }, void 0, false, void 0, void 0);
-                                        return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
-                                            lg: 8,
-                                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(UserUpdate, {
-                                                user: user === match.params.username,
-                                                onBackClick: ()=>history.goBack()
-                                            }, void 0, false, void 0, void 0)
-                                        }, void 0, false, void 0, void 0);
-                                    }
-                                }, void 0, false, {
-                                    fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 231,
-                                    columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
@@ -27543,7 +27519,7 @@ class MainView extends (0, _reactDefault.default).Component {
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
                                     path: "/directors/:name",
                                     render: ({ match , history  })=>{
-                                        if (!user) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Redirect), {
+                                        if (!userLocal) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Redirect), {
                                             to: "/"
                                         }, void 0, false, void 0, void 0);
                                         if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27566,7 +27542,7 @@ class MainView extends (0, _reactDefault.default).Component {
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
                                     path: "/genres/:name",
                                     render: ({ match , history  })=>{
-                                        if (!user) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Redirect), {
+                                        if (!userLocal) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Redirect), {
                                             to: "/"
                                         }, void 0, false, void 0, void 0);
                                         if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
