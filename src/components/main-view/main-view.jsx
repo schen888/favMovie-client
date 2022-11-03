@@ -1,9 +1,15 @@
 import React from 'react';
 import axios from 'axios';
+
+import {connect} from 'react-redux';
+
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
+import {setMovies} from '../../actions/actions';
+
+import MoviesList from '../movies-list/movies-list';
+
 import { LoginView } from '../login-view/login-view';
-import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
@@ -17,15 +23,11 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Container } from 'react-bootstrap';
 
-export class MainView extends React.Component {
+class MainView extends React.Component {
   constructor(){
     super();
     this.state = {
-      movies: [],
-      user: null,
-      userEmail: null,
-      userBirthday: null,
-      favoriteMovies: []
+      user: null
     }
 
     this.onLoggedIn=this.onLoggedIn.bind(this);
@@ -35,14 +37,24 @@ export class MainView extends React.Component {
     this.onRemoveFavMovie=this.onRemoveFavMovie.bind(this);
   }
 
+  componentDidMount(){
+    let accessToken = localStorage.getItem('token');
+    if (accessToken !== null) {
+      this.setState({
+        user: localStorage.getItem('user'),
+      });
+      this.getUser(accessToken);
+      this.getMovies(accessToken);
+    }
+  }
+
+
   getMovies(token) {
     axios.get('https://favmovie123.herokuapp.com/movies', {
       headers: { Authorization: `Bearer ${token}`}
     })
     .then(response => {
-      this.setState({
-        movies: response.data
-      });
+      this.props.setMovies(response.data);
     })
     .catch(function (error) {
       console.log(error);
@@ -131,17 +143,7 @@ export class MainView extends React.Component {
     });
   }
 
-  componentDidMount(){
-    let accessToken = localStorage.getItem('token');
-    if (accessToken !== null) {
-      this.setState({
-        user: localStorage.getItem('user'),
-      });
-      this.getUser(accessToken);
-      this.getMovies(accessToken);
-    }
-  }
-
+  
   /* called by handleSubmit in loginView. Response containing user data is passed as argument. Set the user state in mainView
    and store the credential data in localStorage.*/
   onLoggedIn(authData) {
@@ -169,7 +171,9 @@ export class MainView extends React.Component {
   }
 
   render() {
-    const { movies, user, userEmail, userBirthday, favoriteMovies} = this.state;
+    let {movies} = this.props;
+    let {user}=this.state;
+    //const { user, userEmail, userBirthday, favoriteMovies} = this.state;
     console.log(this.state);
 
     return (
@@ -184,13 +188,14 @@ export class MainView extends React.Component {
               // Before movies have been loaded
               if (movies.length === 0) return <div className="main-view">Loading...</div>
 
-              return movies.map(m => (
+              return <MoviesList movies={movies} />;
+
+             /*  return movies.map(m => (
                 <Col md={6} lg={4} xl={3} className='d-flex'>
                   <MovieCard key={m._id} movie={m}/>
                 </Col>
-              ))
-            }} 
-            />
+              )) */
+            }} />
 
             <Route path="/register" render={()=>{
               if(user) return <Redirect to="/" />
@@ -276,3 +281,9 @@ export class MainView extends React.Component {
     );
   }
 }
+
+let mapStateToProps = state => {
+  return { movies: state.movies }
+}
+
+export default connect(mapStateToProps, { setMovies } )(MainView);
