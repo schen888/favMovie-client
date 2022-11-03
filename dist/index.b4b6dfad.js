@@ -43898,11 +43898,14 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "SET_MOVIES", ()=>SET_MOVIES);
 parcelHelpers.export(exports, "SET_FILTER", ()=>SET_FILTER);
+parcelHelpers.export(exports, "SET_USER", ()=>SET_USER);
 //action creators
 parcelHelpers.export(exports, "setMovies", ()=>setMovies);
 parcelHelpers.export(exports, "setFilter", ()=>setFilter);
+parcelHelpers.export(exports, "setUser", ()=>setUser);
 const SET_MOVIES = "SET_MOVIES";
 const SET_FILTER = "SET_FILTER";
+const SET_USER = "SET_USER";
 function setMovies(value) {
     return {
         type: SET_MOVIES,
@@ -43912,6 +43915,12 @@ function setMovies(value) {
 function setFilter(value) {
     return {
         type: SET_FILTER,
+        value
+    };
+}
+function setUser(value) {
+    return {
+        type: SET_USER,
         value
     };
 }
@@ -44739,10 +44748,19 @@ function movies(state = [], action) {
             return state;
     }
 }
+function user(state = {}, action) {
+    switch(action.type){
+        case SET_USER:
+            return action.value;
+        default:
+            return state;
+    }
+}
 //all reducers combined
 const moviesApp = (0, _redux.combineReducers)({
     movies,
-    visibilityFilter
+    visibilityFilter,
+    user
 });
 exports.default = moviesApp;
 

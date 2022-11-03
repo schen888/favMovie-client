@@ -11,8 +11,6 @@ function visibilityFilter(state = '', action) {
   }
 }
 
-
-
 function movies(state = [], action) {
   switch (action.type) {
     case SET_MOVIES:
@@ -22,10 +20,20 @@ function movies(state = [], action) {
   }
 }
 
+function user(state = {}, action) {
+  switch (action.type) {
+    case SET_USER:
+      return action.value;
+    default:
+      return state;
+  }
+}
+
 //all reducers combined
 const moviesApp=combineReducers({
   movies,
-  visibilityFilter
+  visibilityFilter,
+  user
 })
 
 
