@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
-import Stack from 'react-bootstrap/Stack';
 import { Link } from "react-router-dom";
 
 import {connect} from 'react-redux';
@@ -14,7 +13,6 @@ let mapStateToProps = state => {
   }
 }
 
-//onAddFavMovie, onRemoveFavMovie
 export class MovieView extends React.Component {
   constructor(){
     super(); 
@@ -24,20 +22,18 @@ export class MovieView extends React.Component {
 
   onAddFavMovie(movieID){
     let favoriteMovies=this.props.user.FavoriteMovies;
-    let tempFavoriteMovies=[...favoriteMovies];
     const userLocal= localStorage.getItem('user');
     const token= localStorage.getItem('token');
 
-    if (tempFavoriteMovies.includes(movieID)) {
+    if (favoriteMovies.includes(movieID)) {
       alert('This movie is already in your favorite movie list!');
     } else {
       axios.post(`https://favmovie123.herokuapp.com/users/${userLocal}/movies/${movieID}`,
         {FavoriteMovies: movieID},
         {headers: { Authorization: `Bearer ${token}`}})
       .then((response) => {
-        console.log(response);
         this.props.setUser(response.data);
-        console.log('userAD', this.props.user);
+        console.log('onAddFavMovie', response);
         document.getElementById('remove-btn').blur();
       })
       .catch((err) => {
@@ -56,9 +52,8 @@ export class MovieView extends React.Component {
       data: {FavoriteMovies: movieID} 
     })
     .then((response) => {
-      console.log(response);
+      console.log('onRemoveFavMovie', response);
       this.props.setUser(response.data);
-      console.log('userRM', this.props.user);
       document.getElementById('add-btn').blur();
     })
     .catch((err) => {
@@ -69,7 +64,6 @@ export class MovieView extends React.Component {
   render () {
     const {movie, onBackClick, user} = this.props;
     let favoriteMovies = user.FavoriteMovies;
-
 
     return (
       <div className="movie-view">
@@ -125,5 +119,6 @@ MovieView.propTypes = {
     Genre: PropTypes.shape({Name: PropTypes.string}).isRequired,
     Director: PropTypes.shape({Name: PropTypes.string}).isRequired
   }).isRequired,
-  onBackClick: PropTypes.func.isRequired
+  onBackClick: PropTypes.func.isRequired,
+  user: PropTypes.object
 };

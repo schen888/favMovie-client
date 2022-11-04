@@ -41,6 +41,7 @@ class MainView extends React.Component {
       headers: { Authorization: `Bearer ${token}`}
     })
     .then(response => {
+      console.log('getMovies', response);
       this.props.setMovies(response.data);
     })
     .catch(function (error) {
@@ -82,8 +83,8 @@ class MainView extends React.Component {
   }
 
   render() {
-    let {movies, user} = this.props;
-    let username=user.Username;
+    const {movies, user} = this.props;
+    const username=user.Username;
     const userLocal = localStorage.getItem('user');
 
     return (

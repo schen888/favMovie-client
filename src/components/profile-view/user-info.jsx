@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
 
 import {connect} from 'react-redux';
@@ -13,7 +14,6 @@ let mapStateToProps = state => {
 
 export function UserInfo (props) {
 const {user} = props;
-console.log('user in UserInfo', user);
 const token=localStorage.getItem('token');
 const {Username, Email, Birthday} = user;
   function onDeleteAccount () {
@@ -42,3 +42,7 @@ const {Username, Email, Birthday} = user;
 }
 
 export default connect(mapStateToProps, { setUser } )(UserInfo);
+
+UserInfo.propTypes = {
+  user: PropTypes.object.isRequired
+};

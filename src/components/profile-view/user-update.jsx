@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import { Form, Button } from 'react-bootstrap';
 
 import {setUser} from '../../actions/actions';
@@ -151,3 +152,7 @@ function UserUpdate (props) {
 }
 
 export default connect(mapStateToProps, { setUser } )(UserUpdate);
+
+UserUpdate.propTypes = {
+  user: PropTypes.object
+};

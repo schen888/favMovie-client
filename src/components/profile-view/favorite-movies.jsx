@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import { Button, Row, Col, Figure, Card } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 
@@ -16,9 +17,7 @@ let mapStateToProps = state => {
 function FavoriteMovies (props) {
   const {movies, user}=props;
   let favoriteMovies=user.FavoriteMovies;
-  console.log('movies in favMovie', movies);
-  console.log('Favmovies in favMovie', favoriteMovies);
-
+  
   function onRemoveFavMovie (movieID) {
     const userLocal= localStorage.getItem('user');
     const token= localStorage.getItem('token');
@@ -28,7 +27,7 @@ function FavoriteMovies (props) {
       data: {FavoriteMovies: movieID} 
     })
     .then((response) => {
-      console.log(response);
+      console.log('Remove FavMovie in FavoriteMovies', response);
       props.setUser(response.data);
     })
     .catch((err) => {
@@ -46,12 +45,7 @@ function FavoriteMovies (props) {
 
       <Row>
         {favoriteMovies.map((favMovieID)=>{
-          console.log(favoriteMovies);
-          console.log('movies in favMovie', movies);
-          console.log(favMovieID);
-          let favMovie;
-          favMovie=movies.find(m=>m._id===favMovieID);
-          console.log('favMovie',favMovie);
+          let favMovie=movies.find(m=>m._id===favMovieID);
           return (
             <Col key={favMovie._id} xs={12} md={6} lg={4} className='my-2 d-flex fav-movie'>  
               <Card className="border-dark d-flex flex-column justify-content-between ">
@@ -76,10 +70,7 @@ function FavoriteMovies (props) {
 
 export default connect(mapStateToProps, { setUser } )(FavoriteMovies);
 
-
-      /* let tempFavoriteMovies=[...this.state.favoriteMovies];
-      
-      tempFavoriteMovies = tempFavoriteMovies.filter((id) => id!==movieID);
-      this.setState({favoriteMovies: tempFavoriteMovies}); */
-
-      //
+FavoriteMovies.propTypes = {
+  user: PropTypes.object.isRequired,
+  movies: PropTypes.array.isRequired
+};

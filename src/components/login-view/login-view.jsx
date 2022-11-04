@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import {Container, Row, Col, Card, Form, Button, Stack} from 'react-bootstrap';
+import {Card, Form, Button, Stack} from 'react-bootstrap';
 import { Link } from "react-router-dom";
 
 export default function LoginView(props) {
@@ -34,7 +34,7 @@ export default function LoginView(props) {
 }
 
   const handleSubmit = (e) => {
-    e.preventDefault(); //prevent browser reload after click the submit.
+    e.preventDefault();
     console.log(username, password);
     const isReq = validate();
     console.log(`isReq: ${isReq}`);

@@ -54,8 +54,7 @@ export default function RegistrationView() {
         Birthday: birthday
       })
       .then((response) => {
-        //const data = response.data;
-        console.log(response);
+        console.log('RegistrationView Response:', response);
         alert('Registration successful, please login!');
         window.open('/', '_self')
       })

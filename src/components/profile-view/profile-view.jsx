@@ -1,6 +1,5 @@
-import React, {useState} from 'react';
-import {connect} from 'react-redux';
-import { setUser} from '../../actions/actions';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 
@@ -10,14 +9,7 @@ import FavoriteMovies from './favorite-movies';
 
 import './profile-view.scss';
 
-let mapStateToProps = state => {
-  return { 
-    movies: state.movies,
-    user: state.user
-  }
-}
-
-export function ProfileView (props) {
+export default function ProfileView (props) {
 const {onBackClick}=props;
 
   return (
@@ -48,4 +40,6 @@ const {onBackClick}=props;
   )
 }
 
-export default connect(mapStateToProps)(ProfileView);
+ProfileView.propTypes = {
+  onBackClick: PropTypes.func.isRequired,
+};

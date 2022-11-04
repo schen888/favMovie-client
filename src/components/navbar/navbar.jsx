@@ -46,5 +46,5 @@ export default FavMovieNavbar;
 
 FavMovieNavbar.propTypes = {
   onLoggedOut: PropTypes.func.isRequired,
-  username: PropTypes.string.isRequired
+  username: PropTypes.string
 };
