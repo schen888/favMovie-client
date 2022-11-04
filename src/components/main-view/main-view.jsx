@@ -25,8 +25,6 @@ class MainView extends React.Component {
     
     this.onLoggedIn=this.onLoggedIn.bind(this);
     this.onLoggedOut=this.onLoggedOut.bind(this);
-    //this.onAddFavMovie=this.onAddFavMovie.bind(this);
-    /* this.onRemoveFavMovie=this.onRemoveFavMovie.bind(this); */
   }
 
   componentDidMount(){
@@ -50,7 +48,6 @@ class MainView extends React.Component {
     });
   }
 
-  // do I really need this function? User info are fetched by the onLoggedIn function already.
   getUser(token) {
     let accessUser=localStorage.getItem('user');
     axios.get(`https://favmovie123.herokuapp.com/users/${accessUser}`, {
@@ -65,59 +62,6 @@ class MainView extends React.Component {
       console.log(error);
     });
   }
-
-
-
-  /* onAddFavMovie(movieID){
-    let tempFavoriteMovies=[...this.state.favoriteMovies];
-    const user= localStorage.getItem('user');
-    const token= localStorage.getItem('token');
-
-    if (tempFavoriteMovies.includes(movieID)) {
-      alert('This movie is already in your favorite movie list!');
-    } else {
-      axios.post(`https://favmovie123.herokuapp.com/users/${user}/movies/${movieID}`,
-        {FavoriteMovies: movieID},
-        {headers: { Authorization: `Bearer ${token}`}})
-      .then((response) => {
-        console.log(response);
-        tempFavoriteMovies.push(movieID);
-        this.setState({
-          favoriteMovies: tempFavoriteMovies
-        });
-        document.getElementById('remove-btn').blur();
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-      
-    }
-  } */
-
-/*   onRemoveFavMovie (movieID) {
-    const user= localStorage.getItem('user');
-    const token= localStorage.getItem('token');
-
-    axios.delete(`https://favmovie123.herokuapp.com/users/${user}/movies/${movieID}`, {
-      headers: { Authorization: `Bearer ${token}`},
-      data: {FavoriteMovies: movieID} 
-    })
-    .then((response) => {
-      let tempFavoriteMovies=[...this.state.favoriteMovies];
-      console.log(response);
-      tempFavoriteMovies = tempFavoriteMovies.filter((id) => id!==movieID);
-      this.setState({favoriteMovies: tempFavoriteMovies});
-      
-      let movieViewBtn= document.getElementById('add-btn');
-      if (movieViewBtn!==null) {
-        movieViewBtn.blur();
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-  }
- */
   
   /* called by handleSubmit in loginView. Response containing user data is passed as argument. Set the user state in mainView
    and store the credential data in localStorage.*/
@@ -132,41 +76,38 @@ class MainView extends React.Component {
   }
 
   onLoggedOut() {
-    this.props.setUser(null);
+    this.props.setUser('');
     localStorage.clear();
-    //localStorage.removeItem('user');
-    window.open("/", "_self"); // is method necessary? set user state to null will render LoginView already
+    window.open("/", "_self");
   }
 
   render() {
     let {movies, user} = this.props;
     let username=user.Username;
     const userLocal = localStorage.getItem('user');
-  
-    //const { user, userEmail, userBirthday, favoriteMovies} = this.state;
-    console.log('User in MainView',user);
 
     return (
       <Router>
         <FavMovieNavbar username={user.Username} onLoggedOut={this.onLoggedOut}/>
         <Container className='main-view'>
-          <Row className="justify-content-center mt-3">
-            <Route exact path="/" render={()=>{
-              if (!userLocal) return <Col md={10} lg={8}>
+          
+          <Route exact path="/" render={()=>{
+            if (!userLocal) return <Row className="justify-content-center mt-3">
+              <Col md={10} lg={8}>
                 <LoginView onLoggedIn ={this.onLoggedIn} />
               </Col>
-              // Before movies have been loaded
-              if (movies.length === 0) return <div className="main-view">Loading...</div>
+            </Row>
+            
+            if (movies.length === 0) return <Row className="justify-content-center mt-3">
+              <div className="main-view">Loading...</div>
+            </Row>
 
-              return <MoviesList movies={movies} />;
+            return <Row className="justify-content-left mt-3">
+                <MoviesList movies={movies} />
+            </Row>
+          }} />
 
-             /*  return movies.map(m => (
-                <Col md={6} lg={4} xl={3} className='d-flex'>
-                  <MovieCard key={m._id} movie={m}/>
-                </Col>
-              )) */
-            }} />
-
+          <Row className="justify-content-center mt-3">
             <Route path="/register" render={()=>{
               if(user) return <Redirect to="/" />
               return <Col md={10} lg={8}>

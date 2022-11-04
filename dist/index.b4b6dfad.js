@@ -27275,8 +27275,7 @@ class MainView extends (0, _reactDefault.default).Component {
         super();
         this.onLoggedIn = this.onLoggedIn.bind(this);
         this.onLoggedOut = this.onLoggedOut.bind(this);
-    //this.onAddFavMovie=this.onAddFavMovie.bind(this);
-    /* this.onRemoveFavMovie=this.onRemoveFavMovie.bind(this); */ }
+    }
     componentDidMount() {
         let accessToken = localStorage.getItem("token");
         if (accessToken !== null) {
@@ -27295,7 +27294,6 @@ class MainView extends (0, _reactDefault.default).Component {
             console.log(error);
         });
     }
-    // do I really need this function? User info are fetched by the onLoggedIn function already.
     getUser(token) {
         let accessUser = localStorage.getItem("user");
         (0, _axiosDefault.default).get(`https://favmovie123.herokuapp.com/users/${accessUser}`, {
@@ -27310,54 +27308,7 @@ class MainView extends (0, _reactDefault.default).Component {
             console.log(error);
         });
     }
-    /* onAddFavMovie(movieID){
-    let tempFavoriteMovies=[...this.state.favoriteMovies];
-    const user= localStorage.getItem('user');
-    const token= localStorage.getItem('token');
-
-    if (tempFavoriteMovies.includes(movieID)) {
-      alert('This movie is already in your favorite movie list!');
-    } else {
-      axios.post(`https://favmovie123.herokuapp.com/users/${user}/movies/${movieID}`,
-        {FavoriteMovies: movieID},
-        {headers: { Authorization: `Bearer ${token}`}})
-      .then((response) => {
-        console.log(response);
-        tempFavoriteMovies.push(movieID);
-        this.setState({
-          favoriteMovies: tempFavoriteMovies
-        });
-        document.getElementById('remove-btn').blur();
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-      
-    }
-  } */ /*   onRemoveFavMovie (movieID) {
-    const user= localStorage.getItem('user');
-    const token= localStorage.getItem('token');
-
-    axios.delete(`https://favmovie123.herokuapp.com/users/${user}/movies/${movieID}`, {
-      headers: { Authorization: `Bearer ${token}`},
-      data: {FavoriteMovies: movieID} 
-    })
-    .then((response) => {
-      let tempFavoriteMovies=[...this.state.favoriteMovies];
-      console.log(response);
-      tempFavoriteMovies = tempFavoriteMovies.filter((id) => id!==movieID);
-      this.setState({favoriteMovies: tempFavoriteMovies});
-      
-      let movieViewBtn= document.getElementById('add-btn');
-      if (movieViewBtn!==null) {
-        movieViewBtn.blur();
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-  }
- */ /* called by handleSubmit in loginView. Response containing user data is passed as argument. Set the user state in mainView
+    /* called by handleSubmit in loginView. Response containing user data is passed as argument. Set the user state in mainView
    and store the credential data in localStorage.*/ onLoggedIn(authData) {
         console.log("onLoggedIn", authData);
         this.props.setUser(authData.user);
@@ -27366,17 +27317,14 @@ class MainView extends (0, _reactDefault.default).Component {
         this.getMovies(authData.token);
     }
     onLoggedOut() {
-        this.props.setUser(null);
+        this.props.setUser("");
         localStorage.clear();
-        //localStorage.removeItem('user');
-        window.open("/", "_self"); // is method necessary? set user state to null will render LoginView already
+        window.open("/", "_self");
     }
     render() {
         let { movies , user  } = this.props;
         let username = user.Username;
         const userLocal = localStorage.getItem("user");
-        //const { user, userEmail, userBirthday, favoriteMovies} = this.state;
-        console.log("User in MainView", user);
         return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.BrowserRouter), {
             children: [
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navbarDefault.default), {
@@ -27384,65 +27332,67 @@ class MainView extends (0, _reactDefault.default).Component {
                     onLoggedOut: this.onLoggedOut
                 }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 151,
+                    lineNumber: 91,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Container), {
                     className: "main-view",
                     children: [
+                        /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
+                            exact: true,
+                            path: "/",
+                            render: ()=>{
+                                if (!userLocal) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
+                                    className: "justify-content-center mt-3",
+                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                                        md: 10,
+                                        lg: 8,
+                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loginViewDefault.default), {
+                                            onLoggedIn: this.onLoggedIn
+                                        }, void 0, false, void 0, void 0)
+                                    }, void 0, false, void 0, void 0)
+                                }, void 0, false, void 0, void 0);
+                                if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
+                                    className: "justify-content-center mt-3",
+                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                        className: "main-view",
+                                        children: "Loading..."
+                                    }, void 0, false, void 0, void 0)
+                                }, void 0, false, void 0, void 0);
+                                return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
+                                    className: "justify-content-left mt-3",
+                                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _moviesListDefault.default), {
+                                        movies: movies
+                                    }, void 0, false, void 0, void 0)
+                                }, void 0, false, void 0, void 0);
+                            }
+                        }, void 0, false, {
+                            fileName: "src/components/main-view/main-view.jsx",
+                            lineNumber: 94,
+                            columnNumber: 11
+                        }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
                             className: "justify-content-center mt-3",
-                            children: [
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
-                                    exact: true,
-                                    path: "/",
-                                    render: ()=>{
-                                        if (!userLocal) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
-                                            md: 10,
-                                            lg: 8,
-                                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loginViewDefault.default), {
-                                                onLoggedIn: this.onLoggedIn
-                                            }, void 0, false, void 0, void 0)
-                                        }, void 0, false, void 0, void 0);
-                                        // Before movies have been loaded
-                                        if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                            className: "main-view",
-                                            children: "Loading..."
-                                        }, void 0, false, void 0, void 0);
-                                        return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _moviesListDefault.default), {
-                                            movies: movies
-                                        }, void 0, false, void 0, void 0);
-                                    /*  return movies.map(m => (
-                <Col md={6} lg={4} xl={3} className='d-flex'>
-                  <MovieCard key={m._id} movie={m}/>
-                </Col>
-              )) */ }
-                                }, void 0, false, {
-                                    fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 154,
-                                    columnNumber: 13
-                                }, this),
-                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
-                                    path: "/register",
-                                    render: ()=>{
-                                        if (user) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Redirect), {
-                                            to: "/"
-                                        }, void 0, false, void 0, void 0);
-                                        return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
-                                            md: 10,
-                                            lg: 8,
-                                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _registrationViewDefault.default), {}, void 0, false, void 0, void 0)
-                                        }, void 0, false, void 0, void 0);
-                                    }
-                                }, void 0, false, {
-                                    fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 170,
-                                    columnNumber: 13
-                                }, this)
-                            ]
-                        }, void 0, true, {
+                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
+                                path: "/register",
+                                render: ()=>{
+                                    if (user) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Redirect), {
+                                        to: "/"
+                                    }, void 0, false, void 0, void 0);
+                                    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
+                                        md: 10,
+                                        lg: 8,
+                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _registrationViewDefault.default), {}, void 0, false, void 0, void 0)
+                                    }, void 0, false, void 0, void 0);
+                                }
+                            }, void 0, false, {
+                                fileName: "src/components/main-view/main-view.jsx",
+                                lineNumber: 111,
+                                columnNumber: 13
+                            }, this)
+                        }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 153,
+                            lineNumber: 110,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
@@ -27468,7 +27418,7 @@ class MainView extends (0, _reactDefault.default).Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 189,
+                                    lineNumber: 130,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27491,13 +27441,13 @@ class MainView extends (0, _reactDefault.default).Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 201,
+                                    lineNumber: 142,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 188,
+                            lineNumber: 129,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
@@ -27523,7 +27473,7 @@ class MainView extends (0, _reactDefault.default).Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 223,
+                                    lineNumber: 164,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27546,25 +27496,25 @@ class MainView extends (0, _reactDefault.default).Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 231,
+                                    lineNumber: 172,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 222,
+                            lineNumber: 163,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 152,
+                    lineNumber: 92,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 150,
+            lineNumber: 90,
             columnNumber: 7
         }, this);
     }
@@ -42985,7 +42935,6 @@ function FavMovieNavbar({ username , onLoggedOut  }) {
         if (username) return username;
         else return false;
     };
-    //href="/"
     if (isAuth()) navBarList = /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navDefault.default).Link, {

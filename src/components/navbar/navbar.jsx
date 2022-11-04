@@ -19,7 +19,7 @@ function FavMovieNavbar({username, onLoggedOut}) {
       return false;
     }
   }
-//href="/"
+
   if(isAuth()) {
     navBarList =<>
       <Nav.Link as={Link} to={`/users/${username}`}>{`${username}'s Profile`}</Nav.Link>
