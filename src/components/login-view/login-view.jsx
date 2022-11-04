@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {Container, Row, Col, Card, Form, Button, Stack} from 'react-bootstrap';
 import { Link } from "react-router-dom";
 
-export function LoginView(props) {
+export default function LoginView(props) {
   const [ username, setUsername ] = useState('');
   const [ password, setPassword ] = useState('');
 

@@ -18,7 +18,7 @@ let mapStateToProps = state => {
 }
 
 export function ProfileView (props) {
-const {movie, user, movies, onBackClick, onRemoveFavMovie}=props;
+const {onBackClick}=props;
 
   return (
     <Container fluid className="profile-view">
@@ -48,4 +48,4 @@ const {movie, user, movies, onBackClick, onRemoveFavMovie}=props;
   )
 }
 
-export default connect(mapStateToProps, { setUser } )(ProfileView);
+export default connect(mapStateToProps)(ProfileView);

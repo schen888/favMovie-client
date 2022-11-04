@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button'
 
-export class GenreView extends React.Component {
+export default class GenreView extends React.Component {
   render () {
     const {genre, onBackClick} = this.props;
 

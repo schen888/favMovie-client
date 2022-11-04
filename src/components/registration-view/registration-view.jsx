@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Card, Form, Button, Stack } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 
-export function RegistrationView() {
+export default function RegistrationView() {
   const [ username, setUsername ] = useState('');
   const [ password, setPassword ] = useState('');
   const [ email, setEmail ] = useState('');
