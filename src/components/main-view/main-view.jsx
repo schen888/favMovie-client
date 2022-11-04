@@ -10,11 +10,11 @@ import {setMovies, setUser} from '../../actions/actions';
 import MoviesList from '../movies-list/movies-list';
 
 import { LoginView } from '../login-view/login-view';
-import { MovieView } from '../movie-view/movie-view';
+import MovieView from '../movie-view/movie-view';
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
 import { RegistrationView } from '../registration-view/registration-view';
-import {ProfileView} from '../profile-view/profile-view';
+import ProfileView from '../profile-view/profile-view';
 //import {UserUpdate}
 
 import FavMovieNavbar from '../navbar/navbar';
@@ -29,9 +29,8 @@ class MainView extends React.Component {
     
     this.onLoggedIn=this.onLoggedIn.bind(this);
     this.onLoggedOut=this.onLoggedOut.bind(this);
-    this.onUserUpdate=this.onUserUpdate.bind(this);
-    this.onAddFavMovie=this.onAddFavMovie.bind(this);
-    this.onRemoveFavMovie=this.onRemoveFavMovie.bind(this);
+    //this.onAddFavMovie=this.onAddFavMovie.bind(this);
+    /* this.onRemoveFavMovie=this.onRemoveFavMovie.bind(this); */
   }
 
   componentDidMount(){
@@ -71,14 +70,9 @@ class MainView extends React.Component {
     });
   }
 
-  onUserUpdate(data) {
-    this.props.setUser(data);
 
-    localStorage.setItem('user', data.Username);
-    window.open(`/users/${this.state.user}`,'_self')
-  }
 
-  onAddFavMovie(movieID){
+  /* onAddFavMovie(movieID){
     let tempFavoriteMovies=[...this.state.favoriteMovies];
     const user= localStorage.getItem('user');
     const token= localStorage.getItem('token');
@@ -102,9 +96,9 @@ class MainView extends React.Component {
       });
       
     }
-  }
+  } */
 
-  onRemoveFavMovie (movieID) {
+/*   onRemoveFavMovie (movieID) {
     const user= localStorage.getItem('user');
     const token= localStorage.getItem('token');
 
@@ -127,7 +121,7 @@ class MainView extends React.Component {
       console.error(err);
     });
   }
-
+ */
   
   /* called by handleSubmit in loginView. Response containing user data is passed as argument. Set the user state in mainView
    and store the credential data in localStorage.*/
@@ -150,6 +144,7 @@ class MainView extends React.Component {
 
   render() {
     let {movies, user} = this.props;
+    let username=user.Username;
     const userLocal = localStorage.getItem('user');
   
     //const { user, userEmail, userBirthday, favoriteMovies} = this.state;
@@ -201,27 +196,17 @@ class MainView extends React.Component {
               return <Col lg={8}>
                 <MovieView 
                   movie={movies.find(m => m._id === match.params.movieId)}
-                  favoriteMovies={favoriteMovies}
-                  onAddFavMovie={this.onAddFavMovie}
-                  onRemoveFavMovie={this.onRemoveFavMovie}
                   onBackClick={()=>history.goBack()} 
                 />
               </Col> 
             }} />
 
             
-            <Route path={`/users/${user}`} render={({history})=>{// probaboly the match parameter can be deleted
+            <Route path={`/users/${username}`} render={({history})=>{// probaboly the match parameter can be deleted
               if (!userLocal) return <Redirect to="/" />
               if (movies.length === 0) return <div className="main-view">Loading...</div>
               return <Col>
-                <ProfileView 
-                  movies={movies} 
-                  user={user}
-                  email={userEmail}
-                  birthday={userBirthday}
-                  favoriteMovies={favoriteMovies}
-                  onUserUpdate={this.onUserUpdate}
-                  onRemoveFavMovie={this.onRemoveFavMovie}
+                <ProfileView
                   onBackClick={()=>{history.goBack()}}
                 />
               </Col>

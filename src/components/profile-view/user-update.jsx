@@ -2,8 +2,17 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import { Form, Button } from 'react-bootstrap';
 
-export function UserUpdate (props) {
-  const {onUserUpdate} = props;
+import {setUser} from '../../actions/actions';
+import {connect} from 'react-redux';
+
+let mapStateToProps = state => {
+  return { 
+    user: state.user
+  }
+}
+
+function UserUpdate (props) {
+  const {user} = props;
 
   const [ username, setUsername ] = useState('');
   const [ password, setPassword ] = useState('');
@@ -15,7 +24,7 @@ export function UserUpdate (props) {
   const [emailErr, setEmailErr]=useState('');
 
   const token=localStorage.getItem('token');
-  const user=localStorage.getItem('user');
+  const userLocal=localStorage.getItem('user');
 
   function validate(){
     let isReq=true;
@@ -54,7 +63,7 @@ export function UserUpdate (props) {
       headers: { Authorization: `Bearer ${token}`}
     }
     if (isReq) {
-      axios.put(`https://favmovie123.herokuapp.com/users/${user}`, {
+      axios.put(`https://favmovie123.herokuapp.com/users/${userLocal}`, {
         Username: username,
         Password: password,
         Email: email,
@@ -70,6 +79,13 @@ export function UserUpdate (props) {
       });
 
     }
+  }
+
+  function onUserUpdate(data) {
+    this.props.setUser(data);
+
+    localStorage.setItem('user', user.Username);
+    window.open(`/users/${user.Username}`,'_self')
   }
 
   return (
@@ -132,6 +148,6 @@ export function UserUpdate (props) {
       </Form>
     </>
   )
-
-
 }
+
+export default connect(mapStateToProps, { setUser } )(UserUpdate);
