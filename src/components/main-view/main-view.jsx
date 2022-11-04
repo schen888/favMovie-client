@@ -116,16 +116,6 @@ class MainView extends React.Component {
             }}/>
           </Row>
 
-          {/* <Row className="justify-content-left mt-3">
-            <Route exact path="/" render={()=>{
-              return movies.map(m => (
-                <Col md={6} lg={4} xl={3} className='d-flex'>
-                  <MovieCard key={m._id} movie={m}/>
-                </Col>
-              ))
-            }} />
-          </Row> */}
-
           <Row className="justify-content-center mt-5">
             <Route path="/movies/:movieId" render={({match, history})=>{
               if (!userLocal) return <Redirect to="/" />
@@ -138,29 +128,6 @@ class MainView extends React.Component {
               </Col> 
             }} />
 
-            
-            <Route path={`/users/${username}`} render={({history})=>{// probaboly the match parameter can be deleted
-              if (!userLocal) return <Redirect to="/" />
-              if (movies.length === 0) return <div className="main-view">Loading...</div>
-              return <Col>
-                <ProfileView
-                  onBackClick={()=>{history.goBack()}}
-                />
-              </Col>
-            }} /> 
-
-            
-            {/* <Route path="/user-update/:username" render={({match, history})=>{// probaboly the match parameter can be deleted
-              // in <UserUpdate /> maybe movies as props needed?
-              if (!user) return <Redirect to="/" />
-              if (movies.length === 0) return <div className="main-view">Loading...</div>
-              return <Col lg={8}> 
-                <UserUpdate user={user===match.params.username} onBackClick={()=>history.goBack()} />
-              </Col> 
-            }} /> */}
-          </Row>
-
-          <Row className="justify-content-center mt-5">
             <Route path="/directors/:name" render={({match, history})=>{
               if (!userLocal) return <Redirect to="/" />
               if (movies.length === 0) return <div className="main-view">Loading...</div>
@@ -176,6 +143,16 @@ class MainView extends React.Component {
                 <GenreView genre={movies.find(m => m.Genre.Name === match.params.name).Genre} onBackClick={() => history.goBack()} />
               </Col> 
             }} />
+            
+            <Route path={`/users/${username}`} render={({history})=>{
+              if (!userLocal) return <Redirect to="/" />
+              if (movies.length === 0) return <div className="main-view">Loading...</div>
+              return <Col>
+                <ProfileView
+                  onBackClick={()=>{history.goBack()}}
+                />
+              </Col>
+            }} /> 
           </Row>
         </Container>
       </Router>
