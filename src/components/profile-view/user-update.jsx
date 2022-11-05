@@ -109,7 +109,7 @@ function UserUpdate (props) {
                   onChange={e => setUsername(e.target.value)}
                   required
                   minLength="5"
-                  placeholder="Username is required with at least 5 alphanumeric characters."
+                  placeholder="Username is required with at least 5 characters."
                 />
                 {usernameErr && <p>{usernameErr}</p>}
               </Form.Group>

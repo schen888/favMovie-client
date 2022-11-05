@@ -27,14 +27,14 @@ const {onBackClick}=props;
         Back
       </Button>
       <Row>
-        <Col className="my-2" xs={12} sm={5}>
+        <Col className="my-2" sm={12} md={4}>
           <Card>
             <Card.Body>
               <UserInfo />
             </Card.Body>
           </Card>
         </Col>
-        <Col className="my-2" xs={12} sm={7}>
+        <Col className="my-2" sm={12} md={8}>
           <Card>
             <Card.Body>
               <UserUpdate />
