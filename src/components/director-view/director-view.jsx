@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Button, Card} from 'react-bootstrap'
+import {Button, Card} from 'react-bootstrap';
 
 export default class DirectorView extends React.Component {
   render () {

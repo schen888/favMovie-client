@@ -1,23 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/Button'
+import {Button, Card} from 'react-bootstrap';
 
 export default class GenreView extends React.Component {
   render () {
     const {genre, onBackClick} = this.props;
 
     return (
-      <div className="genre-view">
-        <div className="name">
-          <span className="label">Genre: </span>
-          <span className="value">{genre.Name}</span>
-        </div>
-        <div className="description">
-          <span className="label">Description: </span>
-          <span className="value">{genre.Description}</span>
-        </div>
-        <Button className='pl-0' onClick={()=>onBackClick()} variant='link'>Back</Button>
-       </div>
+      <Card>
+        <Card.Body>
+          <Card.Title className='mb-4'>{genre.Name}</Card.Title>
+          <Card.Text>
+            <div className='my-3'>
+              <span className="label">Description: </span>
+              <span className="value">{genre.Description}</span>    
+            </div>
+          </Card.Text>
+          <Button className='pl-0' onClick={()=>onBackClick()} variant='link'>Back</Button>
+        </Card.Body>
+      </Card>
     );
   }
 }
