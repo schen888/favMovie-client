@@ -43979,9 +43979,7 @@ function MoviesList(props) {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
                 md: 12,
-                style: {
-                    margin: "1em"
-                },
+                className: "mt-2 mb-4",
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _visibilityFilterInputDefault.default), {
                     visibilityFilter: visibilityFilter
                 }, void 0, false, {
@@ -44088,7 +44086,7 @@ class MovieCard extends (0, _reactDefault.default).Component {
                             to: `/movies/${movie._id}`,
                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                                 variant: "link",
-                                className: "mt-2",
+                                className: "mt-2 pl-0",
                                 children: "Open"
                             }, void 0, false, {
                                 fileName: "src/components/movie-card/movie-card.jsx",
