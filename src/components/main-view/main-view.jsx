@@ -67,7 +67,6 @@ class MainView extends React.Component {
   /* called by handleSubmit in loginView. Response containing user data is passed as argument. Set the user state in mainView
    and store the credential data in localStorage.*/
   onLoggedIn(authData) {
-    console.log('onLoggedIn', authData);
     this.props.setUser(authData.user);
 
     localStorage.setItem('token', authData.token);
@@ -84,6 +83,7 @@ class MainView extends React.Component {
 
   render() {
     const {movies, user} = this.props;
+    console.log('mainview user', user.Username);
     const username=user.Username;
     const userLocal = localStorage.getItem('user');
 
@@ -121,7 +121,7 @@ class MainView extends React.Component {
             <Route path="/movies/:movieId" render={({match, history})=>{
               if (!userLocal) return <Redirect to="/" />
               if (movies.length === 0) return <div className="main-view">Loading...</div>
-              return <Col lg={8}>
+              return <Col lg={8} className='justify-content-center'>
                 <MovieView 
                   movie={movies.find(m => m._id === match.params.movieId)}
                   onBackClick={()=>history.goBack()} 
@@ -151,6 +151,7 @@ class MainView extends React.Component {
               return <Col>
                 <ProfileView
                   onBackClick={()=>{history.goBack()}}
+                  user={user}
                 />
               </Col>
             }} /> 

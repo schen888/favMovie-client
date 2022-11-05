@@ -13,7 +13,6 @@ export default function LoginView(props) {
 
   const validate = () => {
     let isReq = true;
-    console.log(`isRequ in validate1: ${isReq}`);
     if(!username){
      setUsernameErr('Username Required');
      isReq = false;
@@ -28,16 +27,12 @@ export default function LoginView(props) {
      setPasswordErr('Password must be at least 6 characters long');
      isReq = false;
     }
-    console.log(username, password);
-    console.log(`isRequ in validate2: ${isReq}`);
     return isReq;
 }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(username, password);
     const isReq = validate();
-    console.log(`isReq: ${isReq}`);
     if(isReq) {
       axios.post('https://favmovie123.herokuapp.com/login', {
         Username: username,
@@ -45,10 +40,11 @@ export default function LoginView(props) {
       })
       .then((response) => {
         const data = response.data;
-        console.log(response.data);
+        console.log('Login response:', response);
         props.onLoggedIn(data);
       })
       .catch((e) => {
+        alert(e.response.data.message);
         console.log(e, 'no such user')
       });
     }

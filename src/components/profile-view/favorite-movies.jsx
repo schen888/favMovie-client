@@ -29,6 +29,7 @@ function FavoriteMovies (props) {
     .then((response) => {
       console.log('Remove FavMovie in FavoriteMovies', response);
       props.setUser(response.data);
+      console.log('favMovieRM1', favoriteMovies);
     })
     .catch((err) => {
       console.error(err);
@@ -45,6 +46,7 @@ function FavoriteMovies (props) {
 
       <Row>
         {favoriteMovies.map((favMovieID)=>{
+          console.log('favMovieRM2', favoriteMovies);
           let favMovie=movies.find(m=>m._id===favMovieID);
           return (
             <Col key={favMovie._id} xs={12} md={6} lg={4} className='my-2 d-flex fav-movie'>  

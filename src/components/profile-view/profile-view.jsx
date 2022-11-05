@@ -3,13 +3,22 @@ import PropTypes from 'prop-types';
 
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 
+import {setUser} from '../../actions/actions';
+import {connect} from 'react-redux';
+
 import UserInfo from './user-info';
 import UserUpdate from './user-update';
 import FavoriteMovies from './favorite-movies';
 
 import './profile-view.scss';
 
-export default function ProfileView (props) {
+let mapStateToProps = state => {
+  return { 
+    user: state.user
+  }
+}
+
+function ProfileView (props) {
 const {onBackClick}=props;
 
   return (
@@ -39,6 +48,8 @@ const {onBackClick}=props;
     </Container>
   )
 }
+
+export default connect(mapStateToProps, { setUser } )(ProfileView);
 
 ProfileView.propTypes = {
   onBackClick: PropTypes.func.isRequired,

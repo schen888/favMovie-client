@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/Button';
+import {Button, Card} from 'react-bootstrap';
 import { Link } from "react-router-dom";
 
 import {connect} from 'react-redux';
@@ -66,44 +66,41 @@ export class MovieView extends React.Component {
     let favoriteMovies = user.FavoriteMovies;
 
     return (
-      <div className="movie-view">
-
-        <div className="movie-poster my-4">
-          <img width='360' src={movie.imageURL} />
-        </div>
-        <div className="movie-title">
-          <span className="label">Title: </span>
-          <span className="value">{movie.Title}</span>
-        </div>
-        <div className="movie-description">
-          <span className="label">Description: </span>
-          <span className="value">{movie.Description}</span>
-        </div>
-        <div className="movie-genre">
-          <span className="label">Genre: </span>
-          <Link to={`/genres/${movie.Genre.Name}`}>
-            <span className="value" variant="link">{movie.Genre.Name}</span>
-          </Link>
-        </div>
-        <div className="movie-director">
-          <span className="label">Director: </span>
-          <Link to={`/directors/${movie.Director.Name}`}>
-            <span className="value pl-0" variant="link">{movie.Director.Name}</span>
-          </Link>
-        </div>
-        
-        <div className='my-3'>
+      <Card className="movie-view">
+        <Card.Img src={movie.imageURL} style={{ width: '90%' }} className='mx-auto mt-4'/>
+        <Card.Body className='pb-2'>
+          <Card.Title>{movie.Title}</Card.Title>
+          <Card.Text className='mb-4'>
+            <div className="movie-description">
+              <span className="label">Description: </span>
+              <span className="value">{movie.Description}</span>
+            </div>
+            <div className="movie-genre">
+              <span className="label">Genre: </span>
+              <Link to={`/genres/${movie.Genre.Name}`}>
+                <span className="value" variant="link">{movie.Genre.Name}</span>
+              </Link>
+            </div>
+            <div className="movie-director">
+              <span className="label">Director: </span>
+              <Link to={`/directors/${movie.Director.Name}`}>
+                <span className="value pl-0" variant="link">{movie.Director.Name}</span>
+              </Link>
+            </div>
+          </Card.Text>
           <div>
-            {favoriteMovies.includes(movie._id)
-            ? (<Button id="remove-btn" onClick={()=>this.onRemoveFavMovie(movie._id)}  variant='warning'>Remove from favorite movie list</Button>)
-            : (<Button id="add-btn" onClick={()=>this.onAddFavMovie(movie._id)}  variant='secondary'>Add to favorite movie list</Button>)
-            }
-          </div>
-          <div>
-            <Button onClick={()=>onBackClick()} variant='link'>Back</Button>
-          </div>
+            <div>
+              {favoriteMovies.includes(movie._id)
+              ? (<Button id="remove-btn" onClick={()=>this.onRemoveFavMovie(movie._id)}  variant='warning'>Remove from favorite movies</Button>)
+              : (<Button id="add-btn" onClick={()=>this.onAddFavMovie(movie._id)}  variant='secondary'>Add to favorite movies</Button>)
+              }
+            </div>
+            <div>
+              <Button onClick={()=>onBackClick()} variant='link' className='pl-0 mt-2'>Back</Button>
+            </div>
         </div>
-       </div>
+        </Card.Body>
+      </Card>
     );
   }
 }

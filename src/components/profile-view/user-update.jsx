@@ -13,8 +13,8 @@ let mapStateToProps = state => {
 }
 
 function UserUpdate (props) {
-  const {user} = props;
-
+  let {user} = props;
+  
   const [ username, setUsername ] = useState('');
   const [ password, setPassword ] = useState('');
   const [ email, setEmail ] = useState('');
@@ -72,8 +72,11 @@ function UserUpdate (props) {
       },config)
       .then((response) => {
         const data = response.data;
-        alert('Update successful!');
+        console.log(response.data.Username);
+        console.log('Before',user.Username);
         onUserUpdate(data);
+        
+        alert('Update successful!');
       })
       .catch((response) => {
         console.error(response);
@@ -83,10 +86,15 @@ function UserUpdate (props) {
   }
 
   function onUserUpdate(data) {
-    this.props.setUser(data);
+    //props.setUser(data);
+    console.log('after', props.user.Username);
 
-    localStorage.setItem('user', user.Username);
-    window.open(`/users/${user.Username}`,'_self')
+    setTimeout(() => {
+      console.log('later', user.Username);
+    }, 5000)
+
+    localStorage.setItem('user', data.Username);
+    window.open(`/users/${data.Username}`,'_self')
   }
 
   return (
