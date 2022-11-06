@@ -1,5 +1,5 @@
-$theme-color:#00BCD4;
-$theme-color-logo: #00E5FF;
+$theme-color:#00ACC1; //Cyan-600
+$theme-color-logo: #00E5FF; //Cyan-A400
 
 $primary: $theme-color;
 
@@ -7,16 +7,16 @@ $link-decoration: none;
 $link-hover-decoration: underline;
 
 $body-bg: #343a40;
-$body-color: #E0E0E0;
+$body-color: #E0E0E0; //Gray-300
 $border-color: #6c757d;
 
-$card-color: #EEEEEE;
+$card-color: #EEEEEE; //Gray-200
 $card-bg: #212529;
 $card-border-color: #6c757d;
 
-$text-color: #c3c3c3;
+$text-color: #c3c3c3; 
 
-$figure-caption-color: #EEEEEE;
+$figure-caption-color: #EEEEEE; //Gray-200
 
 .navbar-brand {
   font-family: 'Monoton', cursive;
