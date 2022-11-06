@@ -4,6 +4,18 @@
   font-size: 30px !important;
 }
 
+.navbar-brand:hover, #navProfile:hover {
+  color: #03a9f4bf !important;
+}
+
+#navProfile {
+  color: #03a9f4 !important;
+}
+
+.label {
+  font-weight: 700;
+}
+
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;

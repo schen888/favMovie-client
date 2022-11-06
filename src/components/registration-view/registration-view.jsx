@@ -124,14 +124,13 @@ export default function RegistrationView() {
               </Form.Text>
             </Form.Group>
 
-            <Stack direction="horizontal" className="mt-5 mb-3">
-              <Button variant="outline-primary" type="submit" onClick={handleSubmit}>
-                Register
-              </Button>
-
+            <Stack direction="horizontal" gap={2} className="mt-5 mb-3">
               <Link to="/" className="ms-auto">
                 <Button variant="link" type="button">
                   Already registerd
+                </Button>
+                <Button variant="primary" type="submit" onClick={handleSubmit}>
+                  Register
                 </Button>
               </Link>
             </Stack>

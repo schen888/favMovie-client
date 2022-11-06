@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import {Button, Card} from 'react-bootstrap';
+import {Button, Card, Stack} from 'react-bootstrap';
 import { Link } from "react-router-dom";
 
 import {connect} from 'react-redux';
@@ -88,17 +88,15 @@ export class MovieView extends React.Component {
               </Link>
             </div>
           </Card.Text>
-          <div>
-            <div>
+          <Stack direction="horizontal" gap={2}>
+            <div className='ms-auto'>
               {favoriteMovies.includes(movie._id)
               ? (<Button id="remove-btn" onClick={()=>this.onRemoveFavMovie(movie._id)}  variant='outline-primary'>Remove from favorite movies</Button>)
               : (<Button id="add-btn" onClick={()=>this.onAddFavMovie(movie._id)}  variant='primary'>Add to favorite movies</Button>)
               }
             </div>
-            <div>
-              <Button onClick={()=>onBackClick()} variant='link' className='pl-0 mt-2'>Back</Button>
-            </div>
-        </div>
+              <Button onClick={()=>onBackClick()} variant='link'>Back</Button>
+        </Stack>
         </Card.Body>
       </Card>
     );

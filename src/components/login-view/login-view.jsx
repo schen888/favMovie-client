@@ -83,15 +83,15 @@ export default function LoginView(props) {
             {passwordErr && <p>{passwordErr}</p>}
           </Form.Group>
 
-          <Stack direction="horizontal" className="mt-5 mb-3">
-            <Button variant="outline-primary" type="submit" onClick={handleSubmit}>
-              Submit
-            </Button>
+          <Stack direction="horizontal" gap={2} className="mt-5 mb-3">
             <Link to="/register"  className="ms-auto">
               <Button variant="link" type="button">
                 Register
               </Button>
             </Link>
+            <Button variant="primary" type="submit" onClick={handleSubmit}>
+              Submit
+            </Button>
           </Stack>
         </Form>
       </Card.Body>

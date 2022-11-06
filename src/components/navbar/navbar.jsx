@@ -22,7 +22,7 @@ function FavMovieNavbar({username, onLoggedOut}) {
 
   if(isAuth()) {
     navBarList =<>
-      <Nav.Link as={Link} to={`/users/${username}`} style={{color: '#03A9F4'}}>{`${username}'s Profile`}</Nav.Link>
+      <Nav.Link as={Link} to={`/users/${username}`} id='navProfile'>{`${username}'s Profile`}</Nav.Link>
       <Nav.Link as={Link} to='/' onClick={onLoggedOut}>Logout</Nav.Link>
     </>
   } 

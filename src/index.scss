@@ -1,6 +1,4 @@
 
-
-
 $primary: #03A9F4;
 
 $link-decoration: none;
@@ -22,4 +20,15 @@ $figure-caption-color: #dee2e6;
   color: #03A9F4 !important;
 }
 
+.navbar-brand:hover, #navProfile:hover{
+  color: rgba(3,169,244, .75) !important;
+}
+
+#navProfile {
+  color: #03A9F4 !important;
+}
+
+.label {
+  font-weight: 700;
+}
 @import "../node_modules/bootstrap/scss/bootstrap";
