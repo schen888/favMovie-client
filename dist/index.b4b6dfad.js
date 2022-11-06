@@ -27333,7 +27333,7 @@ class MainView extends (0, _reactDefault.default).Component {
                     onLoggedOut: this.onLoggedOut
                 }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 92,
+                    lineNumber: 93,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Container), {
@@ -27369,7 +27369,7 @@ class MainView extends (0, _reactDefault.default).Component {
                             }
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 95,
+                            lineNumber: 96,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
@@ -27388,12 +27388,12 @@ class MainView extends (0, _reactDefault.default).Component {
                                 }
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 112,
+                                lineNumber: 113,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 111,
+                            lineNumber: 112,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _rowDefault.default), {
@@ -27420,7 +27420,7 @@ class MainView extends (0, _reactDefault.default).Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 121,
+                                    lineNumber: 122,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27443,7 +27443,7 @@ class MainView extends (0, _reactDefault.default).Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 132,
+                                    lineNumber: 133,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27466,7 +27466,7 @@ class MainView extends (0, _reactDefault.default).Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 140,
+                                    lineNumber: 141,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27490,25 +27490,25 @@ class MainView extends (0, _reactDefault.default).Component {
                                     }
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 148,
+                                    lineNumber: 149,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 120,
+                            lineNumber: 121,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 93,
+                    lineNumber: 94,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 91,
+            lineNumber: 92,
             columnNumber: 7
         }, this);
     }
@@ -31704,7 +31704,10 @@ class MovieView extends (0, _reactDefault.default).Component {
         const { movie , onBackClick , user  } = this.props;
         let favoriteMovies = user.FavoriteMovies;
         return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
-            className: "movie-view",
+            className: "mx-auto",
+            style: {
+                maxWidth: "36rem"
+            },
             children: [
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Img, {
                     src: movie.imageURL,
@@ -31833,7 +31836,7 @@ class MovieView extends (0, _reactDefault.default).Component {
                                     children: favoriteMovies.includes(movie._id) ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                                         id: "remove-btn",
                                         onClick: ()=>this.onRemoveFavMovie(movie._id),
-                                        variant: "warning",
+                                        variant: "outline-primary",
                                         children: "Remove from favorite movies"
                                     }, void 0, false, {
                                         fileName: "src/components/movie-view/movie-view.jsx",
@@ -31842,7 +31845,7 @@ class MovieView extends (0, _reactDefault.default).Component {
                                     }, this) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                                         id: "add-btn",
                                         onClick: ()=>this.onAddFavMovie(movie._id),
-                                        variant: "secondary",
+                                        variant: "primary",
                                         children: "Add to favorite movies"
                                     }, void 0, false, {
                                         fileName: "src/components/movie-view/movie-view.jsx",
@@ -42533,7 +42536,7 @@ function LoginView(props) {
                             className: "mt-5 mb-3",
                             children: [
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                                    variant: "primary",
+                                    variant: "outline-primary",
                                     type: "submit",
                                     onClick: handleSubmit,
                                     children: "Submit"
@@ -42544,10 +42547,10 @@ function LoginView(props) {
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
                                     to: "/register",
+                                    className: "ms-auto",
                                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                                         variant: "link",
                                         type: "button",
-                                        className: "ml-2",
                                         children: "Register"
                                     }, void 0, false, {
                                         fileName: "src/components/login-view/login-view.jsx",
@@ -42665,7 +42668,7 @@ function RegistrationView() {
             alert(response.response.data);
         });
     }
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Title, {
                 style: {
@@ -42827,7 +42830,7 @@ function RegistrationView() {
                             className: "mt-5 mb-3",
                             children: [
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                                    variant: "primary",
+                                    variant: "outline-primary",
                                     type: "submit",
                                     onClick: handleSubmit,
                                     children: "Register"
@@ -42838,10 +42841,10 @@ function RegistrationView() {
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
                                     to: "/",
+                                    className: "ms-auto",
                                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                                         variant: "link",
                                         type: "button",
-                                        className: "ml-2",
                                         children: "Already registerd"
                                     }, void 0, false, {
                                         fileName: "src/components/registration-view/registration-view.jsx",
@@ -42871,7 +42874,11 @@ function RegistrationView() {
                 columnNumber: 7
             }, this)
         ]
-    }, void 0, true);
+    }, void 0, true, {
+        fileName: "src/components/registration-view/registration-view.jsx",
+        lineNumber: 71,
+        columnNumber: 5
+    }, this);
 }
 exports.default = RegistrationView;
 _s(RegistrationView, "SBDk+o9t/V8BMrtqXZ/U1GCnIBM=");
@@ -42917,6 +42924,9 @@ function FavMovieNavbar({ username , onLoggedOut  }) {
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navDefault.default).Link, {
                 as: (0, _reactRouterDom.Link),
                 to: `/users/${username}`,
+                style: {
+                    color: "#03A9F4"
+                },
                 children: `${username}'s Profile`
             }, void 0, false, {
                 fileName: "src/components/navbar/navbar.jsx",
@@ -42936,10 +42946,11 @@ function FavMovieNavbar({ username , onLoggedOut  }) {
         ]
     }, void 0, true);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navbarDefault.default), {
-        bg: "primary",
+        bg: "dark",
         variant: "dark",
         expand: "sm",
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _containerDefault.default), {
+            className: "px-4",
             children: [
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navbarDefault.default).Brand, {
                     as: (0, _reactRouterDom.Link),
@@ -42960,7 +42971,7 @@ function FavMovieNavbar({ username , onLoggedOut  }) {
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navbarDefault.default).Collapse, {
                     id: "navbar-nav",
                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _navDefault.default), {
-                        className: "ml-auto",
+                        className: "ms-auto",
                         children: navBarList
                     }, void 0, false, {
                         fileName: "src/components/navbar/navbar.jsx",
@@ -43111,7 +43122,7 @@ class DirectorView extends (0, _reactDefault.default).Component {
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                        className: "pl-0",
+                        className: "ps-0",
                         onClick: ()=>onBackClick(),
                         variant: "link",
                         children: "Back"
@@ -43210,7 +43221,7 @@ class GenreView extends (0, _reactDefault.default).Component {
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                        className: "pl-0",
+                        className: "ps-0",
                         onClick: ()=>onBackClick(),
                         variant: "link",
                         children: "Back"
@@ -43464,7 +43475,7 @@ function UserInfo(props) {
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                variant: "warning",
+                variant: "outline-primary",
                 onClick: onDeleteAccount,
                 children: "Delete Account"
             }, void 0, false, {
@@ -43851,7 +43862,10 @@ function FavoriteMovies(props) {
                             lg: 4,
                             className: "my-2 d-flex fav-movie",
                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
-                                className: "border-dark d-flex flex-column justify-content-between ",
+                                className: "d-flex flex-column justify-content-between p-2",
+                                style: {
+                                    borderColor: "#6c757d"
+                                },
                                 children: [
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Figure), {
                                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
@@ -43866,6 +43880,7 @@ function FavoriteMovies(props) {
                                                     columnNumber: 23
                                                 }, this),
                                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Figure).Caption, {
+                                                    text: "white",
                                                     children: favMovie.Title
                                                 }, void 0, false, {
                                                     fileName: "src/components/profile-view/favorite-movies.jsx",
@@ -43884,8 +43899,9 @@ function FavoriteMovies(props) {
                                         columnNumber: 19
                                     }, this),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                                        variant: "warning",
+                                        variant: "link",
                                         onClick: ()=>onRemoveFavMovie(favMovie._id),
+                                        className: "me-auto ps-0",
                                         children: "Remove"
                                     }, void 0, false, {
                                         fileName: "src/components/profile-view/favorite-movies.jsx",
@@ -44046,7 +44062,6 @@ class MovieCard extends (0, _reactDefault.default).Component {
     render() {
         const { movie  } = this.props;
         return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
-            border: "dark",
             className: "mb-3",
             children: [
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Img, {
@@ -44086,7 +44101,7 @@ class MovieCard extends (0, _reactDefault.default).Component {
                             to: `/movies/${movie._id}`,
                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                                 variant: "link",
-                                className: "mt-2 pl-0",
+                                className: "mt-2 ps-0",
                                 children: "Open"
                             }, void 0, false, {
                                 fileName: "src/components/movie-card/movie-card.jsx",

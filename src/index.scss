@@ -1,5 +1,25 @@
-$color: steelblue;
 
-.fav-movie {
-  color: $color;
+
+
+$primary: #03A9F4;
+
+$link-decoration: none;
+$link-hover-decoration: underline;
+
+$body-bg: #343a40;
+$body-color: #dee2e6;
+$border-color: #6c757d;
+
+$card-color: #dee2e6;
+$card-bg: #212529;
+$card-border-color: #6c757d;
+
+$figure-caption-color: #dee2e6;
+
+.navbar-brand {
+  font-family: 'Monoton', cursive;
+  font-size: 30px !important; 
+  color: #03A9F4 !important;
 }
+
+@import "../node_modules/bootstrap/scss/bootstrap";

@@ -68,7 +68,7 @@ export default function RegistrationView() {
   
 
   return (
-    <>
+    <Card>
       <Card.Title style={{ textAlign: "center", fontSize: "2rem" }}>
         Register
       </Card.Title>
@@ -125,18 +125,18 @@ export default function RegistrationView() {
             </Form.Group>
 
             <Stack direction="horizontal" className="mt-5 mb-3">
-              <Button variant="primary" type="submit" onClick={handleSubmit}>
+              <Button variant="outline-primary" type="submit" onClick={handleSubmit}>
                 Register
               </Button>
 
-              <Link to="/">
-                <Button variant="link" type="button" className="ml-2">
+              <Link to="/" className="ms-auto">
+                <Button variant="link" type="button">
                   Already registerd
                 </Button>
               </Link>
             </Stack>
         </Form>
       </Card.Body>
-    </>
+    </Card>
   );
 }

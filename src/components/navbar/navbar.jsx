@@ -22,18 +22,18 @@ function FavMovieNavbar({username, onLoggedOut}) {
 
   if(isAuth()) {
     navBarList =<>
-      <Nav.Link as={Link} to={`/users/${username}`}>{`${username}'s Profile`}</Nav.Link>
+      <Nav.Link as={Link} to={`/users/${username}`} style={{color: '#03A9F4'}}>{`${username}'s Profile`}</Nav.Link>
       <Nav.Link as={Link} to='/' onClick={onLoggedOut}>Logout</Nav.Link>
     </>
   } 
 
   return (
-    <Navbar bg="primary" variant="dark" expand="sm">
-      <Container>
+    <Navbar bg="dark" variant="dark" expand="sm">
+      <Container className='px-4'>
         <Navbar.Brand as={Link} to="/">FavMovie</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav">
-          <Nav className="ml-auto">
+          <Nav className="ms-auto">
             {navBarList}      
           </Nav>
         </Navbar.Collapse>

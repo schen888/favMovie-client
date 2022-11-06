@@ -66,7 +66,7 @@ export class MovieView extends React.Component {
     let favoriteMovies = user.FavoriteMovies;
 
     return (
-      <Card className="movie-view">
+      <Card className="mx-auto" style={{ maxWidth: '36rem' }}>
         <Card.Img src={movie.imageURL} style={{ width: '90%' }} className='mx-auto mt-4'/>
         <Card.Body className='pb-2'>
           <Card.Title>{movie.Title}</Card.Title>
@@ -91,8 +91,8 @@ export class MovieView extends React.Component {
           <div>
             <div>
               {favoriteMovies.includes(movie._id)
-              ? (<Button id="remove-btn" onClick={()=>this.onRemoveFavMovie(movie._id)}  variant='warning'>Remove from favorite movies</Button>)
-              : (<Button id="add-btn" onClick={()=>this.onAddFavMovie(movie._id)}  variant='secondary'>Add to favorite movies</Button>)
+              ? (<Button id="remove-btn" onClick={()=>this.onRemoveFavMovie(movie._id)}  variant='outline-primary'>Remove from favorite movies</Button>)
+              : (<Button id="add-btn" onClick={()=>this.onAddFavMovie(movie._id)}  variant='primary'>Add to favorite movies</Button>)
               }
             </div>
             <div>

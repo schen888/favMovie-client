@@ -84,11 +84,11 @@ export default function LoginView(props) {
           </Form.Group>
 
           <Stack direction="horizontal" className="mt-5 mb-3">
-            <Button variant="primary" type="submit" onClick={handleSubmit}>
+            <Button variant="outline-primary" type="submit" onClick={handleSubmit}>
               Submit
             </Button>
-            <Link to="/register">
-              <Button variant="link" type="button" className="ml-2">
+            <Link to="/register"  className="ms-auto">
+              <Button variant="link" type="button">
                 Register
               </Button>
             </Link>

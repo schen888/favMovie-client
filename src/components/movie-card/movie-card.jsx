@@ -9,7 +9,7 @@ export default class MovieCard extends React.Component {
     const { movie } = this.props;
     return (
      
-      <Card border="dark" className='mb-3'>
+      <Card className='mb-3'>
         <Card.Img variant="top" src={movie.imageURL} />
         <Card.Body className="d-flex flex-column justify-content-between align-items-start">
           <div>
@@ -17,7 +17,7 @@ export default class MovieCard extends React.Component {
             <Card.Text>{movie.Description}</Card.Text>
           </div>
           <Link to={`/movies/${movie._id}`}>
-            <Button variant="link" className='mt-2 pl-0'>Open</Button>
+            <Button variant="link" className='mt-2 ps-0'>Open</Button>
           </Link>
         </Card.Body>
       </Card>

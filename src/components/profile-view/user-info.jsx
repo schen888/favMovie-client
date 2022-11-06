@@ -36,7 +36,7 @@ const {Username, Email, Birthday} = user;
       <p>Name: {Username}</p>
       <p>e-mail: {Email}</p>
       <p>Birthday: {Birthday}</p>
-      <Button variant="warning" onClick={onDeleteAccount}>Delete Account</Button>
+      <Button variant="outline-primary" onClick={onDeleteAccount}>Delete Account</Button>
     </>  
   )
 }

@@ -51,17 +51,17 @@ function FavoriteMovies (props) {
             let favMovie=movies.find(m=>m._id===favMovieID);
             return (
               <Col key={favMovie._id} xs={12} md={6} lg={4} className='my-2 d-flex fav-movie'>  
-                <Card className="border-dark d-flex flex-column justify-content-between ">
+                <Card className="d-flex flex-column justify-content-between p-2" style={{borderColor: '#6c757d'}}>
                   <Figure>
                     <Link to={`/movies/${favMovie._id}`}>
                       <Figure.Image 
                         src={favMovie.imageURL}
                         alt={favMovie.Title}
                       />
-                      <Figure.Caption>{favMovie.Title}</Figure.Caption>
+                      <Figure.Caption text='white'>{favMovie.Title}</Figure.Caption>
                     </Link>
                   </Figure>    
-                  <Button variant="warning" onClick={()=>onRemoveFavMovie(favMovie._id)}>Remove</Button>
+                  <Button variant="link" onClick={()=>onRemoveFavMovie(favMovie._id)} className='me-auto ps-0'>Remove</Button>
                 </Card>
               </Col>  
             )})
