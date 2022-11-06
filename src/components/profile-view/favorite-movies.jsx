@@ -15,7 +15,7 @@ let mapStateToProps = state => {
 }
 
 function FavoriteMovies (props) {
-  const {movies, user}=props;
+  let {movies, user}=props;
   let favoriteMovies=user.FavoriteMovies;
   
   function onRemoveFavMovie (movieID) {

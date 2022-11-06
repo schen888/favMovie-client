@@ -1,5 +1,7 @@
+$theme-color:#00BCD4;
+$theme-color-logo: #00E5FF;
 
-$primary: #03A9F4;
+$primary: $theme-color;
 
 $link-decoration: none;
 $link-hover-decoration: underline;
@@ -16,19 +18,25 @@ $figure-caption-color: #dee2e6;
 
 .navbar-brand {
   font-family: 'Monoton', cursive;
-  font-size: 30px !important; 
-  color: #03A9F4 !important;
+  font-size: 30px !important;
+  color: $theme-color-logo !important;
 }
 
-.navbar-brand:hover, #navProfile:hover{
-  color: rgba(3,169,244, .75) !important;
+.navbar-brand:hover{
+  color: rgba($theme-color-logo, .75)!important;
 }
 
 #navProfile {
-  color: #03A9F4 !important;
+  color: $theme-color !important;
+}
+
+#navProfile:hover{
+  color: rgba($theme-color, .8)!important;
 }
 
 .label {
   font-weight: 700;
 }
 @import "../node_modules/bootstrap/scss/bootstrap";
+
+//blue #03A9F4
