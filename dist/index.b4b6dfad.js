@@ -31745,7 +31745,7 @@ class MovieView extends (0, _reactDefault.default).Component {
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                                            className: "value",
+                                            className: "value long-text",
                                             children: movie.Description
                                         }, void 0, false, {
                                             fileName: "src/components/movie-view/movie-view.jsx",
@@ -43048,7 +43048,7 @@ class DirectorView extends (0, _reactDefault.default).Component {
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                                        className: "value",
+                                        className: "value long-text",
                                         children: director.Bio
                                     }, void 0, false, {
                                         fileName: "src/components/director-view/director-view.jsx",
@@ -43073,7 +43073,7 @@ class DirectorView extends (0, _reactDefault.default).Component {
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                                        className: "value",
+                                        className: "value long-text",
                                         children: director.Birth
                                     }, void 0, false, {
                                         fileName: "src/components/director-view/director-view.jsx",
@@ -43098,7 +43098,7 @@ class DirectorView extends (0, _reactDefault.default).Component {
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                                        className: "value",
+                                        className: "value long-text",
                                         children: director.Death
                                     }, void 0, false, {
                                         fileName: "src/components/director-view/director-view.jsx",
@@ -43198,7 +43198,7 @@ class GenreView extends (0, _reactDefault.default).Component {
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                                    className: "value",
+                                    className: "value long-text",
                                     children: genre.Description
                                 }, void 0, false, {
                                     fileName: "src/components/genre-view/genre-view.jsx",
@@ -44134,6 +44134,7 @@ class MovieCard extends (0, _reactDefault.default).Component {
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Text, {
+                                    className: "long-text",
                                     children: movie.Description
                                 }, void 0, false, {
                                     fileName: "src/components/movie-card/movie-card.jsx",

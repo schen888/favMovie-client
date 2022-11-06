@@ -73,7 +73,7 @@ export class MovieView extends React.Component {
           <Card.Text className='mb-4'>
             <div className="movie-description">
               <span className="label">Description: </span>
-              <span className="value">{movie.Description}</span>
+              <span className="value long-text">{movie.Description}</span>
             </div>
             <div className="movie-genre">
               <span className="label">Genre: </span>

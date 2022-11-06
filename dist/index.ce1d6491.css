@@ -20,6 +20,10 @@
   font-weight: 700;
 }
 
+.long-text {
+  color: #c3c3c3;
+}
+
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -62,7 +66,7 @@
   --bs-dark-rgb: 33, 37, 41;
   --bs-white-rgb: 255, 255, 255;
   --bs-black-rgb: 0, 0, 0;
-  --bs-body-color-rgb: 222, 226, 230;
+  --bs-body-color-rgb: 224, 224, 224;
   --bs-body-bg-rgb: 52, 58, 64;
   --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
@@ -71,7 +75,7 @@
   --bs-body-font-size: 1rem;
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.5;
-  --bs-body-color: #dee2e6;
+  --bs-body-color: #e0e0e0;
   --bs-body-bg: #343a40;
   --bs-border-width: 1px;
   --bs-border-style: solid;
@@ -602,7 +606,7 @@ progress {
 }
 
 .figure-caption {
-  color: #dee2e6;
+  color: #eee;
   font-size: .875em;
 }
 
@@ -2131,7 +2135,7 @@ progress {
 
 .form-control {
   width: 100%;
-  color: #dee2e6;
+  color: #e0e0e0;
   appearance: none;
   background-color: #343a40;
   background-clip: padding-box;
@@ -2160,7 +2164,7 @@ progress {
 }
 
 .form-control:focus {
-  color: #dee2e6;
+  color: #e0e0e0;
   background-color: #343a40;
   border-color: #80deea;
   outline: 0;
@@ -2183,7 +2187,7 @@ progress {
 
 .form-control::file-selector-button {
   margin: -.375rem -.75rem;
-  color: #dee2e6;
+  color: #e0e0e0;
   pointer-events: none;
   border-color: inherit;
   border-style: solid;
@@ -2208,7 +2212,7 @@ progress {
 
 .form-control-plaintext {
   width: 100%;
-  color: #dee2e6;
+  color: #e0e0e0;
   background-color: #0000;
   border: 1px solid #0000;
   border-width: 1px 0;
@@ -2295,7 +2299,7 @@ textarea.form-control-lg {
 .form-select {
   width: 100%;
   -moz-padding-start: calc(.75rem - 3px);
-  color: #dee2e6;
+  color: #e0e0e0;
   appearance: none;
   background-color: #343a40;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
@@ -2335,7 +2339,7 @@ textarea.form-control-lg {
 
 .form-select:-moz-focusring {
   color: #0000;
-  text-shadow: 0 0 #dee2e6;
+  text-shadow: 0 0 #e0e0e0;
 }
 
 .form-select-sm {
@@ -2685,7 +2689,7 @@ textarea.form-control-lg {
 }
 
 .input-group-text {
-  color: #dee2e6;
+  color: #e0e0e0;
   text-align: center;
   white-space: nowrap;
   background-color: #e9ecef;
@@ -2916,7 +2920,7 @@ textarea.form-control-lg {
   --bs-btn-font-size: 1rem;
   --bs-btn-font-weight: 400;
   --bs-btn-line-height: 1.5;
-  --bs-btn-color: #dee2e6;
+  --bs-btn-color: #e0e0e0;
   --bs-btn-bg: transparent;
   --bs-btn-border-width: 1px;
   --bs-btn-border-color: transparent;
@@ -3379,7 +3383,7 @@ textarea.form-control-lg {
   --bs-dropdown-padding-y: .5rem;
   --bs-dropdown-spacer: .125rem;
   --bs-dropdown-font-size: 1rem;
-  --bs-dropdown-color: #dee2e6;
+  --bs-dropdown-color: #e0e0e0;
   --bs-dropdown-bg: #fff;
   --bs-dropdown-border-color: var(--bs-border-color-translucent);
   --bs-dropdown-border-radius: .375rem;
@@ -4406,7 +4410,7 @@ textarea.form-control-lg {
   --bs-card-cap-bg: #00000008;
   --bs-card-cap-color: ;
   --bs-card-height: ;
-  --bs-card-color: #dee2e6;
+  --bs-card-color: #eee;
   --bs-card-bg: #212529;
   --bs-card-img-overlay-padding: 1rem;
   --bs-card-group-margin: .75rem;
@@ -4584,7 +4588,7 @@ textarea.form-control-lg {
 }
 
 .accordion {
-  --bs-accordion-color: #dee2e6;
+  --bs-accordion-color: #e0e0e0;
   --bs-accordion-bg: #343a40;
   --bs-accordion-transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out, border-radius .15s ease;
   --bs-accordion-border-color: var(--bs-border-color);
@@ -4593,9 +4597,9 @@ textarea.form-control-lg {
   --bs-accordion-inner-border-radius: calc(.375rem - 1px);
   --bs-accordion-btn-padding-x: 1.25rem;
   --bs-accordion-btn-padding-y: 1rem;
-  --bs-accordion-btn-color: #dee2e6;
+  --bs-accordion-btn-color: #e0e0e0;
   --bs-accordion-btn-bg: var(--bs-accordion-bg);
-  --bs-accordion-btn-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23dee2e6'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+  --bs-accordion-btn-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23E0E0E0'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
   --bs-accordion-btn-icon-width: 1.25rem;
   --bs-accordion-btn-icon-transform: rotate(-180deg);
   --bs-accordion-btn-icon-transition: transform .2s ease-in-out;
@@ -5083,7 +5087,7 @@ textarea.form-control-lg {
   --bs-list-group-action-color: #495057;
   --bs-list-group-action-hover-color: #495057;
   --bs-list-group-action-hover-bg: #f8f9fa;
-  --bs-list-group-action-active-color: #dee2e6;
+  --bs-list-group-action-active-color: #e0e0e0;
   --bs-list-group-action-active-bg: #e9ecef;
   --bs-list-group-disabled-color: #6c757d;
   --bs-list-group-disabled-bg: #fff;
@@ -6036,7 +6040,7 @@ textarea.form-control-lg {
   --bs-popover-header-bg: #f0f0f0;
   --bs-popover-body-padding-x: 1rem;
   --bs-popover-body-padding-y: 1rem;
-  --bs-popover-body-color: #dee2e6;
+  --bs-popover-body-color: #e0e0e0;
   --bs-popover-arrow-width: 1rem;
   --bs-popover-arrow-height: .5rem;
   --bs-popover-arrow-border: var(--bs-popover-border-color);

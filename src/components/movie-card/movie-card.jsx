@@ -73,7 +73,7 @@ class MovieCard extends React.Component {
         <Card.Body className="d-flex flex-column justify-content-between align-items-start">
           <div>
             <Card.Title>{movie.Title}</Card.Title>
-            <Card.Text>{movie.Description}</Card.Text>
+            <Card.Text className='long-text'>{movie.Description}</Card.Text>
           </div>
 
           <Stack direction="horizontal" gap={2} className='mt-4'>

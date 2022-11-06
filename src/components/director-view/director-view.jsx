@@ -13,15 +13,15 @@ export default class DirectorView extends React.Component {
           <Card.Text>
             <div className='my-3'>
               <span className="label">Bio: </span>
-              <span className="value">{director.Bio}</span>
+              <span className="value long-text">{director.Bio}</span>
             </div>
             <div className='my-3'>
               <span className="label">Birthyear: </span>
-              <span className="value">{director.Birth}</span>
+              <span className="value long-text">{director.Birth}</span>
             </div>
             <div className='my-3'>
               <span className="label">Deathyear: </span>
-              <span className="value">{director.Death}</span>
+              <span className="value long-text">{director.Death}</span>
             </div>
           </Card.Text>
           <Button className='ps-0' onClick={()=>onBackClick()} variant='link'>Back</Button>

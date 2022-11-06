@@ -7,14 +7,16 @@ $link-decoration: none;
 $link-hover-decoration: underline;
 
 $body-bg: #343a40;
-$body-color: #dee2e6;
+$body-color: #E0E0E0;
 $border-color: #6c757d;
 
-$card-color: #dee2e6;
+$card-color: #EEEEEE;
 $card-bg: #212529;
 $card-border-color: #6c757d;
 
-$figure-caption-color: #dee2e6;
+$text-color: #c3c3c3;
+
+$figure-caption-color: #EEEEEE;
 
 .navbar-brand {
   font-family: 'Monoton', cursive;
@@ -36,6 +38,10 @@ $figure-caption-color: #dee2e6;
 
 .label {
   font-weight: 700;
+}
+
+.long-text {
+  color: $text-color;
 }
 @import "../node_modules/bootstrap/scss/bootstrap";
 

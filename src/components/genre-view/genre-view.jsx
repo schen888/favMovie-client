@@ -13,7 +13,7 @@ export default class GenreView extends React.Component {
           <Card.Text>
             <div className='my-3'>
               <span className="label">Description: </span>
-              <span className="value">{genre.Description}</span>    
+              <span className="value long-text">{genre.Description}</span>    
             </div>
           </Card.Text>
           <Button className='ps-0' onClick={()=>onBackClick()} variant='link'>Back</Button>
