@@ -23,3 +23,5 @@ This is the frontend of my movie app.
   - Allows existing users to deregister
   - Displays favorite movies
   - Allows users to remove a movie from their list of favorites
+
+  <!-- refactor from react to react redux -->
