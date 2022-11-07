@@ -42824,7 +42824,6 @@ function RegistrationView() {
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Stack), {
                             direction: "horizontal",
-                            gap: 2,
                             className: "mt-5 mb-3",
                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
                                 to: "/",
@@ -42841,6 +42840,7 @@ function RegistrationView() {
                                     }, this),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                                         variant: "primary",
+                                        className: "ms-3",
                                         type: "submit",
                                         onClick: handleSubmit,
                                         children: "Register"
@@ -43117,11 +43117,18 @@ class DirectorView extends (0, _reactDefault.default).Component {
                         lineNumber: 13,
                         columnNumber: 11
                     }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                        className: "ps-0",
-                        onClick: ()=>onBackClick(),
-                        variant: "link",
-                        children: "Back"
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "d-flex",
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                            className: "pe-0 ms-auto",
+                            onClick: ()=>onBackClick(),
+                            variant: "link",
+                            children: "Back"
+                        }, void 0, false, {
+                            fileName: "src/components/director-view/director-view.jsx",
+                            lineNumber: 28,
+                            columnNumber: 13
+                        }, this)
                     }, void 0, false, {
                         fileName: "src/components/director-view/director-view.jsx",
                         lineNumber: 27,
@@ -43216,11 +43223,18 @@ class GenreView extends (0, _reactDefault.default).Component {
                         lineNumber: 13,
                         columnNumber: 11
                     }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                        className: "ps-0",
-                        onClick: ()=>onBackClick(),
-                        variant: "link",
-                        children: "Back"
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "d-flex",
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                            className: "pe-0 ms-auto",
+                            onClick: ()=>onBackClick(),
+                            variant: "link",
+                            children: "Back"
+                        }, void 0, false, {
+                            fileName: "src/components/genre-view/genre-view.jsx",
+                            lineNumber: 20,
+                            columnNumber: 13
+                        }, this)
                     }, void 0, false, {
                         fileName: "src/components/genre-view/genre-view.jsx",
                         lineNumber: 19,
@@ -43470,10 +43484,18 @@ function UserInfo(props) {
                 lineNumber: 38,
                 columnNumber: 7
             }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                variant: "outline-primary",
-                onClick: onDeleteAccount,
-                children: "Delete Account"
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "d-flex",
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                    variant: "outline-primary",
+                    className: "ms-auto",
+                    onClick: onDeleteAccount,
+                    children: "Delete Account"
+                }, void 0, false, {
+                    fileName: "src/components/profile-view/user-info.jsx",
+                    lineNumber: 40,
+                    columnNumber: 9
+                }, this)
             }, void 0, false, {
                 fileName: "src/components/profile-view/user-info.jsx",
                 lineNumber: 39,
@@ -43611,7 +43633,7 @@ function UserUpdate(props) {
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/user-update.jsx",
                                 lineNumber: 105,
-                                columnNumber: 17
+                                columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
                                 type: "text",
@@ -43623,20 +43645,20 @@ function UserUpdate(props) {
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/user-update.jsx",
                                 lineNumber: 106,
-                                columnNumber: 17
+                                columnNumber: 11
                             }, this),
                             usernameErr && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                                 children: usernameErr
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/user-update.jsx",
                                 lineNumber: 114,
-                                columnNumber: 33
+                                columnNumber: 27
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/profile-view/user-update.jsx",
                         lineNumber: 104,
-                        columnNumber: 13
+                        columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
                         className: "mb-3",
@@ -43647,7 +43669,7 @@ function UserUpdate(props) {
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/user-update.jsx",
                                 lineNumber: 118,
-                                columnNumber: 17
+                                columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
                                 type: "password",
@@ -43659,20 +43681,20 @@ function UserUpdate(props) {
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/user-update.jsx",
                                 lineNumber: 119,
-                                columnNumber: 17
+                                columnNumber: 11
                             }, this),
                             passwordErr && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                                 children: passwordErr
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/user-update.jsx",
                                 lineNumber: 127,
-                                columnNumber: 33
+                                columnNumber: 27
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/profile-view/user-update.jsx",
                         lineNumber: 117,
-                        columnNumber: 15
+                        columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
                         className: "mb-3",
@@ -43683,7 +43705,7 @@ function UserUpdate(props) {
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/user-update.jsx",
                                 lineNumber: 131,
-                                columnNumber: 17
+                                columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
                                 type: "email",
@@ -43694,20 +43716,20 @@ function UserUpdate(props) {
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/user-update.jsx",
                                 lineNumber: 132,
-                                columnNumber: 17
+                                columnNumber: 11
                             }, this),
                             emailErr && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                                 children: emailErr
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/user-update.jsx",
                                 lineNumber: 139,
-                                columnNumber: 30
+                                columnNumber: 24
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/profile-view/user-update.jsx",
                         lineNumber: 130,
-                        columnNumber: 15
+                        columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
                         className: "mb-3",
@@ -43718,7 +43740,7 @@ function UserUpdate(props) {
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/user-update.jsx",
                                 lineNumber: 143,
-                                columnNumber: 17
+                                columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
                                 type: "date",
@@ -43727,7 +43749,7 @@ function UserUpdate(props) {
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/user-update.jsx",
                                 lineNumber: 144,
-                                columnNumber: 17
+                                columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Text, {
                                 className: "text-muted",
@@ -43735,23 +43757,31 @@ function UserUpdate(props) {
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/user-update.jsx",
                                 lineNumber: 149,
-                                columnNumber: 17
+                                columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/profile-view/user-update.jsx",
                         lineNumber: 142,
-                        columnNumber: 15
+                        columnNumber: 9
                     }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                        variant: "primary",
-                        type: "submit",
-                        onClick: handleSubmit,
-                        children: "Submit"
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "d-flex",
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                            variant: "primary",
+                            className: "ms-auto",
+                            type: "submit",
+                            onClick: handleSubmit,
+                            children: "Submit"
+                        }, void 0, false, {
+                            fileName: "src/components/profile-view/user-update.jsx",
+                            lineNumber: 154,
+                            columnNumber: 11
+                        }, this)
                     }, void 0, false, {
                         fileName: "src/components/profile-view/user-update.jsx",
-                        lineNumber: 154,
-                        columnNumber: 15
+                        lineNumber: 153,
+                        columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
@@ -43895,11 +43925,18 @@ function FavoriteMovies(props) {
                                         lineNumber: 55,
                                         columnNumber: 19
                                     }, this),
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                                        variant: "link",
-                                        onClick: ()=>onRemoveFavMovie(favMovie._id),
-                                        className: "me-auto ps-0",
-                                        children: "Remove"
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                        className: "d-flex",
+                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                                            variant: "link",
+                                            onClick: ()=>onRemoveFavMovie(favMovie._id),
+                                            className: "ms-auto pe-0",
+                                            children: "Remove"
+                                        }, void 0, false, {
+                                            fileName: "src/components/profile-view/favorite-movies.jsx",
+                                            lineNumber: 65,
+                                            columnNumber: 21
+                                        }, this)
                                     }, void 0, false, {
                                         fileName: "src/components/profile-view/favorite-movies.jsx",
                                         lineNumber: 64,

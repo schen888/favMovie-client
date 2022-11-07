@@ -24,7 +24,9 @@ export default class DirectorView extends React.Component {
               <span className="value long-text">{director.Death}</span>
             </div>
           </Card.Text>
-          <Button className='ps-0' onClick={()=>onBackClick()} variant='link'>Back</Button>
+          <div className='d-flex'>
+            <Button className='pe-0 ms-auto' onClick={()=>onBackClick()} variant='link'>Back</Button>
+          </div>
         </Card.Body>
       </Card>
     );

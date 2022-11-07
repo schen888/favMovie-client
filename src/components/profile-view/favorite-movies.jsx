@@ -60,8 +60,10 @@ function FavoriteMovies (props) {
                       />
                       <Figure.Caption text='white'>{favMovie.Title}</Figure.Caption>
                     </Link>
-                  </Figure>    
-                  <Button variant="link" onClick={()=>onRemoveFavMovie(favMovie._id)} className='me-auto ps-0'>Remove</Button>
+                  </Figure>
+                  <div className='d-flex'>    
+                    <Button variant="link" onClick={()=>onRemoveFavMovie(favMovie._id)} className='ms-auto pe-0'>Remove</Button>
+                  </div>
                 </Card>
               </Col>  
             )})
