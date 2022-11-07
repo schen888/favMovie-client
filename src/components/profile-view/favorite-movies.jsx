@@ -51,7 +51,7 @@ function FavoriteMovies (props) {
             let favMovie=movies.find(m=>m._id===favMovieID);
             return (
               <Col key={favMovie._id} xs={12} md={6} lg={4} className='my-2 d-flex fav-movie'>  
-                <Card className="d-flex flex-column justify-content-between p-2" style={{borderColor: '#6c757d'}}>
+                <Card className="d-flex flex-column justify-content-between p-2 mx-auto" style={{borderColor: '#6c757d'}}>
                   <Figure>
                     <Link to={`/movies/${favMovie._id}`}>
                       <Figure.Image 

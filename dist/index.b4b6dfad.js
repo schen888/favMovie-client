@@ -43859,7 +43859,7 @@ function FavoriteMovies(props) {
                             lg: 4,
                             className: "my-2 d-flex fav-movie",
                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
-                                className: "d-flex flex-column justify-content-between p-2",
+                                className: "d-flex flex-column justify-content-between p-2 mx-auto",
                                 style: {
                                     borderColor: "#6c757d"
                                 },

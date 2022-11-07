@@ -1,5 +1,6 @@
 $theme-color:#00ACC1; //Cyan-600
-$theme-color-logo: #00E5FF; //Cyan-A400
+$theme-color-nav-dark: #26C6DA; //Cyan-400
+$theme-color-nav-light: #00E5FF; //Cyan-A400
 
 $primary: $theme-color;
 
@@ -21,19 +22,19 @@ $figure-caption-color: #EEEEEE; //Gray-200
 .navbar-brand {
   font-family: 'Monoton', cursive;
   font-size: 30px !important;
-  color: $theme-color-logo !important;
+  color: $theme-color-nav-dark !important;
 }
 
 .navbar-brand:hover{
-  color: rgba($theme-color-logo, .75)!important;
+  color: $theme-color-nav-light !important;
 }
 
 #navProfile {
-  color: $theme-color !important;
+  color: $theme-color-nav-dark !important;
 }
 
 #navProfile:hover{
-  color: rgba($theme-color, .8)!important;
+  color: $theme-color-nav-light!important;
 }
 
 .label {

@@ -1,19 +1,19 @@
 .navbar-brand {
   font-family: Monoton, cursive;
-  color: #00e5ff !important;
+  color: #26c6da !important;
   font-size: 30px !important;
 }
 
 .navbar-brand:hover {
-  color: #00e5ffbf !important;
+  color: #00e5ff !important;
 }
 
 #navProfile {
-  color: #00acc1 !important;
+  color: #26c6da !important;
 }
 
 #navProfile:hover {
-  color: #00acc1cc !important;
+  color: #00e5ff !important;
 }
 
 .label {
