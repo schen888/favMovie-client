@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import {Card, Form, Button, Stack} from 'react-bootstrap';
+import {Card, Form, Button, Stack, Toast, ToastContainer} from 'react-bootstrap';
 import { Link } from "react-router-dom";
 
 export default function LoginView(props) {
@@ -10,6 +10,12 @@ export default function LoginView(props) {
 
   const [ usernameErr, setUsernameErr ] = useState('');
   const [ passwordErr, setPasswordErr ] = useState('');
+
+  const [showToast, setShowToast] = useState(false);
+  const [toastInfo, setToastInfo] = useState('');
+
+  const openToast = ()=>setShowToast(true);
+  const closeToast = () => setShowToast(false);
 
   const validate = () => {
     let isReq = true;
@@ -44,14 +50,21 @@ export default function LoginView(props) {
         props.onLoggedIn(data);
       })
       .catch((e) => {
-        alert(e.response.data.message);
-        console.log(e, 'no such user')
+        console.log(e);
+        setToastInfo(e.response.data.message);
+        openToast();
       });
     }
   };
 
   return (
     <Card>
+      <ToastContainer className="p-3" position='top-center'>
+        <Toast show={showToast} onClose={closeToast} bg='primary'>
+          <Toast.Header className="justify-content-between"><strong>FavMovie</strong></Toast.Header>
+          <Toast.Body >{toastInfo}</Toast.Body>
+        </Toast>
+      </ToastContainer>
       <Card.Title style={{ textAlign: "center", fontSize: "2rem" }} className="mt-3">
         Login
       </Card.Title>

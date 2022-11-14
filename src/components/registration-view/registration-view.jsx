@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Card, Form, Button, Stack } from 'react-bootstrap';
+import { Card, Form, Button, Stack, Toast, ToastContainer } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 
 export default function RegistrationView() {
+  const registrationSuccessfulText = 'Registration successful, please login!';
   const [ username, setUsername ] = useState('');
   const [ password, setPassword ] = useState('');
   const [ email, setEmail ] = useState('');
@@ -13,6 +14,17 @@ export default function RegistrationView() {
   const [passwordErr, setPasswordErr]=useState('');
   const [emailErr, setEmailErr]=useState('');
 
+  const [showToast, setShowToast] = useState(false);
+  const [toastInfo, setToastInfo] = useState('');
+
+  const openToast = ()=>setShowToast(true);
+  const closeToast = ()=>{
+    setShowToast(false);
+    if (toastInfo===registrationSuccessfulText) {
+      window.open('/', '_self');  
+    }
+  }
+  
   function validate(){
     let isReq=true;
 
@@ -55,12 +67,14 @@ export default function RegistrationView() {
       })
       .then((response) => {
         console.log('RegistrationView Response:', response);
-        alert('Registration successful, please login!');
-        window.open('/', '_self')
+        setToastInfo(registrationSuccessfulText);
+        openToast();
       })
       .catch((response) => {
         console.error(response);
-        alert(response.response.data);
+        setToastInfo(response.response.data);
+        openToast();
+        console.log(toastInfo)
       });
 
     }
@@ -69,6 +83,12 @@ export default function RegistrationView() {
 
   return (
     <Card>
+      <ToastContainer className="p-3" position='top-center'>
+        <Toast show={showToast} onClose={closeToast} bg='primary'>
+          <Toast.Header className="justify-content-between"><strong>FavMovie</strong></Toast.Header>
+          <Toast.Body >{toastInfo}</Toast.Body>
+        </Toast>
+      </ToastContainer>
       <Card.Title style={{ textAlign: "center", fontSize: "2rem" }}>
         Register
       </Card.Title>
@@ -127,10 +147,10 @@ export default function RegistrationView() {
             <Stack direction="horizontal" className="mt-5 mb-3">
               <Link to="/" className="ms-auto">
                 <Button variant="link" type="button">
-                  Already registerd
+                  Login
                 </Button>
                 <Button variant="primary" className='ms-3' type="submit" onClick={handleSubmit}>
-                  Register
+                  Submit
                 </Button>
               </Link>
             </Stack>

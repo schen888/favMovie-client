@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, ToastContainer, Toast } from 'react-bootstrap';
 
 import {setUser} from '../../actions/actions';
 import {connect} from 'react-redux';
+import { useEffect } from 'react';
 
 let mapStateToProps = state => {
   return { 
@@ -14,6 +15,7 @@ let mapStateToProps = state => {
 
 function UserUpdate (props) {
   let {user} = props;
+  const updateSuccessInfo='Update successful!';
   
   const [ username, setUsername ] = useState('');
   const [ password, setPassword ] = useState('');
@@ -26,6 +28,17 @@ function UserUpdate (props) {
 
   const token=localStorage.getItem('token');
   const userLocal=localStorage.getItem('user');
+
+  const [showToast, setShowToast] = useState(false);
+  const [toastInfo, setToastInfo] = useState('');
+
+  const openToast = ()=>setShowToast(true);
+  const closeToast = () => {
+    setShowToast(false);
+    if (toastInfo===updateSuccessInfo) {
+      window.open(`/users/${userLocal}`,'_self');
+    }
+  }
 
   function validate(){
     let isReq=true;
@@ -72,33 +85,29 @@ function UserUpdate (props) {
       },config)
       .then((response) => {
         const data = response.data;
-        console.log(response.data.Username);
-        console.log('Before',user.Username);
-        onUserUpdate(data);
-        
-        alert('Update successful!');
+        //console.log(response.data.Username);
+        //console.log('Before',user.Username);
+        localStorage.setItem('user', data.Username);
+        setToastInfo(updateSuccessInfo);
+        openToast();
       })
-      .catch((response) => {
-        console.error(response);
+      .catch((err) => {
+        console.error(err);
+        setToastInfo(err.message);
+        openToast();
       });
 
     }
   }
 
-  function onUserUpdate(data) {
-    //props.setUser(data);
-    console.log('after', props.user.Username);
-
-    setTimeout(() => {
-      console.log('later', user.Username);
-    }, 5000)
-
-    localStorage.setItem('user', data.Username);
-    window.open(`/users/${data.Username}`,'_self')
-  }
-
   return (
     <>
+      <ToastContainer className="p-3" position='top-center'>
+        <Toast show={showToast} onClose={closeToast} bg='primary'>
+          <Toast.Header className="justify-content-between"><strong>FavMovie</strong></Toast.Header>
+          <Toast.Body >{toastInfo}</Toast.Body>
+        </Toast>
+      </ToastContainer>
       <h4>Update your info here:</h4>
       <Form>
         <Form.Group className="mb-3" controlId="formUsername">
