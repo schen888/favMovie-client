@@ -1,15 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Button from 'react-bootstrap/Button';
+import Stack from 'react-bootstrap/Stack';
+import { Link } from "react-router-dom";
 
 export class MovieView extends React.Component {
   render () {
-    const {movie, onBackClick} = this.props;
+    const {movie,favoriteMovies, onBackClick, onAddFavMovie, onRemoveFavMovie} = this.props;
 
     return (
       <div className="movie-view">
 
-        <div className="movie-poster">
-          <img src={movie.imageURL} />
+        <div className="movie-poster my-4">
+          <img width='360' src={movie.imageURL} />
         </div>
         <div className="movie-title">
           <span className="label">Title: </span>
@@ -21,14 +24,28 @@ export class MovieView extends React.Component {
         </div>
         <div className="movie-genre">
           <span className="label">Genre: </span>
-          <span className="value">{movie.Genre.Name}</span>
+          <Link to={`/genres/${movie.Genre.Name}`}>
+            <span className="value" variant="link">{movie.Genre.Name}</span>
+          </Link>
         </div>
         <div className="movie-director">
           <span className="label">Director: </span>
-          <span className="value">{movie.Director.Name}</span>
+          <Link to={`/directors/${movie.Director.Name}`}>
+            <span className="value pl-0" variant="link">{movie.Director.Name}</span>
+          </Link>
         </div>
-        <button onClick={()=>{ onBackClick(null); }}>Back</button>
-
+        
+        <div className='my-3'>
+          <div>
+            {favoriteMovies.includes(movie._id)
+            ? (<Button id="remove-btn" onClick={()=>{onRemoveFavMovie(movie._id)}}  variant='warning'>Remove from favorite movie list</Button>)
+            : (<Button id="add-btn" onClick={()=>{onAddFavMovie(movie._id)}}  variant='secondary'>Add to favorite movie list</Button>)
+            }
+          </div>
+          <div>
+            <Button onClick={()=>onBackClick()} variant='link'>Back</Button>
+          </div>
+        </div>
        </div>
     );
   }

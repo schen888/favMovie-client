@@ -1,33 +1,106 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
+import {Container, Row, Col, Card, Form, Button, Stack} from 'react-bootstrap';
+import { Link } from "react-router-dom";
 
 export function LoginView(props) {
   const [ username, setUsername ] = useState('');
   const [ password, setPassword ] = useState('');
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const [ usernameErr, setUsernameErr ] = useState('');
+  const [ passwordErr, setPasswordErr ] = useState('');
+
+  const validate = () => {
+    let isReq = true;
+    console.log(`isRequ in validate1: ${isReq}`);
+    if(!username){
+     setUsernameErr('Username Required');
+     isReq = false;
+    }else if(username.length < 5){
+     setUsernameErr('Username must be at least 5 characters long');
+     isReq = false;
+    }
+    if(!password){
+     setPasswordErr('Password Required');
+     isReq = false;
+    }else if(password.length < 6){
+     setPasswordErr('Password must be at least 6 characters long');
+     isReq = false;
+    }
     console.log(username, password);
-    /* Send a request to the server for authentication */
-    /* then call props.onLoggedIn(username) */
-    props.onLoggedIn(username);
+    console.log(`isRequ in validate2: ${isReq}`);
+    return isReq;
+}
+
+  const handleSubmit = (e) => {
+    e.preventDefault(); //prevent browser reload after click the submit.
+    console.log(username, password);
+    const isReq = validate();
+    console.log(`isReq: ${isReq}`);
+    if(isReq) {
+      axios.post('https://favmovie123.herokuapp.com/login', {
+        Username: username,
+        Password: password
+      })
+      .then((response) => {
+        const data = response.data;
+        console.log(response.data);
+        props.onLoggedIn(data);
+      })
+      .catch((e) => {
+        console.log(e, 'no such user')
+      });
+    }
   };
 
   return (
-    <form>
-      <label>
-        Username:
-        <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
-      </label>
-      <label>
-        Password:
-        <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-      </label>
-      <button type="submit" onClick={handleSubmit}>Submit</button>
-      {/* my code for swtich to registration-view */}
-      <button type="button" onClick={e => props.onRegister()}>Register</button>
-    </form>
-  );
+    <Card>
+      <Card.Title style={{ textAlign: "center", fontSize: "2rem" }} className="mt-3">
+        Login
+      </Card.Title>
+      <Card.Body>
+        <Form>
+          <Form.Group className="mb-3" controlId="formUsername">
+            <Form.Label>Username:</Form.Label>
+            <Form.Control
+              type="text"
+              value={username}
+              onChange={e => setUsername(e.target.value)}
+              required
+              minLength="5"
+              placeholder="Enter username"
+            />
+            {usernameErr && <p>{usernameErr}</p>}
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formPassword">
+            <Form.Label>Password:</Form.Label>
+            <Form.Control
+              type="password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              required
+              minLength="6"
+              placeholder="Enter password"
+            />
+            {passwordErr && <p>{passwordErr}</p>}
+          </Form.Group>
+
+          <Stack direction="horizontal" className="mt-5 mb-3">
+            <Button variant="primary" type="submit" onClick={handleSubmit}>
+              Submit
+            </Button>
+            <Link to="/register">
+              <Button variant="link" type="button" className="ml-2">
+                Register
+              </Button>
+            </Link>
+          </Stack>
+        </Form>
+      </Card.Body>
+    </Card>
+  )
 }
 
 LoginView.propTypes = {
