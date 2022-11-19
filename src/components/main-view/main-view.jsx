@@ -64,9 +64,7 @@ class MainView extends React.Component {
       console.log(error);
     });
   }
-  
-  /* called by handleSubmit in loginView. Response containing user data is passed as argument. Set the user state in mainView
-   and store the credential data in localStorage.*/
+
   onLoggedIn(authData) {
     this.props.setUser(authData.user);
 

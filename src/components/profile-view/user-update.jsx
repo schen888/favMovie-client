@@ -13,11 +13,7 @@ let mapStateToProps = state => {
   }
 }
 
-function UserUpdate (props) {
-  //let user = props.user;
-  //console.log('props', props);
-  //console.log('first user', user);
-  
+function UserUpdate (props) {  
   const updateSuccessInfo='Update successful!';
   
   const [ username, setUsername ] = useState('');
@@ -42,11 +38,6 @@ function UserUpdate (props) {
       window.open(`/users/${userLocal}`,'_self');
     }
   }
-
-/*   useEffect (()=>{
-    user = props.user;
-    console.log('useEffect', user);
-  }); */
 
   function validate(){
     let isReq=true;
@@ -93,12 +84,6 @@ function UserUpdate (props) {
       },config)
       .then((response) => {
         const data = response.data;
-        //console.log('data', data);
-        //console.log(response.data.Username);
-        //console.log('Before',user.Username);
-        //props.setUser(data);
-        //user=props.user;
-        //console.log('After',user.Username);
         localStorage.setItem('user', data.Username);
         setToastInfo(updateSuccessInfo);
         openToast();
