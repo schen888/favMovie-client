@@ -46,7 +46,6 @@ export default function LoginView(props) {
       })
       .then((response) => {
         const data = response.data;
-        console.log('Login response:', response);
         props.onLoggedIn(data);
       })
       .catch((e) => {

@@ -33,7 +33,6 @@ const closeToast = ()=>{
   function onDeleteAccount () {
     axios.delete(`https://favmovie123.herokuapp.com/users/${Username}`,{headers: { Authorization: `Bearer ${token}`}})
       .then((response) => {
-        console.log('response delete user:',  response.data);
         setToastInfo(response.data);
         openToast();
       })

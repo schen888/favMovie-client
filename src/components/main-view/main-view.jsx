@@ -42,7 +42,6 @@ class MainView extends React.Component {
       headers: { Authorization: `Bearer ${token}`}
     })
     .then(response => {
-      console.log('getMovies', response);
       this.props.setMovies(response.data);
     })
     .catch(function (error) {
@@ -56,8 +55,8 @@ class MainView extends React.Component {
       headers: { Authorization: `Bearer ${token}`}
     })
     .then(response => {
-      console.log('getUser', response);
       let userData=response.data;
+      userData.Birthday=new Date(userData.Birthday).toLocaleDateString();
       this.props.setUser(userData);
     })
     .catch(function (error) {
@@ -82,7 +81,6 @@ class MainView extends React.Component {
 
   render() {
     const {movies, user} = this.props;
-    console.log('mainview user', user.Username);
     const username=user.Username;
     const userLocal = localStorage.getItem('user');
 

@@ -66,7 +66,6 @@ export default function RegistrationView() {
         Birthday: birthday
       })
       .then((response) => {
-        console.log('RegistrationView Response:', response);
         setToastInfo(registrationSuccessfulText);
         openToast();
       })
@@ -74,7 +73,6 @@ export default function RegistrationView() {
         console.error(response);
         setToastInfo(response.response.data);
         openToast();
-        console.log(toastInfo)
       });
 
     }

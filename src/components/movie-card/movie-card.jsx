@@ -34,7 +34,6 @@ class MovieCard extends React.Component {
         {headers: { Authorization: `Bearer ${token}`}})
       .then((response) => {
         this.props.setUser(response.data);
-        console.log('onAddFavMovie', response);
         document.getElementById('remove-btn').blur();
       })
       .catch((err) => {
@@ -53,7 +52,6 @@ class MovieCard extends React.Component {
       data: {FavoriteMovies: movieID} 
     })
     .then((response) => {
-      console.log('onRemoveFavMovie', response);
       this.props.setUser(response.data);
       document.getElementById('add-btn').blur();
     })
