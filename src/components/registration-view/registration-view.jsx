@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import {env} from '../../env';
 import { Card, Form, Button, Stack, Toast, ToastContainer } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 
@@ -59,7 +60,7 @@ export default function RegistrationView() {
     e.preventDefault();
     const isReq = validate();
     if (isReq) {
-      axios.post('https://favmovie123.herokuapp.com/users', {
+      axios.post(`${env.API_URL}/users`, {
         Username: username,
         Password: password,
         Email: email,

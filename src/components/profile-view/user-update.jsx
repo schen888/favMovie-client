@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import {env} from '../../env';
 import PropTypes from 'prop-types';
 import { Form, Button, ToastContainer, Toast } from 'react-bootstrap';
 
@@ -76,7 +77,7 @@ function UserUpdate (props) {
       headers: { Authorization: `Bearer ${token}`}
     }
     if (isReq) {
-      axios.put(`https://favmovie123.herokuapp.com/users/${userLocal}`, {
+      axios.put(`${env.API_URL}/users/${userLocal}`, {
         Username: username,
         Password: password,
         Email: email,

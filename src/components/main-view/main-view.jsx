@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import {env} from '../../env';
 
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
@@ -38,7 +39,7 @@ class MainView extends React.Component {
 
 
   getMovies(token) {
-    axios.get('https://favmovie123.herokuapp.com/movies', {
+    axios.get(`${env.API_URL}/movies`, {
       headers: { Authorization: `Bearer ${token}`}
     })
     .then(response => {
@@ -51,7 +52,7 @@ class MainView extends React.Component {
 
   getUser(token) {
     let accessUser=localStorage.getItem('user');
-    axios.get(`https://favmovie123.herokuapp.com/users/${accessUser}`, {
+    axios.get(`${env.API_URL}/users/${accessUser}`, {
       headers: { Authorization: `Bearer ${token}`}
     })
     .then(response => {

@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import {env} from '../../env';
 import PropTypes from 'prop-types';
 import { Button, Row, Col, Figure, Card } from 'react-bootstrap';
 import { Link } from "react-router-dom";
@@ -22,12 +23,14 @@ function FavoriteMovies (props) {
     const userLocal= localStorage.getItem('user');
     const token= localStorage.getItem('token');
 
-    axios.delete(`https://favmovie123.herokuapp.com/users/${userLocal}/movies/${movieID}`, {
+    axios.delete(`${env.API_URL}/users/${userLocal}/movies/${movieID}`, {
       headers: { Authorization: `Bearer ${token}`},
       data: {FavoriteMovies: movieID} 
     })
     .then((response) => {
-      props.setUser(response.data);
+      let userData=response.data;
+      userData.Birthday=new Date(userData.Birthday).toLocaleDateString();
+      props.setUser(userData);
     })
     .catch((err) => {
       console.error(err);

@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import {env} from '../../env';
 import PropTypes from 'prop-types';
 import {Button, Card, Stack} from 'react-bootstrap';
 import { Link } from "react-router-dom";
@@ -28,7 +29,7 @@ export class MovieView extends React.Component {
     if (favoriteMovies.includes(movieID)) {
       alert('This movie is already in your favorite movie list!');
     } else {
-      axios.post(`https://favmovie123.herokuapp.com/users/${userLocal}/movies/${movieID}`,
+      axios.post(`${env.API_URL}/users/${userLocal}/movies/${movieID}`,
         {FavoriteMovies: movieID},
         {headers: { Authorization: `Bearer ${token}`}})
       .then((response) => {
@@ -46,7 +47,7 @@ export class MovieView extends React.Component {
     const userLocal= localStorage.getItem('user');
     const token= localStorage.getItem('token');
 
-    axios.delete(`https://favmovie123.herokuapp.com/users/${userLocal}/movies/${movieID}`, {
+    axios.delete(`${env.API_URL}/users/${userLocal}/movies/${movieID}`, {
       headers: { Authorization: `Bearer ${token}`},
       data: {FavoriteMovies: movieID} 
     })

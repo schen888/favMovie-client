@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import {env} from '../../env';
 import PropTypes from 'prop-types';
 import { Button, ToastContainer, Toast } from 'react-bootstrap';
 
@@ -31,7 +32,7 @@ const closeToast = ()=>{
 } 
 
   function onDeleteAccount () {
-    axios.delete(`https://favmovie123.herokuapp.com/users/${Username}`,{headers: { Authorization: `Bearer ${token}`}})
+    axios.delete(`${env.API_URL}/users/${Username}`,{headers: { Authorization: `Bearer ${token}`}})
       .then((response) => {
         setToastInfo(response.data);
         openToast();

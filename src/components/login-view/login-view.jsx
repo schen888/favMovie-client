@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import {env} from '../../env';
 import PropTypes from 'prop-types';
 import {Card, Form, Button, Stack, Toast, ToastContainer} from 'react-bootstrap';
 import { Link } from "react-router-dom";
@@ -40,12 +41,13 @@ export default function LoginView(props) {
     e.preventDefault();
     const isReq = validate();
     if(isReq) {
-      axios.post('https://favmovie123.herokuapp.com/login', {
+      axios.post(`${env.API_URL}/login`, {
         Username: username,
         Password: password
       })
       .then((response) => {
-        const data = response.data;
+        let data=response.data;
+        data.user.Birthday=new Date(data.user.Birthday).toLocaleDateString();
         props.onLoggedIn(data);
       })
       .catch((e) => {
