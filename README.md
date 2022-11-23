@@ -1,5 +1,6 @@
-### favMovie Client ###
+### FavMovie Client ###
 This is the frontend of my movie app.
+###### [My FavMovie App] (https://favmovie-schen.netlify.app) ######
 ###### Key Features ######
 * Main view
   - Returns a list of ALL movies to the user (each listed item with an image, title, and description)
@@ -23,5 +24,6 @@ This is the frontend of my movie app.
   - Allows existing users to deregister
   - Displays favorite movies
   - Allows users to remove a movie from their list of favorites
+
 
   <!-- refactor from react to react redux -->
