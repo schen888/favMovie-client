@@ -28,11 +28,11 @@ This is the frontend of my movie app.
   - Allows users to remove a movie from their list of favorites
 
 ###### App showcase
-<img alt="A screenshot of the login view in FavMovie App" src="/img/Screenshot_login.png" width="48%">
-<img alt="A screenshot of the register view in FavMovie App" src="/img/Screenshot_register.png" width="48%">
-<img alt="A screenshot of the movie list in FavMovie App" src="/img/Screenshot_movielist.png" width="48%">
-<img alt="A screenshot of the movie list in FavMovie App" src="/img/Screenshot_profileview.png" width="48%">
-<img alt="A screenshot of the movie view in FavMovie App" src="/img/Screenshot_movieview.png" width="48%">
-<img alt="A screenshot of the movie view in FavMovie App" src="/img/Screenshot_movieview2.png" width="48%">
+<img alt="A screenshot of the login view in FavMovie App" src="/img/Screenshot_login.png" width="100%">
+<img alt="A screenshot of the register view in FavMovie App" src="/img/Screenshot_register.png" width="100%">
+<img alt="A screenshot of the movie list in FavMovie App" src="/img/Screenshot_movielist.png" width="100%">
+<img alt="A screenshot of the movie list in FavMovie App" src="/img/Screenshot_profileview.png" width="100%">
+<img alt="A screenshot of the movie view in FavMovie App" src="/img/Screenshot_movieview.png" width="100%">
+<img alt="A screenshot of the movie view in FavMovie App" src="/img/Screenshot_movieview2.png" width="100%">
 
   <!-- refactor from react to react redux -->
