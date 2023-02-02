@@ -1,9 +1,9 @@
-### FavMovie Client ###
+# FavMovie Client ###
 This is the frontend of my movie app.
 
-###### [My FavMovie App](https://favmovie-schen.netlify.app) ######
+## [My FavMovie App](https://favmovie-schen.netlify.app) ######
 
-###### Key Features ######
+## Key Features ######
 * Main view
   - Returns a list of ALL movies to the user (each listed item with an image, title, and description)
   - Sorting and filtering
@@ -27,7 +27,7 @@ This is the frontend of my movie app.
   - Displays favorite movies
   - Allows users to remove a movie from their list of favorites
 
-###### App showcase
+## App showcase
 <img alt="A screenshot of the login view in FavMovie App" src="/img/Screenshot_login2.png" width="100%">
 <img alt="A screenshot of the login view in FavMovie App" src="/img/Screenshot_login.png" width="100%">
 <img alt="A screenshot of the register view in FavMovie App" src="/img/Screenshot_register2.png" width="100%">
