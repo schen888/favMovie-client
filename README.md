@@ -32,6 +32,7 @@ This is the frontend of my movie app.
 <img alt="A screenshot of the register view in FavMovie App" src="/img/Screenshot_register.png" width="100%">
 <img alt="A screenshot of the movie list in FavMovie App" src="/img/Screenshot_movielist.png" width="100%">
 <img alt="A screenshot of the movie list in FavMovie App" src="/img/Screenshot_profileview.png" width="100%">
+<img alt="A screenshot of the movie list in FavMovie App" src="/img/Screenshot_profileview2.png" width="100%">
 <img alt="A screenshot of the movie view in FavMovie App" src="/img/Screenshot_movieview.png" width="100%">
 <img alt="A screenshot of the movie view in FavMovie App" src="/img/Screenshot_movieview2.png" width="100%">
 
